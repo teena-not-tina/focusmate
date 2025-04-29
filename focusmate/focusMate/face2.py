@@ -4,10 +4,11 @@ import time
 import threading
 import os
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from PIL import Image, ImageTk
 import webbrowser
 import mediapipe as mp
+from datetime import datetime
 
 # YouTube 링크 (상태별 음악)
 MUSIC_LINKS = {
@@ -23,6 +24,7 @@ MUSIC_LINKS = {
 STUDY_TIME = 25 * 60  # 25분
 BREAK_TIME = 5 * 60   # 5분
 ANALYSIS_INTERVAL = 5  # 매 5초마다 분석
+CAPTURE_INTERVAL = 1   # 1초마다 캡처
 
 # 얼굴 및 손 인식 설정
 class StudyMoodMonitor:
@@ -53,6 +55,16 @@ class StudyMoodMonitor:
         # 음악 재생 제어 변수
         self.music_playing = False
         self.open_browser_thread = None
+        
+        # 캡처 관련 변수
+        self.capture_enabled = False
+        self.capture_folder = "captures"
+        self.last_capture_time = 0
+        
+        # 캡처 폴더 생성
+        if not os.path.exists(self.capture_folder):
+            os.makedirs(self.capture_folder)
+            print(f"캡처 폴더 생성: {self.capture_folder}")
         
         # insightface 및 mediapipe tasks API 사용 여부 설정
         self.insightface_available = False
@@ -194,6 +206,17 @@ class StudyMoodMonitor:
                                font=("Helvetica", 12), bg='#34495e', fg='#e74c3c')
         self.hand_status.pack(side=LEFT, fill=X, expand=True)
         
+        # 캡처 상태
+        capture_frame = Frame(info_frame, bg='#34495e')
+        capture_frame.pack(fill=X, pady=5)
+        
+        Label(capture_frame, text="화면 캡처:", width=10, anchor=W,
+              font=("Helvetica", 12), bg='#34495e', fg='white').pack(side=LEFT)
+        
+        self.capture_status = Label(capture_frame, text="비활성화", width=20, anchor=W,
+                                  font=("Helvetica", 12), bg='#34495e', fg='#e74c3c')
+        self.capture_status.pack(side=LEFT, fill=X, expand=True)
+        
         # 구분선
         ttk.Separator(control_frame, orient=HORIZONTAL).pack(fill=X, pady=10)
         
@@ -218,6 +241,22 @@ class StudyMoodMonitor:
                            bg='#e74c3c', fg='white', font=("Helvetica", 12, "bold"),
                            command=self.on_closing)
         exit_button.pack(side=LEFT, padx=5)
+        
+        # 추가 제어 버튼 섹션
+        extra_buttons = Frame(control_frame, bg='#34495e', padx=10, pady=10)
+        extra_buttons.pack(fill=X)
+        
+        # 캡처 활성화/비활성화 버튼
+        self.capture_button = Button(extra_buttons, text="캡처 시작", width=12, height=2,
+                                   bg='#3498db', fg='white', font=("Helvetica", 12, "bold"),
+                                   command=self.toggle_capture)
+        self.capture_button.pack(side=LEFT, padx=5)
+        
+        # 캡처 폴더 열기 버튼
+        open_folder_button = Button(extra_buttons, text="캡처 폴더", width=12, height=2,
+                                   bg='#9b59b6', fg='white', font=("Helvetica", 12, "bold"),
+                                   command=self.open_capture_folder)
+        open_folder_button.pack(side=LEFT, padx=5)
         
         # 상태 설명
         description_frame = Frame(control_frame, bg='#34495e', padx=10, pady=10)
@@ -249,6 +288,7 @@ class StudyMoodMonitor:
         self.root.bind('<Escape>', lambda e: self.on_closing())
         self.root.bind('s', lambda e: self.toggle_start_stop())
         self.root.bind('r', lambda e: self.reset_session())
+        self.root.bind('c', lambda e: self.toggle_capture())
         
         # 웹캠 사용 불가능하면 메시지 표시
         if not self.webcam_available:
@@ -266,6 +306,61 @@ class StudyMoodMonitor:
             self.start()
             self.start_stop_button.config(text="중지", bg='#e74c3c')
             self.status_text.config(text="모니터링 시작됨")
+    
+    def toggle_capture(self):
+        """캡처 기능 활성화/비활성화"""
+        self.capture_enabled = not self.capture_enabled
+        
+        if self.capture_enabled:
+            self.capture_button.config(text="캡처 중지", bg='#e74c3c')
+            self.capture_status.config(text="활성화", fg='#2ecc71')
+            self.status_text.config(text=f"1초마다 화면 캡처 시작. 저장 경로: {self.capture_folder}")
+            print(f"화면 캡처 활성화. 저장 경로: {self.capture_folder}")
+        else:
+            self.capture_button.config(text="캡처 시작", bg='#3498db')
+            self.capture_status.config(text="비활성화", fg='#e74c3c')
+            self.status_text.config(text="화면 캡처 중지됨")
+            print("화면 캡처 비활성화")
+    
+    def open_capture_folder(self):
+        """캡처 폴더 열기"""
+        try:
+            # 운영체제별 폴더 열기 명령
+            abs_path = os.path.abspath(self.capture_folder)
+            if os.path.exists(abs_path):
+                if os.name == 'nt':  # Windows
+                    os.startfile(abs_path)
+                elif os.name == 'posix':  # macOS, Linux
+                    if os.uname().sysname == 'Darwin':  # macOS
+                        os.system(f'open "{abs_path}"')
+                    else:  # Linux
+                        os.system(f'xdg-open "{abs_path}"')
+                print(f"캡처 폴더 열기: {abs_path}")
+            else:
+                print(f"캡처 폴더가 존재하지 않습니다: {abs_path}")
+                self.status_text.config(text=f"캡처 폴더가 존재하지 않습니다: {self.capture_folder}")
+        except Exception as e:
+            print(f"캡처 폴더 열기 오류: {e}")
+            self.status_text.config(text=f"캡처 폴더 열기 오류: {e}")
+    
+    def capture_frame(self, frame):
+        """현재 프레임을 이미지로 저장"""
+        try:
+            # 현재 시간 기준으로 파일명 생성
+            current_time = time.time()
+            # 마지막 캡처 후 CAPTURE_INTERVAL초 이상 지났는지 확인
+            if current_time - self.last_capture_time >= CAPTURE_INTERVAL:
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename = f"{self.capture_folder}/capture_{timestamp}.jpg"
+                
+                # 이미지 저장
+                cv2.imwrite(filename, frame)
+                print(f"화면 캡처 저장: {filename}")
+                
+                # 마지막 캡처 시간 업데이트
+                self.last_capture_time = current_time
+        except Exception as e:
+            print(f"화면 캡처 중 오류: {e}")
     
     def reset_session(self):
         self.stop()
@@ -455,6 +550,17 @@ class StudyMoodMonitor:
         state_text = f"상태: {self.get_state_korean(self.dominant_state)}"
         cv2.putText(frame, state_text, (10, 90), 
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+        
+        # 캡처 상태 표시
+        if self.capture_enabled:
+            capture_text = "캡처: 활성화"
+            capture_color = (0, 255, 0)  # 녹색
+        else:
+            capture_text = "캡처: 비활성화"
+            capture_color = (128, 128, 128)  # 회색
+            
+        cv2.putText(frame, capture_text, (10, 120), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, capture_color, 2)
     
     def analyze_hand_gesture(self, hand_landmarks):
         """MediaPipe 핸드 랜드마크를 분석하여 제스처 인식"""
@@ -512,6 +618,10 @@ class StudyMoodMonitor:
             
             # 화면 뒤집기 (거울 효과)
             frame = cv2.flip(frame, 1)
+            
+            # 캡처 기능이 활성화되어 있으면 프레임 저장
+            if self.capture_enabled:
+                self.capture_frame(frame)
             
             # RGB로 변환 (MediaPipe는 RGB 형식 요구)
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
