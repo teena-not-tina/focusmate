@@ -8,12 +8,6 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import webbrowser
 import mediapipe as mp
-# insightface 및 필요한 모듈 가져오기
-import insightface
-from insightface.app import FaceAnalysis
-from insightface.utils import face_align
-import mediapipe as mp
-print(mp.__version__)
 
 # YouTube 링크 (상태별 음악)
 MUSIC_LINKS = {
@@ -56,16 +50,13 @@ class StudyMoodMonitor:
         # 타이머 스레드
         self.timer_thread = None
         
-        # InsightFace 설정
-        try:
-            # InsightFace 분석기 초기화
-            self.face_app = FaceAnalysis(allowed_modules=['detection', 'landmark_2d_106'])
-            self.face_app.prepare(ctx_id=0, det_size=(640, 640))
-            self.insightface_available = True
-            print("InsightFace 초기화 성공")
-        except Exception as e:
-            print(f"InsightFace 초기화 중 오류: {e}")
-            self.insightface_available = False
+        # 음악 재생 제어 변수
+        self.music_playing = False
+        self.open_browser_thread = None
+        
+        # insightface 및 mediapipe tasks API 사용 여부 설정
+        self.insightface_available = False
+        self.mediapipe_tasks_available = False
             
         # MediaPipe 핸드 트래커 설정
         try:
@@ -82,29 +73,21 @@ class StudyMoodMonitor:
         except Exception as e:
             print(f"MediaPipe Hands 초기화 중 오류: {e}")
             self.mediapipe_available = False
-            
-        # MediaPipe Tasks API 설정 추가
-        try:
-            from mediapipe.tasks import python
-            from mediapipe.tasks.python import vision
-
-            # 모델 파일 경로 설정
-            model_path = os.path.join(os.path.dirname(__file__), 'models', 'hand_landmarker.task')
-            base_options = python.BaseOptions(model_asset_path=model_path)
-            options = vision.HandLandmarkerOptions(
-                base_options=base_options,
-                num_hands=2,
-                min_hand_detection_confidence=0.5,
-                min_hand_presence_confidence=0.5
-            )
-            self.hand_landmarker = vision.HandLandmarker.create_from_options(options)
-            self.mediapipe_tasks_available = True
-            print("MediaPipe Tasks API 초기화 성공")
-        except Exception as e:
-            print(f"MediaPipe Tasks API 초기화 중 오류: {e}")
-            self.mediapipe_tasks_available = False
-           
         
+        # MediaPipe Face Detection 설정 추가
+        try:
+            self.mp_face_detection = mp.solutions.face_detection
+            self.face_detection = self.mp_face_detection.FaceDetection(
+                model_selection=1, min_detection_confidence=0.5)
+            self.mp_face_mesh = mp.solutions.face_mesh  
+            self.face_mesh = self.mp_face_mesh.FaceMesh(
+                max_num_faces=1,
+                min_detection_confidence=0.5,
+                min_tracking_confidence=0.5)
+            print("MediaPipe Face Detection 초기화 성공")
+        except Exception as e:
+            print(f"MediaPipe Face Detection 초기화 중 오류: {e}")
+            
         # 웹캠 설정
         try:
             self.cap = cv2.VideoCapture(0)
@@ -113,6 +96,7 @@ class StudyMoodMonitor:
                 self.webcam_available = False
             else:
                 self.webcam_available = True
+                print("웹캠 초기화 성공")
         except Exception as e:
             print(f"웹캠 초기화 중 오류: {e}")
             self.webcam_available = False
@@ -328,6 +312,10 @@ class StudyMoodMonitor:
             self.cap.release()
         if hasattr(self, 'hands'):
             self.hands.close()
+        if hasattr(self, 'face_detection'):
+            self.face_detection.close()
+        if hasattr(self, 'face_mesh'):
+            self.face_mesh.close()
         self.root.destroy()
     
     def reset_states(self):
@@ -343,6 +331,60 @@ class StudyMoodMonitor:
         self.hand_on_face_detected = False
         self.study_time_remaining = STUDY_TIME
         self.break_time_remaining = BREAK_TIME
+        self.music_playing = False
+    
+    def open_browser_in_thread(self, url):
+        """별도 스레드에서 브라우저 열기"""
+        try:
+            webbrowser.open(url)
+            print(f"음악 재생 URL 열림: {url}")
+        except Exception as e:
+            print(f"음악 재생 중 오류: {e}")
+        finally:
+            self.music_playing = False
+    
+    def play_music(self, state):
+        """YouTube에서 상태에 해당하는 음악 재생"""
+        try:
+            # 이미 음악이 재생 중이면 중복 실행 방지
+            if self.music_playing:
+                return
+
+            self.music_playing = True
+            url = MUSIC_LINKS.get(state, MUSIC_LINKS['default'])
+            
+            # 새 스레드에서 브라우저 열기
+            self.open_browser_thread = threading.Thread(target=self.open_browser_in_thread, args=(url,))
+            self.open_browser_thread.daemon = True
+            self.open_browser_thread.start()
+            
+            print(f"음악 재생 요청: {state} 상태에 맞는 음악")
+        except Exception as e:
+            print(f"음악 재생 요청 중 오류: {e}")
+            self.music_playing = False
+    
+    def update_dominant_state(self):
+        """가장 많이 감지된 상태 확인"""
+        if not self.detected_states:
+            self.dominant_state = 'default'
+            return
+
+        from collections import Counter
+        counter = Counter(self.detected_states)
+        self.dominant_state = counter.most_common(1)[0][0]
+        self.state_label.config(text=self.get_state_korean(self.dominant_state))
+    
+    def get_state_korean(self, state):
+        """상태 영문 코드를 한글로 변환"""
+        state_dict = {
+            'default': '기본',
+            'bored': '지루함',
+            'tired': '피곤함',
+            'thinking': '고민 중',
+            'satisfied': '만족',
+            'dissatisfied': '불만족'
+        }
+        return state_dict.get(state, '알 수 없음')
     
     def timer_loop(self):
         """타이머 스레드 루프"""
@@ -380,186 +422,274 @@ class StudyMoodMonitor:
                     print("휴식 시간 종료. 새 세션을 시작하려면 얼굴을 카메라에 보여주세요.")
                     self.status_text.config(text="휴식 시간 종료. 새 세션을 시작하려면 얼굴을 카메라에 보여주세요.")
     
+    def draw_info(self, frame):
+        """화면에 정보 표시"""
+        # 현재 모드 표시
+        mode_text = "대기 중"
+        if self.mode == 'studying':
+            mode_text = "공부 시간"
+            color = (0, 255, 0)  # 녹색
+        elif self.mode == 'break':
+            mode_text = "휴식 시간"
+            color = (255, 0, 0)  # 빨강
+        else:
+            color = (255, 255, 0)  # 노랑
+            
+        cv2.putText(frame, f"모드: {mode_text}", (10, 30), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
+        
+        # 남은 시간 표시
+        if self.mode == 'studying':
+            minutes, seconds = divmod(self.study_time_remaining, 60)
+            timer_text = f"남은 시간: {minutes:02d}:{seconds:02d}"
+        elif self.mode == 'break':
+            minutes, seconds = divmod(self.break_time_remaining, 60)
+            timer_text = f"휴식 시간: {minutes:02d}:{seconds:02d}"
+        else:
+            timer_text = "시간: --:--"
+            
+        cv2.putText(frame, timer_text, (10, 60), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        
+        # 현재 상태 표시
+        state_text = f"상태: {self.get_state_korean(self.dominant_state)}"
+        cv2.putText(frame, state_text, (10, 90), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+    
+    def analyze_hand_gesture(self, hand_landmarks):
+        """MediaPipe 핸드 랜드마크를 분석하여 제스처 인식"""
+        try:
+            # 손가락 끝점 좌표
+            thumb_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_TIP]
+            index_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP]
+            middle_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_TIP]
+            ring_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.RING_FINGER_TIP]
+            pinky_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.PINKY_TIP]
+            
+            # 손바닥 중심 좌표
+            wrist = hand_landmarks.landmark[self.mp_hands.HandLandmark.WRIST]
+            
+            # 손가락 밑 부분 좌표
+            thumb_mcp = hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_MCP]
+            index_mcp = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP]
+            middle_mcp = hand_landmarks.landmark[self.mp_hands.HandLandmark.MIDDLE_FINGER_MCP]
+            ring_mcp = hand_landmarks.landmark[self.mp_hands.HandLandmark.RING_FINGER_MCP]
+            pinky_mcp = hand_landmarks.landmark[self.mp_hands.HandLandmark.PINKY_MCP]
+            
+            # 엄지 올리기 감지 (만족)
+            if (thumb_tip.y < thumb_mcp.y) and (index_tip.y > index_mcp.y) and (middle_tip.y > middle_mcp.y):
+                self.thumb_up_detected = True
+                self.detected_states.append('satisfied')
+                print("엄지 올리기 감지: 만족 상태")
+            
+            # 손뼉 감지 (만족) - 양손이 필요하므로 추가 로직 필요
+            # 단순화를 위해 손이 빠르게 움직이는 것으로 추정
+            
+            # 턱 괴기, 얼굴 감싸기 감지 (고민 중) - 손과 얼굴 위치 비교 필요
+            # 단순화를 위해 손이 상단에 있으면 고민 중으로 추정
+            if (wrist.y > 0.6) and (thumb_tip.y < 0.4):
+                self.hand_on_face_detected = True
+                self.detected_states.append('thinking')
+                print("턱 괴기 감지: 고민 중 상태")
+                
+        except Exception as e:
+            print(f"손 제스처 분석 중 오류: {e}")
+    
     def update_webcam(self):
         """웹캠 프레임 업데이트 및 처리"""
         if not self.is_running or not self.webcam_available:
             return
         
-        ret, frame = self.cap.read()
-        if not ret:
-            print("웹캠에서 프레임을 읽을 수 없습니다.")
-            self.status_text.config(text="오류: 웹캠에서 프레임을 읽을 수 없습니다.")
-            return
-        
-        # 화면 뒤집기 (거울 효과)
-        frame = cv2.flip(frame, 1)
-        
-        # 얼굴 감지 및 랜드마크 분석 (InsightFace 사용)
-        face_detected = False
-        if self.insightface_available:
-            try:
-                # InsightFace로 얼굴 감지
-                faces = self.face_app.get(frame)
+        try:
+            ret, frame = self.cap.read()
+            if not ret:
+                print("웹캠에서 프레임을 읽을 수 없습니다.")
+                self.status_text.config(text="오류: 웹캠에서 프레임을 읽을 수 없습니다.")
+                # 다음 프레임 처리 계속 시도
+                if self.is_running:
+                    self.webcam_label.after(10, self.update_webcam)
+                return
+            
+            # 화면 뒤집기 (거울 효과)
+            frame = cv2.flip(frame, 1)
+            
+            # RGB로 변환 (MediaPipe는 RGB 형식 요구)
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            # 이미지 크기 가져오기
+            ih, iw, _ = frame.shape  # 높이, 너비, 채널
+
+            # 얼굴 감지 - 초기값 설정
+            face_detected = False
+            
+            # 얼굴 감지
+            face_results = self.face_detection.process(rgb_frame)
+            
+            if face_results.detections:
+                face_detected = True
                 
-                if len(faces) > 0:
-                    face_detected = True
-                    face = faces[0]  # 첫 번째 얼굴
+                for detection in face_results.detections:
+                    # 얼굴 영역 그리기
+                    self.mp_drawing.draw_detection(frame, detection)
                     
-                    # 얼굴 영역 표시
-                    box = face.bbox.astype(np.int32)
-                    cv2.rectangle(frame, (box[0], box[1]), (box[2], box[3]), (0, 255, 0), 2)
+                    # 얼굴 크기 계산
+                    bboxC = detection.location_data.relative_bounding_box
+                    # 위치 변수가 유효한지 확인
+                    x, y, w, h = 0, 0, 0, 0
                     
-                    # 랜드마크 표시
-                    if hasattr(face, 'landmark_2d_106'):
-                        landmark = face.landmark_2d_106.astype(np.int32)
-                        for i in range(landmark.shape[0]):
-                            cv2.circle(frame, (landmark[i][0], landmark[i][1]), 1, (0, 0, 255), 2)
-                    
-                    # 얼굴 특징 분석
-                    self.analyze_face_state(face)
-                    
-            except Exception as e:
-                print(f"InsightFace 분석 중 오류: {e}")
-        
-        # 손 감지 및 분석 (MediaPipe 사용)
-        hands_detected = False
-        if self.mediapipe_available:
+                    try:
+                        x = int(bboxC.xmin * iw)
+                        y = int(bboxC.ymin * ih)
+                        w = int(bboxC.width * iw)
+                        h = int(bboxC.height * ih)
+                        
+                        # 얼굴 크기 변화 감지 (지루함: 작아짐)
+                        face_size = w * h
+                        if self.initial_face_size == 0:
+                            self.initial_face_size = face_size
+                        
+                        size_ratio = face_size / self.initial_face_size if self.initial_face_size > 0 else 1.0
+                        if size_ratio < 0.7:  # 30% 이상 작아지면
+                            self.detected_states.append('bored')
+                            print("얼굴 크기 감소 감지: 지루함 상태")
+                    except Exception as e:
+                        print(f"얼굴 좌표 계산 오류: {e}")
+            
+            # 얼굴 메시 감지 (표정 분석)
             try:
-                # RGB로 변환 (MediaPipe는 RGB 형식 요구)
-                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                results = self.hands.process(rgb_frame)
+                mesh_results = self.face_mesh.process(rgb_frame)
                 
-                if results.multi_hand_landmarks:
-                    hands_detected = True
-                    self.hand_status.config(text="감지됨", fg='#2ecc71')
-                    
-                    for hand_landmarks in results.multi_hand_landmarks:
-                        # 손 랜드마크 그리기
+                if mesh_results and mesh_results.multi_face_landmarks:
+                    for face_landmarks in mesh_results.multi_face_landmarks:
+                        # 얼굴 메시 그리기
                         self.mp_drawing.draw_landmarks(
                             frame,
-                            hand_landmarks,
-                            self.mp_hands.HAND_CONNECTIONS,
-                            self.mp_drawing_styles.get_default_hand_landmarks_style(),
-                            self.mp_drawing_styles.get_default_hand_connections_style())
+                            face_landmarks,
+                            self.mp_face_mesh.FACEMESH_CONTOURS,
+                            landmark_drawing_spec=None)
                         
-                        # 손 제스처 분석
-                        self.analyze_hand_gesture(hand_landmarks)
-                else:
-                    self.hand_status.config(text="감지되지 않음", fg='#e74c3c')
-                    
+                        try:
+                            # 입 랜드마크 추출 (하품 감지)
+                            lips_indices = [61, 185, 40, 39, 37, 0, 267, 269, 270, 409]  # 입 주변 랜드마크
+                            lips_coordinates = [(int(face_landmarks.landmark[i].x * iw), 
+                                                int(face_landmarks.landmark[i].y * ih)) 
+                                                for i in lips_indices]
+                            
+                            # 입 세로 길이 계산 (하품 감지)
+                            upper_lip = min([coord[1] for coord in lips_coordinates])
+                            lower_lip = max([coord[1] for coord in lips_coordinates])
+                            mouth_height = lower_lip - upper_lip
+                            face_height = h if h > 0 else 1  # 얼굴 감지된 높이, 0이면 1로 대체
+                            
+                            mouth_ratio = mouth_height / face_height
+                            if mouth_ratio > 0.25:  # 입이 크게 벌어짐 (하품)
+                                self.detected_states.append('tired')
+                                print("하품 감지: 피곤함 상태")
+                            
+                            # 눈썹 랜드마크 추출 (불만족 감지)
+                            eyebrow_indices = [70, 63, 105, 66, 107, 336, 296, 334, 293, 300]
+                            eyebrow_coordinates = [(int(face_landmarks.landmark[i].x * iw), 
+                                                   int(face_landmarks.landmark[i].y * ih)) 
+                                                   for i in eyebrow_indices]
+                            
+                            # 눈썹 거리 계산 (불만족 감지)
+                            left_eyebrow_center = (sum([coord[0] for coord in eyebrow_coordinates[:5]]) / 5,
+                                                  sum([coord[1] for coord in eyebrow_coordinates[:5]]) / 5)
+                            right_eyebrow_center = (sum([coord[0] for coord in eyebrow_coordinates[5:]]) / 5,
+                                                   sum([coord[1] for coord in eyebrow_coordinates[5:]]) / 5)
+                            
+                            eyebrow_distance = ((left_eyebrow_center[0] - right_eyebrow_center[0])**2 + 
+                                               (left_eyebrow_center[1] - right_eyebrow_center[1])**2)**0.5
+                            
+                            if eyebrow_distance < 0.4 * w and w > 0:  # 눈썹이 가까워짐 (불만족)
+                                self.detected_states.append('dissatisfied')
+                                print("눈썹 가까워짐 감지: 불만족 상태")
+                        except Exception as e:
+                            print(f"얼굴 특징 분석 오류: {e}")
             except Exception as e:
-                print(f"MediaPipe Hands 분석 중 오류: {e}")
-                
-        # 손 감지 및 분석 (MediaPipe Tasks API 사용)
-        if hasattr(self, 'mediapipe_tasks_available') and self.mediapipe_tasks_available:
+                print(f"Face Mesh 처리 오류: {e}")
+            
+            # 손 감지 및 분석 (MediaPipe 사용)
+            hands_detected = False
+            if self.mediapipe_available:
+                try:
+                    results = self.hands.process(rgb_frame)
+                    
+                    if results.multi_hand_landmarks:
+                        hands_detected = True
+                        self.hand_status.config(text="감지됨", fg='#2ecc71')
+                        
+                        for hand_landmarks in results.multi_hand_landmarks:
+                            # 손 랜드마크 그리기
+                            self.mp_drawing.draw_landmarks(
+                                frame,
+                                hand_landmarks,
+                                self.mp_hands.HAND_CONNECTIONS,
+                                self.mp_drawing_styles.get_default_hand_landmarks_style(),
+                                self.mp_drawing_styles.get_default_hand_connections_style())
+                            
+                            # 손 제스처 분석
+                            self.analyze_hand_gesture(hand_landmarks)
+                    else:
+                        self.hand_status.config(text="감지되지 않음", fg='#e74c3c')
+                        
+                except Exception as e:
+                    print(f"MediaPipe Hands 분석 중 오류: {e}")
+            
+            # 얼굴 감지 상태 업데이트
             try:
-                # RGB로 변환 (MediaPipe는 RGB 형식 요구)
-                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
-                detection_result = self.hand_landmarker.detect(mp_image)
-                
-                if detection_result.hand_landmarks:
-                    hands_detected = True
-                    self.hand_status.config(text="감지됨", fg='#2ecc71')
-                    
-                    for hand_landmarks in detection_result.hand_landmarks:
-                        # 손 랜드마크 그리기
-                        self.draw_landmarks_on_image(frame, hand_landmarks)
+                if face_detected:
+                    if not self.face_detected:
+                        self.face_detected = True
+                        self.face_status.config(text="감지됨", fg='#2ecc71')
                         
-                        # 손 제스처 분석
-                        self.analyze_hand_gesture_tasks(hand_landmarks)
+                        if self.mode == 'waiting':
+                            self.mode = 'studying'
+                            self.mode_label.config(text="공부 시간", fg='#2ecc71')
+                            print("얼굴 감지됨! 공부 시간을 시작합니다.")
+                            self.status_text.config(text="얼굴 감지됨! 공부 시간을 시작합니다.")
+                            # 얼굴이 감지되면 기본 백색소음 음악 재생 (별도 스레드에서)
+                            self.root.after(100, lambda: self.play_music('default'))
                 else:
-                    self.hand_status.config(text="감지되지 않음", fg='#e74c3c')
-                    
+                    if self.face_detected:
+                        self.face_detected = False
+                        self.face_status.config(text="감지되지 않음", fg='#e74c3c')
+                        print("얼굴이 감지되지 않습니다.")
+                        self.status_text.config(text="얼굴이 감지되지 않습니다. 카메라를 확인하세요.")
             except Exception as e:
-                print(f"MediaPipe Tasks API 분석 중 오류: {e}")
-        
-        # 얼굴 감지 상태 업데이트
-        if face_detected:
-            if not self.face_detected:
-                self.face_detected = True
-                self.face_status.config(text="감지됨", fg='#2ecc71')
+                print(f"얼굴 감지 상태 업데이트 오류: {e}")
+            
+            # 상태 정보 표시
+            self.draw_info(frame)
+            
+            # 이미지를 Tkinter에 표시하기 위해 변환
+            try:
+                img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                img = Image.fromarray(img)
                 
-                if self.mode == 'waiting':
-                    self.mode = 'studying'
-                    self.mode_label.config(text="공부 시간", fg='#2ecc71')
-                    print("얼굴 감지됨! 공부 시간을 시작합니다.")
-                    self.status_text.config(text="얼굴 감지됨! 공부 시간을 시작합니다.")
-                    # 얼굴이 감지되면 기본 백색소음 음악 재생
-                    self.play_music('default')
-        else:
-            if self.face_detected:
-                self.face_detected = False
-                self.face_status.config(text="감지되지 않음", fg='#e74c3c')
-                print("얼굴이 감지되지 않습니다.")
-                self.status_text.config(text="얼굴이 감지되지 않습니다. 카메라를 확인하세요.")
-        
-        # 상태 정보 표시
-        self.draw_info(frame)
-        
-        # 이미지를 Tkinter에 표시하기 위해 변환
-        img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        img = Image.fromarray(img)
-        
-        # 이미지 크기 조정
-        webcam_width = self.webcam_frame.winfo_width()
-        webcam_height = self.webcam_frame.winfo_height()
-        
-        if webcam_width > 1 and webcam_height > 1:  # 유효한 크기인 경우에만
-            img = img.resize((webcam_width, webcam_height), Image.LANCZOS)
-        
-        imgtk = ImageTk.PhotoImage(image=img)
-        self.webcam_label.imgtk = imgtk
-        self.webcam_label.configure(image=imgtk)
-        
-        # 다음 프레임 처리를 위한 재귀 호출
-        if self.is_running:
-            self.webcam_label.after(10, self.update_webcam)
-    
-    def analyze_face_state(self, face):
-        """얼굴 특징을 분석하여 상태 예측"""
-        try:
-            # 얼굴 크기 측정 (처음 감지된 얼굴 크기와 비교)
-            box = face.bbox.astype(np.int32)
-            face_width = box[2] - box[0]
-            face_height = box[3] - box[1]
-            face_size = face_width * face_height
-
-            # 초기 얼굴 크기 설정
-            if self.initial_face_size == 0:
-                self.initial_face_size = face_size
-
-            # 얼굴 크기 변화 감지 (지루함: 작아짐)
-            size_ratio = face_size / self.initial_face_size
-            if size_ratio < 0.7:  # 30% 이상 작아지면
-                self.detected_states.append('bored')
-
-            # 랜드마크를 이용한 표정 분석
-            if hasattr(face, 'landmark_2d_106'):
-                landmarks = face.landmark_2d_106
-
-                # 입 크게 벌림 감지 (하품 - 피곤함)
-                mouth_top = landmarks[52]  # 윗입술 중앙
-                mouth_bottom = landmarks[58]  # 아랫입술 중앙
-                nose_bottom = landmarks[87]  # 코 아래
-
-                mouth_height = np.linalg.norm(mouth_bottom - mouth_top)
-                face_height = np.linalg.norm(landmarks[8] - landmarks[27])  # 턱에서 미간까지
-
-                mouth_ratio = mouth_height / face_height
-                if mouth_ratio > 0.2:  # 입이 크게 벌어짐
-                    self.detected_states.append('tired')
-
-                # 눈썹 위치로 미간 주름 감지 (불만족)
-                left_eyebrow = landmarks[21]  # 왼쪽 눈썹
-                right_eyebrow = landmarks[22]  # 오른쪽 눈썹
-                nose_bridge = landmarks[27]  # 코 다리
-
-                eyebrow_distance = np.linalg.norm(left_eyebrow - right_eyebrow)
-                nose_to_eyebrow_distance = np.linalg.norm(nose_bridge - (left_eyebrow + right_eyebrow) / 2)
-
-                if eyebrow_distance < 0.1 * face_width and nose_to_eyebrow_distance < 0.2 * face_height:
-                    self.detected_states.append('dissatisfied')
-
+                # 이미지 크기 조정
+                webcam_width = self.webcam_frame.winfo_width()
+                webcam_height = self.webcam_frame.winfo_height()
+                
+                if webcam_width > 1 and webcam_height > 1:  # 유효한 크기인 경우에만
+                    img = img.resize((webcam_width, webcam_height), Image.LANCZOS)
+                
+                imgtk = ImageTk.PhotoImage(image=img)
+                self.webcam_label.imgtk = imgtk
+                self.webcam_label.configure(image=imgtk)
+            except Exception as e:
+                print(f"GUI 업데이트 오류: {e}")
+            
+            # 다음 프레임 처리를 위한 재귀 호출
+            if self.is_running:
+                self.webcam_label.after(10, self.update_webcam)
         except Exception as e:
-            print(f"얼굴 상태 분석 중 오류: {e}")
+            print(f"웹캠 업데이트 전역 오류: {e}")
+            # 오류 발생해도 계속 실행 시도
+            if self.is_running:
+                self.webcam_label.after(100, self.update_webcam)  # 오류 시 약간 더 긴 간격으로 재시도
+
+# 메인 애플리케이션 실행
+if __name__ == "__main__":
+    monitor = StudyMoodMonitor()
+    monitor.root.mainloop()

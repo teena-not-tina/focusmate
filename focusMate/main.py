@@ -8,7 +8,7 @@ app = FaceAnalysis(providers=['CPUExecutionProvider'])  # CUDA 제거
 app.prepare(ctx_id=0, det_size=(640, 640))
 
 # 현재 디렉토리의 이미지 경로 지정
-img_path = "kdw.jpg"
+img_path = "cha.jpg"
 img = cv2.imread(img_path)
 if img is None:
     raise FileNotFoundError(f"이미지를 찾을 수 없습니다: {img_path}")
