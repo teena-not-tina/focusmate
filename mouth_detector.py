@@ -112,7 +112,10 @@ class MouthDistanceDetector(FaceDetector):
         
         # Save the visualization
         if visualize and output_img is not None:
-            output_path = os.path.splitext(os.path.basename(image_path))[0] + "_mouth_state.jpg"
+            output_dir = "output_pics"
+            os.makedirs(output_dir, exist_ok=True)
+            output_filename = os.path.splitext(os.path.basename(image_path))[0] + "_mouth_state.jpg"
+            output_path = os.path.join(output_dir, output_filename)
             cv2.imwrite(output_path, output_img)
             print(f"Visualization saved to {output_path}")
         
