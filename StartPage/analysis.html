@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotion Sense - 분석모드</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      height: 60px;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+    }
+
+    img {
+      width: 45%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    footer {
+      height: 60px;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>분석 중입니다...</header>
+
+  <main>
+    <img src="http://127.0.0.1:5000/face_stream" alt="얼굴 카메라">
+    <img src="http://127.0.0.1:5000/pose_stream" alt="몸동작 카메라">
+  </main>
+
+  <footer>
+    실시간 감정 분석 및 자세 분석 중...
+  </footer>
+
+  <script>
+    // 서버에 1초마다 heartbeat 보내기
+    setInterval(() => {
+      fetch('http://127.0.0.1:5000/heartbeat')
+        .then(response => response.json())
+        .then(data => {
+          console.log("[💓 heartbeat 전송됨]");
+        })
+        .catch(err => {
+          console.warn("💔 heartbeat 실패:", err);
+        });
+    }, 1000);
+
+    // ❌ 삭제된 부분: 브라우저 닫을 때 stop_saving 전송하는 코드 없음
+  </script>
+
+</body>
+</html>
