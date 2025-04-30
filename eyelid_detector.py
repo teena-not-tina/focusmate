@@ -1,20 +1,15 @@
 import cv2
 import numpy as np
-import insightface
-from insightface.app import FaceAnalysis
 import os
-import argparse
+from face_detector import FaceDetector
 
-class EyelidDistanceDetector:
+class EyelidDistanceDetector(FaceDetector):
     def __init__(self, providers=['CPUExecutionProvider']):
         """
         Initialize detector to measure eyelid distance ratio
         to determine if eyes are open or closed.
         """
-        # Initialize FaceAnalysis with landmark detection
-        self.app = FaceAnalysis(allowed_modules=['detection', 'landmark_2d_106'], 
-                               providers=providers)
-        self.app.prepare(ctx_id=0, det_size=(640, 640))
+        super().__init__(providers)
         
         # Key point indices for eyelid detection
         # Upper eyelid points and lower eyelid points for each eye
@@ -30,22 +25,6 @@ class EyelidDistanceDetector:
         print("Eyelid distance detector initialized with key points:")
         print(f"  Right eye: upper point {self.RIGHT_EYE_UPPER}, lower point {self.RIGHT_EYE_LOWER}")
         print(f"  Left eye: upper point {self.LEFT_EYE_UPPER}, lower point {self.LEFT_EYE_LOWER}")
-    
-    def detect_faces(self, image_path):
-        """Detect faces and landmarks in an image"""
-        # Load image
-        img = cv2.imread(image_path)
-        if img is None:
-            raise FileNotFoundError(f"Image not found: {image_path}")
-            
-        # Detect faces
-        faces = self.app.get(img)
-        
-        if len(faces) == 0:
-            print("No faces detected")
-            return None, None
-            
-        return faces, img
     
     def calculate_eye_state(self, landmarks, threshold_ratio=0.05):
         """
@@ -179,14 +158,6 @@ class EyelidDistanceDetector:
         left_status = "CLOSED" if eye_state['left_eye']['is_closed'] else "OPEN"
         
         y_offset = 30
-        # Add legend for colors
-        # cv2.putText(img, "Upper eyelid (red)", (20, y_offset), 
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
-        # y_offset += 30
-        
-        # cv2.putText(img, "Lower eyelid (blue)", (20, y_offset), 
-        #            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
-        # y_offset += 30
         
         # Right eye information
         r_ratio = eye_state['right_eye']['ratio']
@@ -200,16 +171,7 @@ class EyelidDistanceDetector:
         cv2.putText(img, f"Left eye: {l_ratio:.3f} - {left_status}", 
                    (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, 
                    (0, 0, 255) if eye_state['left_eye']['is_closed'] else (0, 255, 0), 2)
-        y_offset += 30
-        
-        # Face size reference
-        # cv2.putText(img, f"Face width: {eye_state['face_width']:.1f} pixels", 
-        #            (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 165, 0), 2)
-        # y_offset += 30
-        
-        # # Threshold information
-        # cv2.putText(img, f"Rule: ratio < 0.05 = closed (threshold: 0.05)", 
-        # (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
+
 
 def print_eye_state_results(results):
     """Pretty print eye state detection results"""
@@ -246,39 +208,3 @@ def print_eye_state_results(results):
         print(f"\n  Both eyes closed: {face['both_eyes_closed']}")
     
     print("\n============================================")
-
-# Command-line interface
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Eye State Detection based on Eyelid Distance')
-    parser.add_argument('--image', type=str, default='dude.jpg', help='Path to input image')
-    parser.add_argument('--threshold', type=float, default=0.05, 
-                   help='Ratio threshold for closed eyes (smaller ratio = closed)')
-    
-    args = parser.parse_args()
-    
-    # Initialize detector
-    detector = EyelidDistanceDetector()
-    
-    try:
-        # Detect eye state
-        results, result_image = detector.detect_eye_state(args.image, threshold_ratio=args.threshold)
-        
-        if results:
-            # Print detailed results
-            print_eye_state_results(results)
-            
-            # Print simplified summary
-            print("\nSUMMARY:")
-            for i, state in enumerate(results):
-                print(f"Face #{i+1}:")
-                print(f"  Right eye: {state['right_eye']['ratio']:.3f} - {'CLOSED' if state['right_eye']['is_closed'] else 'OPEN'}")
-                print(f"  Left eye: {state['left_eye']['ratio']:.3f} - {'CLOSED' if state['left_eye']['is_closed'] else 'OPEN'}")
-                print(f"  Both eyes closed: {state['both_eyes_closed']}")
-                print()
-            
-            # Display the result
-            cv2.imshow("Eye State Detection", result_image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
-    except Exception as e:
-        print(f"Error: {e}")
