@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Alertness Monitoring System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #videoStream {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .alert-container {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .alert.eyes-closed {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            display: block;
+        }
+        .alert.yawning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+            display: block;
+        }
+        .stats-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #6c757d;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .stat-label {
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        #uploadImage {
+            padding: 15px;
+            border: 2px dashed #3498db;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+        }
+        #audioPlayer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Driver Alertness Monitoring System</h1>
+        
+        <div class="controls">
+            <button id="startBtn">Start Monitoring</button>
+            <button id="stopBtn" disabled>Stop Monitoring</button>
+            <button id="resetBtn">Reset Alerts</button>
+            <button id="uploadBtn">Upload Image</button>
+        </div>
+        
+        <div id="uploadImage" class="hidden">
+            <h3>Upload Image for Processing</h3>
+            <input type="file" id="imageInput" accept="image/*">
+            <button id="processImageBtn">Process Image</button>
+        </div>
+        
+        <div class="video-container">
+            <img id="videoStream" src="http://localhost:8080/camera_stream" alt="Video Stream" style="max-width: 100%; border: 2px solid #333;" />        </div>
+        
+        <div class="alert-container">
+            <h3>Alerts</h3>
+            <div id="eyesClosedAlert" class="alert">
+                <strong>Wake Up!</strong> <span id="eyesClosedMessage"></span>
+            </div>
+            <div id="yawningAlert" class="alert">
+                <strong>You're Yawning!</strong> <span id="yawningMessage"></span>
+            </div>
+        </div>
+        
+        <div class="stats-container">
+            <h3>Statistics</h3>
+            <div class="stat-row">
+                <span class="stat-label">Eyes Closed:</span>
+                <span id="eyesClosedStat">0%</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Current Eye Closure:</span>
+                <span id="currentEyeClosureStat">0 seconds</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Yawning:</span>
+                <span id="yawningStat">0%</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Current Yawning:</span>
+                <span id="currentYawningStat">0 seconds</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Alerts Triggered:</span>
+                <span id="alertsStat">0 eye alerts, 0 yawn alerts</span>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="audioPlayer">
+        <source id="audioSource" src="" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:8080';
+        let isMonitoring = false;
+        let alertCheckInterval = null;
+        let statsCheckInterval = null;
+        let heartbeatInterval = null;
+        
+        // DOM Elements
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const videoStream = document.getElementById('videoStream');
+        const eyesClosedAlert = document.getElementById('eyesClosedAlert');
+        const yawningAlert = document.getElementById('yawningAlert');
+        const eyesClosedMessage = document.getElementById('eyesClosedMessage');
+        const yawningMessage = document.getElementById('yawningMessage');
+        const uploadImage = document.getElementById('uploadImage');
+        const imageInput = document.getElementById('imageInput');
+        const processImageBtn = document.getElementById('processImageBtn');
+        const audioPlayer = document.getElementById('audioPlayer');
+        
+        // Statistics elements
+        const eyesClosedStat = document.getElementById('eyesClosedStat');
+        const currentEyeClosureStat = document.getElementById('currentEyeClosureStat');
+        const yawningStat = document.getElementById('yawningStat');
+        const currentYawningStat = document.getElementById('currentYawningStat');
+        const alertsStat = document.getElementById('alertsStat');
+        
+        // Audio alerts
+        const WAKE_UP_AUDIO = 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_95b42c0ffe.mp3?filename=alarm-clock-short-6402.mp3';
+        const YAWNING_AUDIO = 'https://cdn.pixabay.com/download/audio/2022/10/30/audio_92b6c97289.mp3?filename=gentle-notification-158932.mp3';
+        
+        // Start monitoring
+        startBtn.addEventListener('click', () => {
+            isMonitoring = true;
+            videoStream.src = `${API_BASE_URL}/camera_stream`;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            
+            // Start checking for alerts
+            alertCheckInterval = setInterval(checkAlerts, 1000);
+            
+            // Start checking for statistics
+            statsCheckInterval = setInterval(updateStatistics, 2000);
+            
+            // Start heartbeat
+            heartbeatInterval = setInterval(sendHeartbeat, 5000);
+        });
+        
+        // Stop monitoring
+        stopBtn.addEventListener('click', () => {
+            isMonitoring = false;
+            videoStream.src = '';
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            
+            // Clear intervals
+            clearInterval(alertCheckInterval);
+            clearInterval(statsCheckInterval);
+            clearInterval(heartbeatInterval);
+            
+            // Hide alerts
+            eyesClosedAlert.style.display = 'none';
+            yawningAlert.style.display = 'none';
+        });
+        
+        // Reset alerts
+        resetBtn.addEventListener('click', () => {
+            fetch(`${API_BASE_URL}/reset_alerts`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Alerts reset:', data);
+                eyesClosedAlert.style.display = 'none';
+                yawningAlert.style.display = 'none';
+            })
+            .catch(error => console.error('Error resetting alerts:', error));
+        });
+        
+        // Toggle image upload
+        uploadBtn.addEventListener('click', () => {
+            uploadImage.classList.toggle('hidden');
+        });
+        
+        // Process uploaded image
+        processImageBtn.addEventListener('click', () => {
+            const file = imageInput.files[0];
+            if (!file) {
+                alert('Please select an image first');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('frame', file);
+            
+            fetch(`${API_BASE_URL}/process_frame`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Image processed:', data);
+                if (data.status === 'success') {
+                    alert('Image processed successfully');
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            })
+            .catch(error => console.error('Error processing image:', error));
+        });
+        
+        // Check for alerts
+        function checkAlerts() {
+            fetch(`${API_BASE_URL}/get_alerts`)
+            .then(response => response.json())
+            .then(data => {
+                const alerts = data.alerts;
+                
+                if (alerts.eyes_closed) {
+                    eyesClosedAlert.style.display = 'block';
+                    eyesClosedMessage.textContent = alerts.eyes_closed.message;
+                    playAlertSound(WAKE_UP_AUDIO);
+                }
+                
+                if (alerts.yawning) {
+                    yawningAlert.style.display = 'block';
+                    yawningMessage.textContent = alerts.yawning.message;
+                    playAlertSound(YAWNING_AUDIO);
+                }
+            })
+            .catch(error => console.error('Error checking alerts:', error));
+        }
+        
+        // Update statistics
+        function updateStatistics() {
+            fetch(`${API_BASE_URL}/get_statistics`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const stats = data.statistics;
+                    
+                    eyesClosedStat.textContent = `${stats.eye_closed_percentage.toFixed(1)}%`;
+                    currentEyeClosureStat.textContent = `${stats.current_eyes_closed_duration.toFixed(1)} seconds`;
+                    yawningStat.textContent = `${stats.yawning_percentage.toFixed(1)}%`;
+                    currentYawningStat.textContent = `${stats.current_yawning_duration.toFixed(1)} seconds`;
+                    alertsStat.textContent = `${stats.eye_alerts_sent} eye alerts, ${stats.yawn_alerts_sent} yawn alerts`;
+                }
+            })
+            .catch(error => console.error('Error updating statistics:', error));
+        }
+        
+        // Send heartbeat to keep server aware of frontend
+        function sendHeartbeat() {
+            fetch(`${API_BASE_URL}/heartbeat`)
+                .catch(error => console.error('Heartbeat error:', error));
+        }
+        
+        // Play alert sound
+        function playAlertSound(soundUrl) {
+            const audioSource = document.getElementById('audioSource');
+            audioSource.src = soundUrl;
+            audioPlayer.load();
+            
+            // Play with user interaction handling
+            const playPromise = audioPlayer.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Autoplay prevented. Please enable sound in your browser settings.');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
