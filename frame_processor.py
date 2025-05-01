@@ -43,6 +43,9 @@ class FacialStateTracker:
         self.eye_detector = EyelidDistanceDetector(providers)
         self.mouth_detector = MouthDistanceDetector(providers)
         
+        self.eye_event_active = False
+        self.yawn_event_active = False
+
         # Create temp directory for frame processing
         self.temp_dir = config.TEMP_DIR
         os.makedirs(self.temp_dir, exist_ok=True)
@@ -160,72 +163,68 @@ class FacialStateTracker:
         else:
             self.current_yawning_duration = 0
         
-        # Check for alerts
         alerts = {}
-        
-        # Eyes closed alert
-        if (self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold and 
-            self.eye_alerts_sent < self.max_eye_alerts):
-            alerts['eyes_closed'] = {
-                'duration': self.current_eyes_closed_duration,
-                'message': f"Alert: Eyes have been closed for {self.current_eyes_closed_duration:.1f} seconds. Please wake up!"
-            }
-            self.eye_alerts_sent += 1
-            print(f"[ALERT] Eyes closed for {self.current_eyes_closed_duration:.1f} seconds. Alert #{self.eye_alerts_sent}")
-        
-        # Yawning alert
-        if (self.current_yawning_duration >= self.yawning_alert_threshold and 
-            self.yawn_alerts_sent < self.max_yawn_alerts):
-            alerts['yawning'] = {
-                'duration': self.current_yawning_duration,
-                'message': f"Alert: You've been yawning for {self.current_yawning_duration:.1f} seconds. Do you want to take a break?"
-            }
-            self.yawn_alerts_sent += 1
-            print(f"[ALERT] Yawning for {self.current_yawning_duration:.1f} seconds. Alert #{self.yawn_alerts_sent}")
-        
-        # Add duration tracking and alerts to the combined frame
-        y_offset = 120  # Starting vertical position for additional info
-        
-        # Add eye closure duration
+    
+        # Eyes closed event logic
         if both_eyes_closed:
-            self.current_eyes_closed_duration += time_delta
-            cv2.putText(
-                combined_frame, 
-                f"Eyes closed: {self.current_eyes_closed_duration:.1f}s", 
-                (20, y_offset), 
-                cv2.FONT_HERSHEY_SIMPLEX, 
-                0.6, 
-                (0, 0, 255) if self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold else (255, 0, 0), 
-                2
-            )
+            if (self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold and
+                not self.eye_event_active and
+                self.eye_alerts_sent < self.max_eye_alerts):
+                alerts['eyes_closed'] = {
+                    'duration': self.current_eyes_closed_duration,
+                    'message': f"Alert: Eyes have been closed for {self.current_eyes_closed_duration:.1f} seconds. Please wake up!"
+                }
+                self.eye_alerts_sent += 1
+                self.eye_event_active = True
         else:
-                self.current_eyes_closed_duration = 0
-        y_offset += 30
-        
-        # Add yawning duration
+            self.eye_event_active = False
+
+        # Yawning event logic
         if is_yawning:
-            cv2.putText(
-                combined_frame, 
-                f"Yawning: {self.current_yawning_duration:.1f}s", 
-                (20, y_offset), 
-                cv2.FONT_HERSHEY_SIMPLEX, 
-                0.6, 
-                (0, 165, 255) if self.current_yawning_duration >= self.yawning_alert_threshold else (255, 165, 0), 
-                2
-            )
-        y_offset += 30
-        
-        # Add alert counters
+            if (self.current_yawning_duration >= self.yawning_alert_threshold and
+                not self.yawn_event_active and
+                self.yawn_alerts_sent < self.max_yawn_alerts):
+                alerts['yawning'] = {
+                    'duration': self.current_yawning_duration,
+                    'message': f"Alert: You've been yawning for {self.current_yawning_duration:.1f} seconds. Do you want to take a break?"
+                }
+                self.yawn_alerts_sent += 1
+                self.yawn_event_active = True
+        else:
+            self.yawn_event_active = False
+
+        # Draw overlay info
+        y_start = 60
+        line_height = 30
+
+        cv2.putText(
+            combined_frame, 
+            f"Eyes closed: {self.current_eyes_closed_duration:.1f}s", 
+            (20, y_start + line_height), 
+            cv2.FONT_HERSHEY_SIMPLEX, 
+            0.6, 
+            (0, 0, 255) if self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold else (255, 0, 0), 
+            2
+        )
+        cv2.putText(
+            combined_frame, 
+            f"Yawning: {self.current_yawning_duration:.1f}s", 
+            (20, y_start + 2 * line_height), 
+            cv2.FONT_HERSHEY_SIMPLEX, 
+            0.6, 
+            (0, 165, 255) if self.current_yawning_duration >= self.yawning_alert_threshold else (255, 165, 0), 
+            2
+        )
         cv2.putText(
             combined_frame,
             f"Alerts: {self.eye_alerts_sent}/{self.max_eye_alerts} (eyes), {self.yawn_alerts_sent}/{self.max_yawn_alerts} (yawn)",
-            (20, y_offset),
+            (20, y_start + 3 * line_height),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6,
             (128, 0, 128),
             2
         )
-        
+
         return combined_frame, alerts
         
     def reset_alerts(self):
