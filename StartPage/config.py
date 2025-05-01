@@ -2,7 +2,7 @@
 
 # Detection thresholds
 EYE_THRESHOLD = 0.05  # Ratio threshold for eye closure detection (smaller = more sensitive)
-MOUTH_THRESHOLD = 0.1  # Ratio threshold for mouth closure detection (smaller = more sensitive)
+MOUTH_THRESHOLD = 0.05  # Ratio threshold for mouth closure detection (smaller = more sensitive)
 
 # Alert thresholds
 EYES_CLOSED_ALERT_THRESHOLD = 10  # Seconds of continuous eye closure to trigger alert
