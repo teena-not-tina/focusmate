@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 import sys
+from facial_detector_app import FacialDetectorApp
 
 # 필요한 패키지 확인 및 설치 안내
 def check_dependencies():
@@ -22,8 +22,12 @@ def check_dependencies():
         import cv2
     except ImportError:
         missing_packages.append("opencv-python")
+    
+    try:
+        import dlib
+    except ImportError:
+        missing_packages.append("dlib")
         
-    # 패키지가 없으면 설치 안내
     if missing_packages:
         print(f"다음 패키지가 설치되어 있지 않습니다: {', '.join(missing_packages)}")
         print("다음 명령어로 필요한 패키지를 설치하세요:")
@@ -31,12 +35,10 @@ def check_dependencies():
         print("\n패키지 설치 후 프로그램을 다시 실행하세요.")
         sys.exit(1)
 
-# 메인 애플리케이션
 if __name__ == "__main__":
+    # 의존성 확인
     check_dependencies()
     
-    # 모듈들을 여기서 임포트하여 초기 의존성 검사 후에 로드되도록 함
-    from facial_detector_app import FacialDetectorApp
-    
+    # 애플리케이션 실행
     app = FacialDetectorApp()
     app.run()
