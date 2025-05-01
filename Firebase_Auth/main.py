@@ -19,8 +19,13 @@ class OverlayLoginApp(QMainWindow):
         self.logged_in = False
         self.capture = cv2.VideoCapture(0)
 
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         self.cam_width = int(self.capture.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.cam_height = int(self.capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+        if self.cam_width != 1280 or self.cam_height != 720:
+            print("[경고] 요청한 해상도와 실제 해상도가 다릅니다.")
 
         print(f"[카메라 해상도] width: {self.cam_width}, height: {self.cam_height}")
 
