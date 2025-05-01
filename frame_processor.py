@@ -252,6 +252,7 @@ class FacialStateTracker:
         if len(self.mouth_states) > 0:
             yawning_percentage = (yawning_frames / len(self.mouth_states)) * 100
         
+        
         return {
             'eye_history_length': len(self.eye_states),
             'mouth_history_length': len(self.mouth_states),
