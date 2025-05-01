@@ -11,6 +11,8 @@ from datetime import datetime
 from queue import Queue
 from threading import Lock
 import config
+from flask import send_file
+
 # Add the parent directory to the Python path
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
@@ -207,6 +209,10 @@ def save_frames_worker():
                 print(f"[❌ Error saving frame] {str(e)}")
                 
         time.sleep(0.01)  # Check queue frequently
+
+@app.route('/')
+def index():
+    return send_file('frontend.html')
 
 # Camera stream route - provides processed video feed
 @app.route('/camera_stream')

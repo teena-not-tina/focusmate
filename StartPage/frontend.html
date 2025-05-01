@@ -137,8 +137,7 @@
         </div>
         
         <div class="video-container">
-            <img id="videoStream" src="" alt="Video Stream">
-        </div>
+            <img id="videoStream" src="http://localhost:8080/camera_stream" alt="Video Stream" style="max-width: 100%; border: 2px solid #333;" />        </div>
         
         <div class="alert-container">
             <h3>Alerts</h3>
@@ -181,7 +180,7 @@
     
     <script>
         // Configuration
-        const API_BASE_URL = 'http://localhost:5000';
+        const API_BASE_URL = 'http://localhost:8080';
         let isMonitoring = false;
         let alertCheckInterval = null;
         let statsCheckInterval = null;

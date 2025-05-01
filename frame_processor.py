@@ -81,182 +81,65 @@ class FacialStateTracker:
         print(f"  - Max alerts: {max_eye_alerts} (eyes), {max_yawn_alerts} (yawning)")
     
     def process_frame(self, frame):
-        """
-        Process a video frame to analyze facial features and update state history.
-        
-        Args:
-            frame: OpenCV image frame (numpy array)
-            
-        Returns:
-            tuple: (annotated_frame, alerts_dict)
-            - annotated_frame: Frame with visual annotations
-            - alerts_dict: Dictionary with any triggered alerts
-        """
-        current_time = time.time()
-        time_delta = 0
-        
-        if self.last_process_time is not None:
-            time_delta = current_time - self.last_process_time
-        
-        self.last_process_time = current_time
-        
-        # Save the frame temporarily for analysis
-        temp_filename = os.path.join(self.temp_dir, "temp_frame.jpg")
-        cv2.imwrite(temp_filename, frame)
-        
-        # Analyze the frame for eye and mouth state
+        now = time.time()
+        dt = now - self.last_time if self.last_time else 0
+        self.last_time = now
+
+        temp_path = os.path.join(self.temp_dir, "temp.jpg")
+        cv2.imwrite(temp_path, frame)
+
         try:
-            # Process eye state
-            eye_results, eye_frame = self.eye_detector.detect_eye_state(
-                temp_filename, 
-                visualize=True,
-                threshold_ratio=self.eye_threshold
-            )
-            
-            # Process mouth state
-            mouth_results, mouth_frame = self.mouth_detector.detect_mouth_state(
-                temp_filename, 
-                visualize=True,
-                threshold_ratio=self.mouth_threshold
-            )
-            
-            # Check if both analyses were successful
+            eye_results, eye_frame = self.eye_detector.detect_eye_state(temp_path, visualize=True, threshold_ratio=config.EYE_THRESHOLD)
+            mouth_results, mouth_frame = self.mouth_detector.detect_mouth_state(temp_path, visualize=True, threshold_ratio=config.MOUTH_THRESHOLD)
             if not eye_results or not mouth_results:
-                print("No valid face detected in the frame.")
                 return frame, {}
-                
         except Exception as e:
-            print(f"Error analyzing frame: {e}")
+            print(f"Error: {e}")
             return frame, {}
-        
-        # Combine results (use eye_frame as base and add mouth information)
-        combined_frame = eye_frame.copy() if eye_frame is not None else frame.copy()
-        
-        # Get first face data (assuming single face processing for simplicity)
-        eye_data = eye_results[0]
-        mouth_data = mouth_results[0]
-        
-        # Check if we're looking at the same face
-        if eye_data['face_idx'] != mouth_data['face_idx']:
-            print("Warning: Eye and mouth data may be from different faces")
-        
-        # Extract state information
-        both_eyes_closed = eye_data['both_eyes_closed']
-        is_yawning = mouth_data['mouth']['is_yawning']
-        
-        # Add current states to history
-        current_timestamp = datetime.now()
-        self.eye_states.append((current_timestamp, both_eyes_closed))
-        self.mouth_states.append((current_timestamp, is_yawning))
-        
-        # Update durations
-        if both_eyes_closed:
-            self.current_eyes_closed_duration += time_delta
-        else:
-            self.current_eyes_closed_duration = 0
-            
-        if is_yawning:
-            self.current_yawning_duration += time_delta
-        else:
-            self.current_yawning_duration = 0
-        
-        # Check for alerts
+
+        eye_closed = eye_results[0]['both_eyes_closed']
+        yawning = mouth_results[0]['mouth']['is_yawning']
+
+        self.eye_history.append((datetime.now(), eye_closed))
+        self.mouth_history.append((datetime.now(), yawning))
+
+        self.eye_closed_time = self.eye_closed_time + dt if eye_closed else 0
+        self.yawn_time = self.yawn_time + dt if yawning else 0
+
         alerts = {}
-        
-        # Eyes closed alert
-        if (self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold and 
-            self.eye_alerts_sent < self.max_eye_alerts):
-            alerts['eyes_closed'] = {
-                'duration': self.current_eyes_closed_duration,
-                'message': f"Alert: Eyes have been closed for {self.current_eyes_closed_duration:.1f} seconds. Please wake up!"
-            }
-            self.eye_alerts_sent += 1
-            print(f"[ALERT] Eyes closed for {self.current_eyes_closed_duration:.1f} seconds. Alert #{self.eye_alerts_sent}")
-        
-        # Yawning alert
-        if (self.current_yawning_duration >= self.yawning_alert_threshold and 
-            self.yawn_alerts_sent < self.max_yawn_alerts):
-            alerts['yawning'] = {
-                'duration': self.current_yawning_duration,
-                'message': f"Alert: You've been yawning for {self.current_yawning_duration:.1f} seconds. Do you want to take a break?"
-            }
-            self.yawn_alerts_sent += 1
-            print(f"[ALERT] Yawning for {self.current_yawning_duration:.1f} seconds. Alert #{self.yawn_alerts_sent}")
-        
-        # Add duration tracking and alerts to the combined frame
-        y_offset = 120  # Starting vertical position for additional info
-        
-        # Add eye closure duration
-        if both_eyes_closed:
-            cv2.putText(
-                combined_frame, 
-                f"Eyes closed: {self.current_eyes_closed_duration:.1f}s", 
-                (20, y_offset), 
-                cv2.FONT_HERSHEY_SIMPLEX, 
-                0.6, 
-                (0, 0, 255) if self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold else (255, 0, 0), 
-                2
-            )
-        y_offset += 30
-        
-        # Add yawning duration
-        if is_yawning:
-            cv2.putText(
-                combined_frame, 
-                f"Yawning: {self.current_yawning_duration:.1f}s", 
-                (20, y_offset), 
-                cv2.FONT_HERSHEY_SIMPLEX, 
-                0.6, 
-                (0, 165, 255) if self.current_yawning_duration >= self.yawning_alert_threshold else (255, 165, 0), 
-                2
-            )
-        y_offset += 30
-        
-        # Add alert counters
-        cv2.putText(
-            combined_frame,
-            f"Alerts: {self.eye_alerts_sent}/{self.max_eye_alerts} (eyes), {self.yawn_alerts_sent}/{self.max_yawn_alerts} (yawn)",
-            (20, y_offset),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            (128, 0, 128),
-            2
-        )
-        
-        return combined_frame, alerts
-        
+        if self.eye_closed_time >= config.EYES_CLOSED_ALERT_THRESHOLD and self.eye_alerts < config.MAX_EYE_ALERTS:
+            alerts['eyes_closed'] = f"Eyes closed for {self.eye_closed_time:.1f}s"
+            self.eye_alerts += 1
+        if self.yawn_time >= config.YAWNING_ALERT_THRESHOLD and self.yawn_alerts < config.MAX_YAWN_ALERTS:
+            alerts['yawning'] = f"Yawning for {self.yawn_time:.1f}s"
+            self.yawn_alerts += 1
+
+        annotated = self._draw_overlay(eye_frame, self.eye_closed_time, self.yawn_time, self.eye_alerts, self.yawn_alerts)
+        return annotated, alerts
+
+    def _draw_overlay(self, frame, eye_time, yawn_time, eye_alerts, yawn_alerts):
+        y = 120
+        if eye_time:
+            cv2.putText(frame, f"Eyes closed: {eye_time:.1f}s", (20, y), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 2)
+        y += 30
+        if yawn_time:
+            cv2.putText(frame, f"Yawning: {yawn_time:.1f}s", (20, y), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,165,255), 2)
+        y += 30
+        cv2.putText(frame, f"Alerts: {eye_alerts}/{config.MAX_EYE_ALERTS} (eyes), {yawn_alerts}/{config.MAX_YAWN_ALERTS} (yawn)", (20, y), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (128,0,128), 2)
+        return frame
+
     def reset_alerts(self):
-        """Reset alert counters to allow new alerts to be triggered"""
-        self.eye_alerts_sent = 0
-        self.yawn_alerts_sent = 0
-        print("Alert counters reset")
-    
+        self.eye_alerts = 0
+        self.yawn_alerts = 0
+
     def get_state_statistics(self):
-        """
-        Calculate statistics about the facial states over the tracked history.
-        
-        Returns:
-            Dictionary with statistics
-        """
-        # Count eye closed frames
-        eye_closed_frames = sum(1 for _, state in self.eye_states if state)
-        eye_closed_percentage = 0
-        if len(self.eye_states) > 0:
-            eye_closed_percentage = (eye_closed_frames / len(self.eye_states)) * 100
-        
-        # Count yawning frames
-        yawning_frames = sum(1 for _, state in self.mouth_states if state)
-        yawning_percentage = 0
-        if len(self.mouth_states) > 0:
-            yawning_percentage = (yawning_frames / len(self.mouth_states)) * 100
-        
+        eye_closed_pct = 100 * sum(1 for _, s in self.eye_history if s) / len(self.eye_history) if self.eye_history else 0
+        yawn_pct = 100 * sum(1 for _, s in self.mouth_history if s) / len(self.mouth_history) if self.mouth_history else 0
         return {
-            'eye_history_length': len(self.eye_states),
-            'mouth_history_length': len(self.mouth_states),
-            'eye_closed_percentage': eye_closed_percentage,
-            'yawning_percentage': yawning_percentage,
-            'current_eyes_closed_duration': self.current_eyes_closed_duration,
-            'current_yawning_duration': self.current_yawning_duration,
-            'eye_alerts_sent': self.eye_alerts_sent,
-            'yawn_alerts_sent': self.yawn_alerts_sent
+            'eye_closed_percentage': eye_closed_pct,
+            'yawning_percentage': yawn_pct,
+            'current_eyes_closed_duration': self.eye_closed_time,
+            'current_yawning_duration': self.yawn_time,
+            'eye_alerts_sent': self.eye_alerts,
+            'yawn_alerts_sent': self.yawn_alerts
         }
