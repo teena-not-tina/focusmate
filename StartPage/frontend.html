@@ -130,22 +130,22 @@
 <h3>결과</h3>
 
 <div class="stat-row">
-    <span class="stat-label">공부 한 시간:</span>
+    <span class="stat-label">공부한 시간:</span>
     <span id="timeStudiedStat">0:00:00</span>
 </div>
-<span class="stat-label">눈 감은 퍼센트:</span>
+<span class="stat-label">눈 감은 비율:</span>
 <span id="eyesClosedStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">눈 감은지 :</span>
+<span class="stat-label">눈 감은 시간:</span>
 <span id="currentEyeClosureStat">0 초</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">하품한 퍼센트:</span>
+<span class="stat-label">하품 비율:</span>
 <span id="yawningStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">하품한지:</span>
+<span class="stat-label">하품 시간:</span>
 <span id="currentYawningStat">0 초</span>
 </div>
 <div class="stat-row">
@@ -366,11 +366,11 @@
         // Update statistics displayed on the dashboard
         function updateStatistics(stats) {
             document.getElementById('eyesClosedStat').textContent = stats.eye_closed_percentage.toFixed(1) + '%';
-            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' seconds';
+            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' 초';
             document.getElementById('yawningStat').textContent = stats.yawning_percentage.toFixed(1) + '%';
-            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' seconds';
+            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' 초';
             document.getElementById('alertsStat').textContent = 
-                `${stats.eye_alerts_sent} eye alerts, ${stats.yawn_alerts_sent} yawn alerts`;
+                `${stats.eye_alerts_sent} 졸음 알림, ${stats.yawn_alerts_sent} 하품 알림`;
         }
         
         // Play alert sounds
@@ -410,8 +410,8 @@
   <div style="background: white; padding: 30px; border-radius: 16px; width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; text-align: center;">
     <h3 id="alertOverlayTitle"></h3>
     <p id="alertOverlayMessage"></p>
-    <button id="alertContinueBtn" style="width: 100%; padding: 10px; margin: 10px 0;">Continue to Study</button>
-    <button id="alertStopBtn" style="width: 100%; padding: 10px; background: #dc3545;">Stop</button>
+    <button id="alertContinueBtn" style="width: 100%; padding: 10px; margin: 10px 0;">계속 공부하기</button>
+    <button id="alertStopBtn" style="width: 100%; padding: 10px; background: #dc3545;">종료</button>
   </div>
 </div>
 
