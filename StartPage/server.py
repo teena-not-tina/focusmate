@@ -46,7 +46,7 @@ except (ImportError, AttributeError):
 
 # Flask server initialization
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Create necessary directories
 os.makedirs(config.TEMP_DIR, exist_ok=True)
@@ -83,7 +83,7 @@ def initialize_system():
     global camera, facial_state_tracker
     try:
         # Initialize camera
-        camera = cv2.VideoCapture(config.CAMERA_ID, cv2.CAP_AVFOUNDATION)  # For macOS
+        camera = cv2.VideoCapture(config.CAMERA_ID, cv2.CAP_DSHOW)  # For windows
         time.sleep(1)  # Give the camera a moment to initialize
 
         if not camera.isOpened():
@@ -358,6 +358,59 @@ def get_status():
     return jsonify(status)
 
 # Server startup
+
+from dotenv import load_dotenv
+import os
+import requests
+
+load_dotenv()
+FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
+
+
+# FIREBASE_API_KEY = "YOUR_FIREBASE_WEB_API_KEY"
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    payload = {
+        'email': data['email'],
+        'password': data['password'],
+        'returnSecureToken': True
+    }
+    try:
+        res = requests.post(
+            f'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={FIREBASE_API_KEY}',
+            json=payload
+        )
+        res.raise_for_status()
+        return jsonify({'status': 'success'})
+    except requests.exceptions.HTTPError as e:
+        error = res.json().get('error', {}).get('message', '로그인 실패')
+        return jsonify({'status': 'error', 'message': error})
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    payload = {
+        'email': data['email'],
+        'password': data['password'],
+        'returnSecureToken': True
+    }
+    try:
+        res = requests.post(
+            f'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={FIREBASE_API_KEY}',
+            json=payload
+        )
+        res.raise_for_status()
+        return jsonify({'status': 'success'})
+    except requests.exceptions.HTTPError as e:
+        error = res.json().get('error', {}).get('message', '회원가입 실패')
+        return jsonify({'status': 'error', 'message': error})
+
+
+
+
+
 if __name__ == '__main__':
     print("="*50)
     print("Starting Driver Alertness Monitoring System")
@@ -375,3 +428,52 @@ if __name__ == '__main__':
     else:
         print("[❌ Failed to initialize system. Exiting.]")
         sys.exit(1)
+
+
+# from dotenv import load_dotenv
+# import os
+# import requests
+
+# load_dotenv()
+# FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
+
+
+# # FIREBASE_API_KEY = "YOUR_FIREBASE_WEB_API_KEY"
+
+# @app.route('/login', methods=['POST'])
+# def login():
+#     data = request.json
+#     payload = {
+#         'email': data['email'],
+#         'password': data['password'],
+#         'returnSecureToken': True
+#     }
+#     try:
+#         res = requests.post(
+#             f'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={FIREBASE_API_KEY}',
+#             json=payload
+#         )
+#         res.raise_for_status()
+#         return jsonify({'status': 'success'})
+#     except requests.exceptions.HTTPError as e:
+#         error = res.json().get('error', {}).get('message', '로그인 실패')
+#         return jsonify({'status': 'error', 'message': error})
+
+# @app.route('/signup', methods=['POST'])
+# def signup():
+#     data = request.json
+#     payload = {
+#         'email': data['email'],
+#         'password': data['password'],
+#         'returnSecureToken': True
+#     }
+#     try:
+#         res = requests.post(
+#             f'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={FIREBASE_API_KEY}',
+#             json=payload
+#         )
+#         res.raise_for_status()
+#         return jsonify({'status': 'success'})
+#     except requests.exceptions.HTTPError as e:
+#         error = res.json().get('error', {}).get('message', '회원가입 실패')
+#         return jsonify({'status': 'error', 'message': error})

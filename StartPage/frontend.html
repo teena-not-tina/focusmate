@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Alertness Monitoring System</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Driver Alertness Monitoring System</title>
+<style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -118,241 +119,150 @@
             display: none;
         }
     </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/><style>
+#loginOverlay button:hover {
+    background-color: #2c8ed6;
+    transform: scale(1.02);
+}
+#loginOverlay input:focus {
+    border: 2px solid #3498db;
+    outline: none;
+}
+</style></head>
 <body>
-    <div class="container">
-        <h1>Driver Alertness Monitoring System</h1>
-        
-        <div class="controls">
-            <button id="startBtn">Start Monitoring</button>
-            <button id="stopBtn" disabled>Stop Monitoring</button>
-            <button id="resetBtn">Reset Alerts</button>
-            <button id="uploadBtn">Upload Image</button>
-        </div>
-        
-        <div id="uploadImage" class="hidden">
-            <h3>Upload Image for Processing</h3>
-            <input type="file" id="imageInput" accept="image/*">
-            <button id="processImageBtn">Process Image</button>
-        </div>
-        
-        <div class="video-container">
-            <img id="videoStream" src="http://localhost:8080/camera_stream" alt="Video Stream" style="max-width: 100%; border: 2px solid #333;" />        </div>
-        
-        <div class="alert-container">
-            <h3>Alerts</h3>
-            <div id="eyesClosedAlert" class="alert">
-                <strong>Wake Up!</strong> <span id="eyesClosedMessage"></span>
-            </div>
-            <div id="yawningAlert" class="alert">
-                <strong>You're Yawning!</strong> <span id="yawningMessage"></span>
-            </div>
-        </div>
-        
-        <div class="stats-container">
-            <h3>Statistics</h3>
-            <div class="stat-row">
-                <span class="stat-label">Eyes Closed:</span>
-                <span id="eyesClosedStat">0%</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-label">Current Eye Closure:</span>
-                <span id="currentEyeClosureStat">0 seconds</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-label">Yawning:</span>
-                <span id="yawningStat">0%</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-label">Current Yawning:</span>
-                <span id="currentYawningStat">0 seconds</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-label">Alerts Triggered:</span>
-                <span id="alertsStat">0 eye alerts, 0 yawn alerts</span>
-            </div>
-        </div>
-    </div>
-    
-    <audio id="audioPlayer">
-        <source id="audioSource" src="" type="audio/mpeg">
-    </audio>
-    
-    <script>
-        // Configuration
-        const API_BASE_URL = 'http://localhost:8080';
-        let isMonitoring = false;
-        let alertCheckInterval = null;
-        let statsCheckInterval = null;
-        let heartbeatInterval = null;
-        
-        // DOM Elements
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const uploadBtn = document.getElementById('uploadBtn');
-        const videoStream = document.getElementById('videoStream');
-        const eyesClosedAlert = document.getElementById('eyesClosedAlert');
-        const yawningAlert = document.getElementById('yawningAlert');
-        const eyesClosedMessage = document.getElementById('eyesClosedMessage');
-        const yawningMessage = document.getElementById('yawningMessage');
-        const uploadImage = document.getElementById('uploadImage');
-        const imageInput = document.getElementById('imageInput');
-        const processImageBtn = document.getElementById('processImageBtn');
-        const audioPlayer = document.getElementById('audioPlayer');
-        
-        // Statistics elements
-        const eyesClosedStat = document.getElementById('eyesClosedStat');
-        const currentEyeClosureStat = document.getElementById('currentEyeClosureStat');
-        const yawningStat = document.getElementById('yawningStat');
-        const currentYawningStat = document.getElementById('currentYawningStat');
-        const alertsStat = document.getElementById('alertsStat');
-        
-        // Audio alerts
-        const WAKE_UP_AUDIO = 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_95b42c0ffe.mp3?filename=alarm-clock-short-6402.mp3';
-        const YAWNING_AUDIO = 'https://cdn.pixabay.com/download/audio/2022/10/30/audio_92b6c97289.mp3?filename=gentle-notification-158932.mp3';
-        
-        // Start monitoring
-        startBtn.addEventListener('click', () => {
-            isMonitoring = true;
-            videoStream.src = `${API_BASE_URL}/camera_stream`;
-            startBtn.disabled = true;
-            stopBtn.disabled = false;
-            
-            // Start checking for alerts
-            alertCheckInterval = setInterval(checkAlerts, 1000);
-            
-            // Start checking for statistics
-            statsCheckInterval = setInterval(updateStatistics, 2000);
-            
-            // Start heartbeat
-            heartbeatInterval = setInterval(sendHeartbeat, 5000);
-        });
-        
-        // Stop monitoring
-        stopBtn.addEventListener('click', () => {
-            isMonitoring = false;
-            videoStream.src = '';
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-            
-            // Clear intervals
-            clearInterval(alertCheckInterval);
-            clearInterval(statsCheckInterval);
-            clearInterval(heartbeatInterval);
-            
-            // Hide alerts
-            eyesClosedAlert.style.display = 'none';
-            yawningAlert.style.display = 'none';
-        });
-        
-        // Reset alerts
-        resetBtn.addEventListener('click', () => {
-            fetch(`${API_BASE_URL}/reset_alerts`, {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Alerts reset:', data);
-                eyesClosedAlert.style.display = 'none';
-                yawningAlert.style.display = 'none';
-            })
-            .catch(error => console.error('Error resetting alerts:', error));
-        });
-        
-        // Toggle image upload
-        uploadBtn.addEventListener('click', () => {
-            uploadImage.classList.toggle('hidden');
-        });
-        
-        // Process uploaded image
-        processImageBtn.addEventListener('click', () => {
-            const file = imageInput.files[0];
-            if (!file) {
-                alert('Please select an image first');
-                return;
-            }
-            
-            const formData = new FormData();
-            formData.append('frame', file);
-            
-            fetch(`${API_BASE_URL}/process_frame`, {
+<div class="container">
+<h1>Driver Alertness Monitoring System</h1>
+<div class="controls">
+<button id="startBtn">Start Monitoring</button>
+<button disabled="" id="stopBtn">Stop Monitoring</button>
+<button id="resetBtn">Reset Alerts</button>
+<button id="uploadBtn">Upload Image</button>
+</div>
+<div class="hidden" id="uploadImage">
+<h3>Upload Image for Processing</h3>
+<input accept="image/*" id="imageInput" type="file"/>
+<button id="processImageBtn">Process Image</button>
+</div>
+<div class="video-container">
+<img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/> </div>
+<div class="alert-container">
+<h3>Alerts</h3>
+<div class="alert" id="eyesClosedAlert">
+<strong>Wake Up!</strong> <span id="eyesClosedMessage"></span>
+</div>
+<div class="alert" id="yawningAlert">
+<strong>You're Yawning!</strong> <span id="yawningMessage"></span>
+</div>
+</div>
+<div class="stats-container">
+<h3>Statistics</h3>
+<div class="stat-row">
+<span class="stat-label">Eyes Closed:</span>
+<span id="eyesClosedStat">0%</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Current Eye Closure:</span>
+<span id="currentEyeClosureStat">0 seconds</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Yawning:</span>
+<span id="yawningStat">0%</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Current Yawning:</span>
+<span id="currentYawningStat">0 seconds</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Alerts Triggered:</span>
+<span id="alertsStat">0 eye alerts, 0 yawn alerts</span>
+</div>
+</div>
+</div>
+<audio id="audioPlayer">
+<source id="audioSource" src="" type="audio/mpeg"/>
+</audio>
+<script>
+const API_BASE_URL = 'http://localhost:8080';
+
+document.addEventListener('DOMContentLoaded', function () {
+    const loginOverlay = document.getElementById('loginOverlay');
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const authMessage = document.getElementById('authMessage');
+
+    loginBtn.onclick = async () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        console.log("로그인 시도:", email);
+        try {
+            const res = await fetch(`${API_BASE_URL}/login`, {
                 method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Image processed:', data);
-                if (data.status === 'success') {
-                    alert('Image processed successfully');
-                } else {
-                    alert(`Error: ${data.message}`);
-                }
-            })
-            .catch(error => console.error('Error processing image:', error));
-        });
-        
-        // Check for alerts
-        function checkAlerts() {
-            fetch(`${API_BASE_URL}/get_alerts`)
-            .then(response => response.json())
-            .then(data => {
-                const alerts = data.alerts;
-                
-                if (alerts.eyes_closed) {
-                    eyesClosedAlert.style.display = 'block';
-                    eyesClosedMessage.textContent = alerts.eyes_closed.message;
-                    playAlertSound(WAKE_UP_AUDIO);
-                }
-                
-                if (alerts.yawning) {
-                    yawningAlert.style.display = 'block';
-                    yawningMessage.textContent = alerts.yawning.message;
-                    playAlertSound(YAWNING_AUDIO);
-                }
-            })
-            .catch(error => console.error('Error checking alerts:', error));
-        }
-        
-        // Update statistics
-        function updateStatistics() {
-            fetch(`${API_BASE_URL}/get_statistics`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    const stats = data.statistics;
-                    
-                    eyesClosedStat.textContent = `${stats.eye_closed_percentage.toFixed(1)}%`;
-                    currentEyeClosureStat.textContent = `${stats.current_eyes_closed_duration.toFixed(1)} seconds`;
-                    yawningStat.textContent = `${stats.yawning_percentage.toFixed(1)}%`;
-                    currentYawningStat.textContent = `${stats.current_yawning_duration.toFixed(1)} seconds`;
-                    alertsStat.textContent = `${stats.eye_alerts_sent} eye alerts, ${stats.yawn_alerts_sent} yawn alerts`;
-                }
-            })
-            .catch(error => console.error('Error updating statistics:', error));
-        }
-        
-        // Send heartbeat to keep server aware of frontend
-        function sendHeartbeat() {
-            fetch(`${API_BASE_URL}/heartbeat`)
-                .catch(error => console.error('Heartbeat error:', error));
-        }
-        
-        // Play alert sound
-        function playAlertSound(soundUrl) {
-            const audioSource = document.getElementById('audioSource');
-            audioSource.src = soundUrl;
-            audioPlayer.load();
-            
-            // Play with user interaction handling
-            const playPromise = audioPlayer.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log('Autoplay prevented. Please enable sound in your browser settings.');
-                });
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const result = await res.json();
+            console.log("서버 응답:", result);
+
+            if (result.status === 'success') {
+                loginOverlay.style.display = 'none';
+            } else {
+                authMessage.textContent = result.message || "로그인 실패";
             }
+        } catch (error) {
+            console.error("로그인 에러:", error);
+            authMessage.textContent = "서버에 연결할 수 없습니다.";
         }
-    </script>
+    };
+
+    // Enter 키 입력 시 로그인 시도
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            loginBtn.click();
+        }
+    });
+
+
+    signupBtn.onclick = async () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        try {
+            const res = await fetch(`${API_BASE_URL}/signup`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const result = await res.json();
+            console.log("회원가입 응답:", result);
+
+            if (result.status === 'success') {
+                authMessage.textContent = "회원가입 성공! 다시 로그인하세요.";
+                emailInput.value = "";   
+                passwordInput.value = "";
+            } else {
+                authMessage.textContent = result.message || "회원가입 실패";
+            }
+        } catch (error) {
+            console.error("회원가입 에러:", error);
+            authMessage.textContent = "서버에 연결할 수 없습니다.";
+        }
+    };
+});
+</script>
+<div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
+    align-items: center; justify-content: center; z-index: 1000;">
+<div style="background: white; padding: 30px; border-radius: 16px; width: 280px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; transition: transform 0.3s ease;">
+<h3 style="text-align:center;">로그인</h3>
+<input id="emailInput" placeholder="이메일" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="email"/>
+<input id="passwordInput" placeholder="비밀번호" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="password"/>
+<button id="loginBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">로그인</button>
+<button id="signupBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">회원가입</button>
+<p id="authMessage" style="color: red; font-size: 0.9em; text-align:center;"></p>
+</div>
+</div>
 </body>
 </html>
