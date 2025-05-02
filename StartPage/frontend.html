@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Driver Alertness Monitoring System</title>
+<title>FocusMate: 나만의 개인 스터디 친구</title>
 <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -97,13 +97,6 @@
         .hidden {
             display: none;
         }
-        #uploadImage {
-            padding: 15px;
-            border: 2px dashed #3498db;
-            border-radius: 5px;
-            margin: 20px 0;
-            text-align: center;
-        }
         @media (max-width: 768px) {
             .controls {
                 flex-direction: column;
@@ -125,17 +118,11 @@
 </style></head>
 <body>
 <div class="container">
-<h1>Driver Alertness Monitoring System</h1>
+<h1>FocusMate: 나만의 개인 스터디 친구</h1>
 <div class="controls">
-<button id="startBtn">Start Monitoring</button>
-<button disabled="" id="stopBtn">Stop Monitoring</button>
+<button id="startBtn">공부 시작</button>
+<button disabled="" id="stopBtn">종료</button>
 <button id="resetBtn">Reset Alerts</button>
-<button id="uploadBtn">Upload Image</button>
-</div>
-<div class="hidden" id="uploadImage">
-<h3>Upload Image for Processing</h3>
-<input accept="image/*" id="imageInput" type="file"/>
-<button id="processImageBtn">Process Image</button>
 </div>
 <div class="video-container">
 <img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/> </div>
@@ -188,7 +175,6 @@
         const startBtn = document.getElementById('startBtn');
         const stopBtn = document.getElementById('stopBtn');
         const resetBtn = document.getElementById('resetBtn');
-        const uploadBtn = document.getElementById('uploadBtn');
         const videoStream = document.getElementById('videoStream');
         const API_BASE_URL = 'http://localhost:8080';
 
@@ -354,9 +340,9 @@
                 return;
             }
             if (alerts.eyes_closed) {
-                showAlertOverlay("Wake up!!", "You have been detected as sleeping. Please wake up!", "continue", "stop");
+                showAlertOverlay("일어나세요!!", "너무 피곤하면 낮잠자고 다시 시작하는건 어때요?", "계속 공부하기", "종료");
             } else if (alerts.yawning) {
-                showAlertOverlay("I know it can be tiring...", "Would you like to take a break?", "continue", "stop");
+                showAlertOverlay("피곤하시죠...", "조금 쉬었다가 집중 다시해볼까요?", "계속 공부하기", "종료");
             }
 }
 
