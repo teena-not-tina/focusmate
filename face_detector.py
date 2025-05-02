@@ -46,7 +46,7 @@ class FacialFeatureAnalyzer:
         self.mouth_detector = MouthDistanceDetector(providers)
         print("Facial Feature Analyzer initialized")
     
-    def analyze_image(self, image_path, eye_threshold=0.05, mouth_threshold=0.1, visualize=True):
+    def analyze_image(self, image_path, eye_threshold=0.05, mouth_threshold=0.05, visualize=True):
         """
         Analyze facial features in an image
         

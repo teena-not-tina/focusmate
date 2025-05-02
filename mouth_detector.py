@@ -24,7 +24,7 @@ class MouthDistanceDetector(FaceDetector):
         print("Mouth distance detector initialized with key points:")
         print(f"  Mouth: upper point {self.UPPER_LIP} (upper lip top center), lower point {self.LOWER_LIP} (lower lip bottom center)")
     
-    def calculate_mouth_state(self, landmarks, threshold_ratio=0.1):
+    def calculate_mouth_state(self, landmarks, threshold_ratio=0.05):
         """
         Calculate if mouth is open, closed, or yawning based on lip distance ratio.
         
@@ -71,7 +71,7 @@ class MouthDistanceDetector(FaceDetector):
             'face_width': face_width
         }
     
-    def detect_mouth_state(self, image_path, visualize=True, threshold_ratio=0.1):
+    def detect_mouth_state(self, image_path, visualize=True, threshold_ratio=0.05):
         """
         Detect the state of mouth (closed, open, or yawning) in an image.
         

@@ -23,7 +23,7 @@ class FacialStateTracker:
                  max_eye_alerts=2,
                  max_yawn_alerts=2,
                  eye_threshold=0.05,
-                 mouth_threshold=0.1,
+                 mouth_threshold=0.05,
                  providers=['CPUExecutionProvider']):
         """
         Initialize the facial state tracker.
