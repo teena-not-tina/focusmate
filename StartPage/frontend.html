@@ -182,75 +182,188 @@
 <source id="audioSource" src="" type="audio/mpeg"/>
 </audio>
 <script>
-const API_BASE_URL = 'http://localhost:8080';
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get references to existing login elements (already defined in the previous script)
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const authMessage = document.getElementById('authMessage');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const loginOverlay = document.getElementById('loginOverlay');
-    const loginBtn = document.getElementById('loginBtn');
-    const signupBtn = document.getElementById('signupBtn');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const authMessage = document.getElementById('authMessage');
-
-    loginBtn.onclick = async () => {
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const videoStream = document.getElementById('videoStream');
+        const eyesClosedAlert = document.getElementById('eyesClosedAlert');
+        const yawningAlert = document.getElementById('yawningAlert');
+        const eyesClosedMessage = document.getElementById('eyesClosedMessage');
+        const yawningMessage = document.getElementById('yawningMessage');
+        const API_BASE_URL = 'http://localhost:8080';
+        
+        // Start monitoring button handler
+        startBtn.addEventListener('click', async function() {
+            try {
+                // Initialize the camera on the server
+                const initResponse = await fetch(`${API_BASE_URL}/initialize_camera`, {
+                    method: 'POST'
+                });
+                
+                if (initResponse.ok) {
+                    // Start the stream
+                    videoStream.src = `${API_BASE_URL}/camera_stream?t=${new Date().getTime()}`;
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    
+                    // Start polling for alerts and statistics
+                    startPolling();
+                } else {
+                    alert('Failed to initialize camera. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error starting monitoring:', error);
+                alert('Error starting monitoring. Please try again.');
+            }
+        });
+        
+        loginBtn.addEventListener('click', async function() {
         const email = emailInput.value;
         const password = passwordInput.value;
-
-        console.log("로그인 시도:", email);
+        authMessage.textContent = '';
         try {
-            const res = await fetch(`${API_BASE_URL}/login`, {
+            const response = await fetch(`${API_BASE_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             });
-            const result = await res.json();
-            console.log("서버 응답:", result);
-
-            if (result.status === 'success') {
+            const data = await response.json();
+            if (data.status === 'success') {
+                // Hide the login overlay
                 loginOverlay.style.display = 'none';
             } else {
-                authMessage.textContent = result.message || "로그인 실패";
+                authMessage.textContent = data.message || '로그인 실패';
             }
         } catch (error) {
-            console.error("로그인 에러:", error);
-            authMessage.textContent = "서버에 연결할 수 없습니다.";
-        }
-    };
-
-    // Enter 키 입력 시 로그인 시도
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            loginBtn.click();
+            authMessage.textContent = '서버 오류. 다시 시도하세요.';
         }
     });
 
-
-    signupBtn.onclick = async () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-
-        try {
-            const res = await fetch(`${API_BASE_URL}/signup`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-            const result = await res.json();
-            console.log("회원가입 응답:", result);
-
-            if (result.status === 'success') {
-                authMessage.textContent = "회원가입 성공! 다시 로그인하세요.";
-                emailInput.value = "";   
-                passwordInput.value = "";
-            } else {
-                authMessage.textContent = result.message || "회원가입 실패";
+        // Stop monitoring button handler
+        stopBtn.addEventListener('click', async function() {
+            try {
+                // Stop the camera on the server
+                const stopResponse = await fetch(`${API_BASE_URL}/stop_camera`, {
+                    method: 'POST'
+                });
+                
+                if (stopResponse.ok) {
+                    // Update UI
+                    videoStream.src = "";
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    
+                    // Stop polling
+                    stopPolling();
+                }
+            } catch (error) {
+                console.error('Error stopping monitoring:', error);
             }
-        } catch (error) {
-            console.error("회원가입 에러:", error);
-            authMessage.textContent = "서버에 연결할 수 없습니다.";
+        });
+        
+        // Reset alerts button handler
+        resetBtn.addEventListener('click', async function() {
+            try {
+                await fetch(`${API_BASE_URL}/reset_alerts`, {
+                    method: 'POST'
+                });
+                // Reset the UI alerts
+                eyesClosedAlert.style.display = 'none';
+                yawningAlert.style.display = 'none';
+            } catch (error) {
+                console.error('Error resetting alerts:', error);
+            }
+        });
+        
+        // Poll for alerts and statistics when monitoring is active
+        let alertsInterval;
+        
+        function startPolling() {
+            // Poll for alerts and stats
+            alertsInterval = setInterval(async function() {
+                try {
+                    // Get alerts
+                    const alertsResponse = await fetch(`${API_BASE_URL}/get_alerts`);
+                    const alertsData = await alertsResponse.json();
+                    
+                    // Process alerts
+                    if (alertsData.alerts && Object.keys(alertsData.alerts).length > 0) {
+                        processAlerts(alertsData.alerts);
+                    }
+                    
+                    // Get statistics
+                    const statsResponse = await fetch(`${API_BASE_URL}/get_statistics`);
+                    const statsData = await statsResponse.json();
+                    
+                    if (statsData.status === 'success') {
+                        updateStatistics(statsData.statistics);
+                    }
+                } catch (error) {
+                    console.error('Error polling for alerts/stats:', error);
+                }
+            }, 1000); // Poll every second
         }
-    };
-});
+        
+        function stopPolling() {
+            if (alertsInterval) {
+                clearInterval(alertsInterval);
+            }
+        }
+        
+        // Process alerts received from the server
+        function processAlerts(alerts) {
+            if (alerts.eyes_closed) {
+                eyesClosedAlert.style.display = 'block';
+                eyesClosedMessage.textContent = alerts.eyes_closed.message;
+                
+                // Play alert sound
+                playAlertSound('eyesClosed');
+            }
+            
+            if (alerts.yawning) {
+                yawningAlert.style.display = 'block';
+                yawningMessage.textContent = alerts.yawning.message;
+                
+                // Play alert sound
+                playAlertSound('yawning');
+            }
+        }
+        
+        // Update statistics displayed on the dashboard
+        function updateStatistics(stats) {
+            document.getElementById('eyesClosedStat').textContent = stats.eye_closed_percentage.toFixed(1) + '%';
+            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' seconds';
+            document.getElementById('yawningStat').textContent = stats.yawning_percentage.toFixed(1) + '%';
+            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' seconds';
+            document.getElementById('alertsStat').textContent = 
+                `${stats.eye_alerts_sent} eye alerts, ${stats.yawn_alerts_sent} yawn alerts`;
+        }
+        
+        // Play alert sounds
+        function playAlertSound(alertType) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const audioSource = document.getElementById('audioSource');
+            
+            if (alertType === 'eyesClosed') {
+                audioSource.src = 'alert_eyes.mp3';
+            } else if (alertType === 'yawning') {
+                audioSource.src = 'alert_yawn.mp3';
+            }
+            
+            audioPlayer.load();
+            audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+        }
+    });
 </script>
 <div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;

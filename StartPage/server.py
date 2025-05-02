@@ -237,6 +237,61 @@ def camera_stream():
 
     return Response(generate(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+# Route to initialize the camera
+@app.route('/initialize_camera', methods=['POST'])
+def initialize_camera():
+    global camera, facial_state_tracker, frame, processed_frame
+    global capture_thread, process_thread, save_thread
+    
+    # Reset frame buffers
+    frame = None
+    processed_frame = None
+    
+    # Initialize camera if not already initialized
+    success = initialize_system()
+    
+    if success:
+        # Start the background threads if they're not already running
+        if 'capture_thread' not in globals() or not capture_thread.is_alive():
+            capture_thread = threading.Thread(target=capture_frame, daemon=True)
+            capture_thread.start()
+            
+        if 'process_thread' not in globals() or not process_thread.is_alive():
+            process_thread = threading.Thread(target=process_frames, daemon=True)
+            process_thread.start()
+            
+        if 'save_thread' not in globals() or not save_thread.is_alive():
+            save_thread = threading.Thread(target=save_frames_worker, daemon=True)
+            save_thread.start()
+            
+        return jsonify({'status': 'success', 'message': 'Camera initialized successfully'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Failed to initialize camera'}), 500
+
+# Route to stop the camera
+@app.route('/stop_camera', methods=['POST'])
+def stop_camera():
+    global camera, running, capture_thread, process_thread, save_thread
+    running = False  # Stop all threads
+
+    # Wait for threads to finish (optional, but safer)
+    if capture_thread and capture_thread.is_alive():
+        capture_thread.join(timeout=1)
+    if process_thread and process_thread.is_alive():
+        process_thread.join(timeout=1)
+    if save_thread and save_thread.is_alive():
+        save_thread.join(timeout=1)
+
+    # Release the camera if it's open
+    if camera and camera.isOpened():
+        camera.release()
+        camera = None
+
+    # Reset running for next start
+    running = True
+
+    return jsonify({'status': 'success', 'message': 'Camera stopped'})
+
 # API: Get alerts
 @app.route('/get_alerts')
 def get_alerts():
@@ -387,20 +442,16 @@ def signup():
 
 
 
+# Updated main section
 if __name__ == '__main__':
     print("="*50)
     print("Starting Driver Alertness Monitoring System")
     print("="*50)
     
-    if initialize_system():
-        # Start background threads
-        threading.Thread(target=capture_frame, daemon=True).start()
-        threading.Thread(target=process_frames, daemon=True).start()
-        threading.Thread(target=save_frames_worker, daemon=True).start()
-        
-        print(f"Starting server on {config.HOST}:{config.PORT}")
-        # Start Flask server
-        app.run(host=config.HOST, port=config.PORT, threaded=True)
-    else:
-        print("[❌ Failed to initialize system. Exiting.]")
-        sys.exit(1)
+    # Create necessary directories
+    os.makedirs(config.TEMP_DIR, exist_ok=True)
+    os.makedirs(config.SAVE_DIR, exist_ok=True)
+    
+    print(f"Starting server on {config.HOST}:{config.PORT}")
+    # Start Flask server without initializing camera
+    app.run(host=config.HOST, port=config.PORT, threaded=True)
