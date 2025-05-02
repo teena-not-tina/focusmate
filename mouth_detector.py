@@ -124,45 +124,45 @@ class MouthDistanceDetector(FaceDetector):
     def draw_visualization(self, img, face, landmarks, mouth_state):
         """Draw visualization of mouth state detection"""
         # Draw face bounding box
-        bbox = face.bbox.astype(int)
-        cv2.rectangle(img, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 0, 0), 2)
+        # bbox = face.bbox.astype(int)
+        # cv2.rectangle(img, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 0, 0), 2)
         
-        # Draw outer lip contour
-        for idx in self.OUTER_LIP_INDICES:
-            cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 255), -1)  # Cyan for outer contour
+        # # Draw outer lip contour
+        # for idx in self.OUTER_LIP_INDICES:
+        #     cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 255), -1)  # Cyan for outer contour
             
-        # Draw upper lip landmarks
-        for idx in self.UPPER_LIP_INDICES:
-            cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)  # Green for upper lip
+        # # Draw upper lip landmarks
+        # for idx in self.UPPER_LIP_INDICES:
+        #     cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)  # Green for upper lip
             
-        # Draw lower lip landmarks
-        for idx in self.LOWER_LIP_INDICES:
-            cv2.circle(img, tuple(landmarks[idx]), 1, (255, 255, 0), -1)  # Yellow for lower lip
+        # # Draw lower lip landmarks
+        # for idx in self.LOWER_LIP_INDICES:
+        #     cv2.circle(img, tuple(landmarks[idx]), 1, (255, 255, 0), -1)  # Yellow for lower lip
         
-        # Highlight the key points used for measurement
-        upper_lip = mouth_state['mouth']['upper_point']
-        lower_lip = mouth_state['mouth']['lower_point']
-        cv2.circle(img, upper_lip, 3, (255, 0, 0), -1)  # Upper (red)
-        cv2.circle(img, lower_lip, 3, (0, 0, 255), -1)  # Lower (blue)
-        cv2.line(img, upper_lip, lower_lip, (255, 0, 255), 1)  # Line connecting points
+        # # Highlight the key points used for measurement
+        # upper_lip = mouth_state['mouth']['upper_point']
+        # lower_lip = mouth_state['mouth']['lower_point']
+        # cv2.circle(img, upper_lip, 3, (255, 0, 0), -1)  # Upper (red)
+        # cv2.circle(img, lower_lip, 3, (0, 0, 255), -1)  # Lower (blue)
+        # cv2.line(img, upper_lip, lower_lip, (255, 0, 255), 1)  # Line connecting points
         
-        # Add mouth state information
-        mouth_info = mouth_state['mouth']
+        # # Add mouth state information
+        # mouth_info = mouth_state['mouth']
         
-        y_offset = 30
+        # y_offset = 30
         
-        # Get color based on state
-        if mouth_info['is_closed']:
-            color = (0, 0, 255)  # Red for closed
-        elif mouth_info['is_yawning']:
-            color = (0, 165, 255)  # Orange for yawning
-        else:
-            color = (0, 255, 0)  # Green for normal open
+        # # Get color based on state
+        # if mouth_info['is_closed']:
+        #     color = (0, 0, 255)  # Red for closed
+        # elif mouth_info['is_yawning']:
+        #     color = (0, 165, 255)  # Orange for yawning
+        # else:
+        #     color = (0, 255, 0)  # Green for normal open
         
-        # Mouth information
-        m_ratio = mouth_info['ratio']
-        cv2.putText(img, f"Mouth: {m_ratio:.3f} - {mouth_info['state']}", 
-                   (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
+        # # Mouth information
+        # m_ratio = mouth_info['ratio']
+        # cv2.putText(img, f"Mouth: {m_ratio:.3f} - {mouth_info['state']}", 
+        #            (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
 
 
 def print_mouth_state_results(results):

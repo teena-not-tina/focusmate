@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Driver Alertness Monitoring System</title>
+<title>FocusMate: 나만의 개인 스터디 친구</title>
 <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,30 +58,24 @@
             background-color: #bdc3c7;
             cursor: not-allowed;
         }
-        .alert-container {
-            margin: 20px 0;
-            padding: 15px;
+        #alertOverlay button {
+            background-color: #3498db;
+            color: white;
+            border: none;
             border-radius: 5px;
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498db;
+            margin-bottom: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
         }
-        .alert {
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            display: none;
+        #alertOverlay button:hover {
+            background-color: #2980b9;
         }
-        .alert.eyes-closed {
-            background-color: #f8d7da;
-            border-left: 4px solid #dc3545;
-            color: #721c24;
-            display: block;
+        #alertStopBtn {
+            background-color: #dc3545 !important;
         }
-        .alert.yawning {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            color: #856404;
-            display: block;
+        #alertStopBtn:hover {
+            background-color: #b52a37 !important;
         }
         .stats-container {
             margin: 20px 0;
@@ -102,13 +96,6 @@
         }
         .hidden {
             display: none;
-        }
-        #uploadImage {
-            padding: 15px;
-            border: 2px dashed #3498db;
-            border-radius: 5px;
-            margin: 20px 0;
-            text-align: center;
         }
         @media (max-width: 768px) {
             .controls {
@@ -131,50 +118,39 @@
 </style></head>
 <body>
 <div class="container">
-<h1>Driver Alertness Monitoring System</h1>
+<h1>FocusMate: 나만의 개인 스터디 친구</h1>
 <div class="controls">
-<button id="startBtn">Start Monitoring</button>
-<button disabled="" id="stopBtn">Stop Monitoring</button>
+<button id="startBtn">공부 시작</button>
+<button disabled="" id="stopBtn">종료</button>
 <button id="resetBtn">Reset Alerts</button>
-<button id="uploadBtn">Upload Image</button>
-</div>
-<div class="hidden" id="uploadImage">
-<h3>Upload Image for Processing</h3>
-<input accept="image/*" id="imageInput" type="file"/>
-<button id="processImageBtn">Process Image</button>
 </div>
 <div class="video-container">
 <img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/> </div>
-<div class="alert-container">
-<h3>Alerts</h3>
-<div class="alert" id="eyesClosedAlert">
-<strong>Wake Up!</strong> <span id="eyesClosedMessage"></span>
-</div>
-<div class="alert" id="yawningAlert">
-<strong>You're Yawning!</strong> <span id="yawningMessage"></span>
-</div>
-</div>
 <div class="stats-container">
-<h3>Statistics</h3>
+<h3>결과</h3>
+
 <div class="stat-row">
-<span class="stat-label">Eyes Closed:</span>
+    <span class="stat-label">공부한 시간:</span>
+    <span id="timeStudiedStat">0:00:00</span>
+</div>
+<span class="stat-label">눈 감은 비율:</span>
 <span id="eyesClosedStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Current Eye Closure:</span>
-<span id="currentEyeClosureStat">0 seconds</span>
+<span class="stat-label">눈 감은 시간:</span>
+<span id="currentEyeClosureStat">0 초</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Yawning:</span>
+<span class="stat-label">하품 비율:</span>
 <span id="yawningStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Current Yawning:</span>
-<span id="currentYawningStat">0 seconds</span>
+<span class="stat-label">하품 시간:</span>
+<span id="currentYawningStat">0 초</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Alerts Triggered:</span>
-<span id="alertsStat">0 eye alerts, 0 yawn alerts</span>
+<span class="stat-label">알림:</span>
+<span id="alertsStat">0 졸음 횟수, 0 하품 횟수</span>
 </div>
 </div>
 </div>
@@ -182,7 +158,12 @@
 <source id="audioSource" src="" type="audio/mpeg"/>
 </audio>
 <script>
+    let monitoringActive = false;
+    let studyStartTime = null;
+    let studyTimerInterval = null;
+    
     document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('alertOverlay').style.display = 'none';
         // Get references to existing login elements (already defined in the previous script)
         const loginOverlay = document.getElementById('loginOverlay');
         const loginBtn = document.getElementById('loginBtn');
@@ -194,16 +175,33 @@
         const startBtn = document.getElementById('startBtn');
         const stopBtn = document.getElementById('stopBtn');
         const resetBtn = document.getElementById('resetBtn');
-        const uploadBtn = document.getElementById('uploadBtn');
         const videoStream = document.getElementById('videoStream');
-        const eyesClosedAlert = document.getElementById('eyesClosedAlert');
-        const yawningAlert = document.getElementById('yawningAlert');
-        const eyesClosedMessage = document.getElementById('eyesClosedMessage');
-        const yawningMessage = document.getElementById('yawningMessage');
         const API_BASE_URL = 'http://localhost:8080';
+
+        document.getElementById('alertContinueBtn').addEventListener('click', function() {
+            document.getElementById('alertOverlay').style.display = 'none';
+            // Do NOT reset alerts here!
+        });
+        document.getElementById('alertStopBtn').addEventListener('click', async function() {
+            document.getElementById('alertOverlay').style.display = 'none';
+            // Stop monitoring
+            await fetch(`${API_BASE_URL}/stop_camera`, { method: 'POST' });
+            videoStream.src = "";
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            stopPolling();
+            if (studyTimerInterval) {
+                clearInterval(studyTimerInterval);
+                studyTimerInterval = null;
+            }
+        });
         
         // Start monitoring button handler
         startBtn.addEventListener('click', async function() {
+            studyStartTime = new Date();
+            updateStudyTimer();
+            studyTimerInterval = setInterval(updateStudyTimer, 1000);
+
             try {
                 // Initialize the camera on the server
                 const initResponse = await fetch(`${API_BASE_URL}/initialize_camera`, {
@@ -215,9 +213,9 @@
                     videoStream.src = `${API_BASE_URL}/camera_stream?t=${new Date().getTime()}`;
                     startBtn.disabled = true;
                     stopBtn.disabled = false;
-                    
                     // Start polling for alerts and statistics
                     startPolling();
+                    monitoringActive = true;
                 } else {
                     alert('Failed to initialize camera. Please try again.');
                 }
@@ -239,8 +237,10 @@
             });
             const data = await response.json();
             if (data.status === 'success') {
-                // Hide the login overlay
                 loginOverlay.style.display = 'none';
+                document.getElementById('alertOverlay').style.display = 'none'; // Hide alert overlay just in case
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
             } else {
                 authMessage.textContent = data.message || '로그인 실패';
             }
@@ -265,6 +265,12 @@
                     
                     // Stop polling
                     stopPolling();
+                    monitoringActive = false;
+                    if (studyTimerInterval) {
+                        clearInterval(studyTimerInterval);
+                        studyTimerInterval = null;
+                    }
+
                 }
             } catch (error) {
                 console.error('Error stopping monitoring:', error);
@@ -287,6 +293,21 @@
         
         // Poll for alerts and statistics when monitoring is active
         let alertsInterval;
+
+        function updateStudyTimer() {
+            if (!studyStartTime) {
+                document.getElementById('timeStudiedStat').textContent = "0:00:00";
+                return;
+            }
+            const now = new Date();
+            let diff = Math.floor((now - studyStartTime) / 1000);
+            const hours = Math.floor(diff / 3600);
+            diff = diff % 3600;
+            const minutes = Math.floor(diff / 60);
+            const seconds = diff % 60;
+            document.getElementById('timeStudiedStat').textContent =
+                `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
         
         function startPolling() {
             // Poll for alerts and stats
@@ -322,31 +343,34 @@
         
         // Process alerts received from the server
         function processAlerts(alerts) {
+            // Only show alerts if login overlay is hidden and monitoring is active
+            if (loginOverlay.style.display !== 'none' || !monitoringActive) {
+                return;
+            }
             if (alerts.eyes_closed) {
-                eyesClosedAlert.style.display = 'block';
-                eyesClosedMessage.textContent = alerts.eyes_closed.message;
-                
-                // Play alert sound
-                playAlertSound('eyesClosed');
+                showAlertOverlay("일어나세요!!", "너무 피곤하면 낮잠자고 다시 시작하는건 어때요?", "계속 공부하기", "종료");
+            } else if (alerts.yawning) {
+                showAlertOverlay("피곤하시죠...", "조금 쉬었다가 집중 다시해볼까요?", "계속 공부하기", "종료");
             }
-            
-            if (alerts.yawning) {
-                yawningAlert.style.display = 'block';
-                yawningMessage.textContent = alerts.yawning.message;
-                
-                // Play alert sound
-                playAlertSound('yawning');
-            }
+}
+
+        function showAlertOverlay(title, message, continueText, stopText) {
+            const alertOverlay = document.getElementById('alertOverlay');
+            document.getElementById('alertOverlayTitle').textContent = title;
+            document.getElementById('alertOverlayMessage').textContent = message;
+            document.getElementById('alertContinueBtn').textContent = continueText === "continue" ? "Continue to Study" : continueText;
+            document.getElementById('alertStopBtn').textContent = stopText === "stop" ? "Stop" : stopText;
+            alertOverlay.style.display = 'flex';
         }
-        
+
         // Update statistics displayed on the dashboard
         function updateStatistics(stats) {
             document.getElementById('eyesClosedStat').textContent = stats.eye_closed_percentage.toFixed(1) + '%';
-            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' seconds';
+            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' 초';
             document.getElementById('yawningStat').textContent = stats.yawning_percentage.toFixed(1) + '%';
-            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' seconds';
+            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' 초';
             document.getElementById('alertsStat').textContent = 
-                `${stats.eye_alerts_sent} eye alerts, ${stats.yawn_alerts_sent} yawn alerts`;
+                `${stats.eye_alerts_sent} 졸음 알림, ${stats.yawn_alerts_sent} 하품 알림`;
         }
         
         // Play alert sounds
@@ -365,6 +389,7 @@
         }
     });
 </script>
+
 <div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
     align-items: center; justify-content: center; z-index: 1000;">
@@ -377,5 +402,18 @@
 <p id="authMessage" style="color: red; font-size: 0.9em; text-align:center;"></p>
 </div>
 </div>
+
+
+<div id="alertOverlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
+    align-items: center; justify-content: center; z-index: 2000;">
+  <div style="background: white; padding: 30px; border-radius: 16px; width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; text-align: center;">
+    <h3 id="alertOverlayTitle"></h3>
+    <p id="alertOverlayMessage"></p>
+    <button id="alertContinueBtn" style="width: 100%; padding: 10px; margin: 10px 0;">계속 공부하기</button>
+    <button id="alertStopBtn" style="width: 100%; padding: 10px; background: #dc3545;">종료</button>
+  </div>
+</div>
+
 </body>
 </html>
