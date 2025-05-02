@@ -127,30 +127,30 @@
 <div class="video-container">
 <img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/> </div>
 <div class="stats-container">
-<h3>Statistics</h3>
+<h3>결과</h3>
 
 <div class="stat-row">
-    <span class="stat-label">Time Studied:</span>
+    <span class="stat-label">공부 한 시간:</span>
     <span id="timeStudiedStat">0:00:00</span>
 </div>
-<span class="stat-label">Eyes Closed:</span>
+<span class="stat-label">눈 감은 퍼센트:</span>
 <span id="eyesClosedStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Current Eye Closure:</span>
-<span id="currentEyeClosureStat">0 seconds</span>
+<span class="stat-label">눈 감은지 :</span>
+<span id="currentEyeClosureStat">0 초</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Yawning:</span>
+<span class="stat-label">하품한 퍼센트:</span>
 <span id="yawningStat">0%</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Current Yawning:</span>
-<span id="currentYawningStat">0 seconds</span>
+<span class="stat-label">하품한지:</span>
+<span id="currentYawningStat">0 초</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Alerts Triggered:</span>
-<span id="alertsStat">0 eye alerts, 0 yawn alerts</span>
+<span class="stat-label">알림:</span>
+<span id="alertsStat">0 졸음 횟수, 0 하품 횟수</span>
 </div>
 </div>
 </div>
@@ -190,6 +190,10 @@
             startBtn.disabled = false;
             stopBtn.disabled = true;
             stopPolling();
+            if (studyTimerInterval) {
+                clearInterval(studyTimerInterval);
+                studyTimerInterval = null;
+            }
         });
         
         // Start monitoring button handler
@@ -262,6 +266,10 @@
                     // Stop polling
                     stopPolling();
                     monitoringActive = false;
+                    if (studyTimerInterval) {
+                        clearInterval(studyTimerInterval);
+                        studyTimerInterval = null;
+                    }
 
                 }
             } catch (error) {

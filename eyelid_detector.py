@@ -131,49 +131,49 @@ class EyelidDistanceDetector(FaceDetector):
     def draw_visualization(self, img, face, landmarks, eye_state):
         """Draw visualization of eye state detection"""
         # Draw face bounding box
-        bbox = face.bbox.astype(int)
-        cv2.rectangle(img, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 0, 0), 2)
+        # bbox = face.bbox.astype(int)
+        # cv2.rectangle(img, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255, 0, 0), 2)
         
-        # Draw all eye landmarks
-        for idx in self.RIGHT_EYE_INDICES:
-            cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)
+        # # Draw all eye landmarks
+        # for idx in self.RIGHT_EYE_INDICES:
+        #     cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)
         
-        for idx in self.LEFT_EYE_INDICES:
-            cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)
+        # for idx in self.LEFT_EYE_INDICES:
+        #     cv2.circle(img, tuple(landmarks[idx]), 1, (0, 255, 0), -1)
         
-        # Highlight the key points used for measurement
-        # Right eye
-        right_upper = eye_state['right_eye']['upper_point']
-        right_lower = eye_state['right_eye']['lower_point']
-        cv2.circle(img, right_upper, 3, (255, 0, 0), -1)  # Upper (red)
-        cv2.circle(img, right_lower, 3, (0, 0, 255), -1)  # Lower (blue)
-        cv2.line(img, right_upper, right_lower, (255, 0, 255), 1)  # Line connecting points
+        # # Highlight the key points used for measurement
+        # # Right eye
+        # right_upper = eye_state['right_eye']['upper_point']
+        # right_lower = eye_state['right_eye']['lower_point']
+        # cv2.circle(img, right_upper, 3, (255, 0, 0), -1)  # Upper (red)
+        # cv2.circle(img, right_lower, 3, (0, 0, 255), -1)  # Lower (blue)
+        # cv2.line(img, right_upper, right_lower, (255, 0, 255), 1)  # Line connecting points
         
-        # Left eye
-        left_upper = eye_state['left_eye']['upper_point']
-        left_lower = eye_state['left_eye']['lower_point']
-        cv2.circle(img, left_upper, 3, (255, 0, 0), -1)  # Upper (red)
-        cv2.circle(img, left_lower, 3, (0, 0, 255), -1)  # Lower (blue)
-        cv2.line(img, left_upper, left_lower, (255, 0, 255), 1)  # Line connecting points
+        # # Left eye
+        # left_upper = eye_state['left_eye']['upper_point']
+        # left_lower = eye_state['left_eye']['lower_point']
+        # cv2.circle(img, left_upper, 3, (255, 0, 0), -1)  # Upper (red)
+        # cv2.circle(img, left_lower, 3, (0, 0, 255), -1)  # Lower (blue)
+        # cv2.line(img, left_upper, left_lower, (255, 0, 255), 1)  # Line connecting points
         
-        # Add eye state information
-        right_status = "CLOSED" if eye_state['right_eye']['is_closed'] else "OPEN"
-        left_status = "CLOSED" if eye_state['left_eye']['is_closed'] else "OPEN"
+        # # Add eye state information
+        # right_status = "CLOSED" if eye_state['right_eye']['is_closed'] else "OPEN"
+        # left_status = "CLOSED" if eye_state['left_eye']['is_closed'] else "OPEN"
         
-        y_offset = 30
+        # y_offset = 30
         
-        # Right eye information
-        r_ratio = eye_state['right_eye']['ratio']
-        cv2.putText(img, f"Right eye: {r_ratio:.3f} - {right_status}", 
-                   (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, 
-                   (0, 0, 255) if eye_state['right_eye']['is_closed'] else (0, 255, 0), 2)
-        y_offset += 30
+        # # Right eye information
+        # r_ratio = eye_state['right_eye']['ratio']
+        # cv2.putText(img, f"Right eye: {r_ratio:.3f} - {right_status}", 
+        #            (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, 
+        #            (0, 0, 255) if eye_state['right_eye']['is_closed'] else (0, 255, 0), 2)
+        # y_offset += 30
         
-        # Left eye information
-        l_ratio = eye_state['left_eye']['ratio']
-        cv2.putText(img, f"Left eye: {l_ratio:.3f} - {left_status}", 
-                   (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, 
-                   (0, 0, 255) if eye_state['left_eye']['is_closed'] else (0, 255, 0), 2)
+        # # Left eye information
+        # l_ratio = eye_state['left_eye']['ratio']
+        # cv2.putText(img, f"Left eye: {l_ratio:.3f} - {left_status}", 
+        #            (20, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, 
+        #            (0, 0, 255) if eye_state['left_eye']['is_closed'] else (0, 255, 0), 2)
 
 
 def print_eye_state_results(results):
@@ -187,7 +187,6 @@ def print_eye_state_results(results):
         print(f"\nFace #{face['face_idx'] + 1}:")
         
         # Face size information
-        print(f"  Face width: {face['face_width']:.2f} pixels")
         
         # Right eye
         right_eye = face['right_eye']

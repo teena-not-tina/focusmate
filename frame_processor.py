@@ -193,37 +193,47 @@ class FacialStateTracker:
         else:
             self.yawn_event_active = False
 
-        # Draw overlay info
-        y_start = 60
-        line_height = 30
+        # # Draw overlay info
+        # y_start = 60
+        # line_height = 30
 
+        # cv2.putText(
+        #     combined_frame, 
+        #     f"Eyes closed: {self.current_eyes_closed_duration:.1f}s", 
+        #     (20, y_start + line_height), 
+        #     cv2.FONT_HERSHEY_SIMPLEX, 
+        #     0.6, 
+        #     (0, 0, 255) if self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold else (255, 0, 0), 
+        #     2
+        # )
+        # cv2.putText(
+        #     combined_frame, 
+        #     f"Yawning: {self.current_yawning_duration:.1f}s", 
+        #     (20, y_start + 2 * line_height), 
+        #     cv2.FONT_HERSHEY_SIMPLEX, 
+        #     0.6, 
+        #     (0, 165, 255) if self.current_yawning_duration >= self.yawning_alert_threshold else (255, 165, 0), 
+        #     2
+        # )
+        # cv2.putText(
+        #     combined_frame,
+        #     f"Alerts: {self.eye_alerts_sent}/{self.max_eye_alerts} (eyes), {self.yawn_alerts_sent}/{self.max_yawn_alerts} (yawn)",
+        #     (20, y_start + 3 * line_height),
+        #     cv2.FONT_HERSHEY_SIMPLEX,
+        #     0.6,
+        #     (128, 0, 128),
+        #     2
+        # )
         cv2.putText(
-            combined_frame, 
-            f"Eyes closed: {self.current_eyes_closed_duration:.1f}s", 
-            (20, y_start + line_height), 
-            cv2.FONT_HERSHEY_SIMPLEX, 
-            0.6, 
-            (0, 0, 255) if self.current_eyes_closed_duration >= self.eyes_closed_alert_threshold else (255, 0, 0), 
-            2
+        combined_frame,
+        f"FocusMate",
+        (20, 30),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.8,
+        (0, 0, 0),
+        2
         )
-        cv2.putText(
-            combined_frame, 
-            f"Yawning: {self.current_yawning_duration:.1f}s", 
-            (20, y_start + 2 * line_height), 
-            cv2.FONT_HERSHEY_SIMPLEX, 
-            0.6, 
-            (0, 165, 255) if self.current_yawning_duration >= self.yawning_alert_threshold else (255, 165, 0), 
-            2
-        )
-        cv2.putText(
-            combined_frame,
-            f"Alerts: {self.eye_alerts_sent}/{self.max_eye_alerts} (eyes), {self.yawn_alerts_sent}/{self.max_yawn_alerts} (yawn)",
-            (20, y_start + 3 * line_height),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            (128, 0, 128),
-            2
-        )
+
 
         return combined_frame, alerts
         
