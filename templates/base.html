@@ -1,0 +1,79 @@
+<!-- 기본 템플릿 -->
+
+base.html -->
+<!-- 이 파일은 모든 페이지의 기본 레이아웃을 정의합니다. 
+     각 페이지는 이 템플릿을 상속받아 사용합니다. -->
+<!-- 이 템플릿은 HTML5 문서 구조를 따르며, 
+     CSS 스타일링과 JavaScript 기능을 포함합니다. 
+     또한, 페이지 제목, 헤더, 사이드바, 메인 콘텐츠 영역을 정의합니다. -->
+    
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FocusMate - AI 학습 조교{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>FocusMate</h1>
+            <span class="subtitle">AI 학습 조교</span>
+        </div>
+        <div class="header-actions">
+            <button id="theme-toggle" class="btn secondary" title="테마 변경">
+                <span id="theme-icon">☀️</span>
+            </button>
+            <button id="sidebar-toggle" class="btn secondary" title="사이드바 토글">
+                <span>≡</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="/" class="nav-item {% if request.path == '/' %}active{% endif %}">대시보드</a></li>
+                    <li><a href="/history" class="nav-item {% if request.path == '/history' %}active{% endif %}">히스토리</a></li>
+                    <li><a href="/settings" class="nav-item {% if request.path == '/settings' %}active{% endif %}">설정</a></li>
+                    <li><a href="/help" class="nav-item {% if request.path == '/help' %}active{% endif %}">도움말</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- 전역 모달 창 -->
+    <div id="confirm-modal" class="confirm-modal">
+        <div class="modal-content">
+            <h3 id="modal-message">작업을 진행하시겠습니까?</h3>
+            <div class="modal-buttons">
+                <button class="btn secondary cancel-btn">취소</button>
+                <button class="btn confirm-btn">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 전역 로딩 오버레이 -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>처리 중입니다...</p>
+    </div>
+
+    <!-- 오류 메시지 표시 영역 -->
+    <div id="error-message" class="error-message"></div>
+
+    <!-- 공통 스크립트 -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

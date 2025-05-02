@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusMate - AI 학습 조교</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>FocusMate</h1>
+            <span class="subtitle">AI 학습 조교</span>
+        </div>
+        <button class="menu-btn">
+            <span class="material-icons">menu</span>
+        </button>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <nav>
+                <a href="#" class="nav-item active">
+                    <span>대시보드</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>히스토리</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>설정</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>학습기록</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span>도움말</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div class="monitor-header">
+                <div class="monitor-title">
+                    학습 모니터링
+                    <span class="monitor-timer">00:00:00</span>
+                </div>
+                <div class="monitor-status">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>학습 모니터링 활성화</span>
+                    </div>
+                    <button class="analysis-btn">
+                        <span class="material-icons">analytics</span>
+                        <span>학습 상태 분석</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <!-- 비디오 피드가 표시될 영역 -->
+            </div>
+
+            <div class="video-controls">
+                <button class="control-btn">
+                    <span class="material-icons">videocam</span>
+                </button>
+                <button class="control-btn">
+                    <span class="material-icons">photo_camera</span>
+                </button>
+                <button class="control-btn">
+                    <span class="material-icons">timer</span>
+                </button>
+                <button class="control-btn">
+                    <span class="material-icons">download</span>
+                </button>
+                <button class="control-btn stop">
+                    <span class="material-icons">stop</span>
+                </button>
+            </div>
+
+            <div class="tab-navigation">
+                <div class="tab-item">분석 결과</div>
+                <div class="tab-item active">AI 조교</div>
+                <div class="tab-item">학습 기록</div>
+            </div>
+
+            <div class="assistant-container">
+                <div class="assistant-info">
+                    <p>안녕하세요! FocusMate AI 학습 조교입니다. 학습에 관한 질문이나 도움이 필요한 내용이 있으면 언제든지 물어보세요.</p>
+                </div>
+
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" placeholder="메시지를 입력하세요... (Shift+Enter로 줄바꿈)" />
+                    <button class="send-btn">전송</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 기존 script 태그 대신 app.js 사용 -->
+    <script src="{{ url_for('static', filename='test.js') }}"></script>
+</body>
+
+</html>

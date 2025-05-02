@@ -1,0 +1,472 @@
+2025-04-29 18:50:41,489 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 18:50:41,491 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 18:50:49,312 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 18:50:49,332 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 18:50:49,337 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 18:52:52,077 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 18:52:52,078 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 18:52:55,103 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 18:52:55,129 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 18:52:55,134 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 18:54:30,095 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 18:54:30,096 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 18:54:33,327 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 18:54:33,352 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 18:54:33,357 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 18:56:33,437 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 18:56:33,437 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 18:56:36,538 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 18:56:36,559 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 18:56:36,565 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 18:59:23,274 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 18:59:23,275 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 18:59:26,403 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 18:59:26,426 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 18:59:26,431 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 18:59:26,437 - __main__ - ERROR - Chatbot º≥¡§ ø¿∑˘: Client.__init__() got an unexpected keyword argument 'proxies'
+2025-04-29 19:01:45,970 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:01:45,971 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:01:50,879 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:01:50,897 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:01:50,903 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:01:51,557 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-29 19:01:51,557 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-29 19:01:51,559 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 19:02:02,121 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:02:02,121 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:02:14,537 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:02:14,558 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:02:14,566 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:02:15,257 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 19:02:15,260 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 19:02:16,422 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:16,423 - openai._base_client - INFO - Retrying request to /chat/completions in 0.458205 seconds
+2025-04-29 19:02:17,061 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:17,062 - openai._base_client - INFO - Retrying request to /chat/completions in 0.993994 seconds
+2025-04-29 19:02:18,231 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:18,232 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:18,234 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:18,240 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:18] "GET / HTTP/1.1" 200 -
+2025-04-29 19:02:19,034 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:19,035 - openai._base_client - INFO - Retrying request to /chat/completions in 0.429509 seconds
+2025-04-29 19:02:19,041 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:19,042 - openai._base_client - INFO - Retrying request to /chat/completions in 0.397255 seconds
+2025-04-29 19:02:19,610 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:19,611 - openai._base_client - INFO - Retrying request to /chat/completions in 0.810256 seconds
+2025-04-29 19:02:19,643 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:19,644 - openai._base_client - INFO - Retrying request to /chat/completions in 0.878611 seconds
+2025-04-29 19:02:20,604 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:20,605 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:20,606 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:20,654 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:20] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 19:02:20,692 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:20,693 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:20,694 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:20,695 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 19:02:21,478 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:21,479 - openai._base_client - INFO - Retrying request to /chat/completions in 0.413686 seconds
+2025-04-29 19:02:22,077 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:22,078 - openai._base_client - INFO - Retrying request to /chat/completions in 0.943975 seconds
+2025-04-29 19:02:23,198 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:02:23,199 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:23,199 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:02:23,201 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-29 19:04:24,038 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 19:04:25,039 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 19:04:35,660 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:04:35,661 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:04:39,734 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:04:39,760 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:04:39,791 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:04:40,556 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 19:04:40,559 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 19:08:02,328 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:02,329 - openai._base_client - INFO - Retrying request to /chat/completions in 0.399185 seconds
+2025-04-29 19:08:02,907 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:02,908 - openai._base_client - INFO - Retrying request to /chat/completions in 0.884629 seconds
+2025-04-29 19:08:03,979 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:03,981 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:03,981 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:03,992 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:03] "GET / HTTP/1.1" 200 -
+2025-04-29 19:08:04,790 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:04,794 - openai._base_client - INFO - Retrying request to /chat/completions in 0.463702 seconds
+2025-04-29 19:08:04,795 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:04,796 - openai._base_client - INFO - Retrying request to /chat/completions in 0.408316 seconds
+2025-04-29 19:08:05,434 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:05,434 - openai._base_client - INFO - Retrying request to /chat/completions in 0.849071 seconds
+2025-04-29 19:08:05,697 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:05,698 - openai._base_client - INFO - Retrying request to /chat/completions in 0.920062 seconds
+2025-04-29 19:08:06,473 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:06,474 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:06,475 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:06,523 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 19:08:06,787 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:06,789 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:06,789 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:06,790 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:06] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 19:08:12,674 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:12,675 - openai._base_client - INFO - Retrying request to /chat/completions in 0.384602 seconds
+2025-04-29 19:08:13,228 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:13,253 - openai._base_client - INFO - Retrying request to /chat/completions in 0.765655 seconds
+2025-04-29 19:08:14,187 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:14,189 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:14,189 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:14,880 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:14,882 - openai._base_client - INFO - Retrying request to /chat/completions in 0.431603 seconds
+2025-04-29 19:08:15,481 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:15,482 - openai._base_client - INFO - Retrying request to /chat/completions in 0.970819 seconds
+2025-04-29 19:08:16,625 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:16,626 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+Traceback (most recent call last):
+  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
+    response = chat.invoke(formatted_messages)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
+    self.generate_prompt(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
+    self._generate_with_cache(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
+    result = self._generate(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
+    response = self.client.create(**payload)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
+    return self._post(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:16,631 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:16] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
+2025-04-29 19:08:22,065 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:22,066 - openai._base_client - INFO - Retrying request to /chat/completions in 0.497488 seconds
+2025-04-29 19:08:22,741 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:22,742 - openai._base_client - INFO - Retrying request to /chat/completions in 0.976576 seconds
+2025-04-29 19:08:24,356 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:24,357 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:24,358 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:25,073 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:25,074 - openai._base_client - INFO - Retrying request to /chat/completions in 0.469655 seconds
+2025-04-29 19:08:25,709 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:25,710 - openai._base_client - INFO - Retrying request to /chat/completions in 0.895775 seconds
+2025-04-29 19:08:26,774 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:08:26,776 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+Traceback (most recent call last):
+  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
+    response = chat.invoke(formatted_messages)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
+    self.generate_prompt(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
+    self._generate_with_cache(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
+    result = self._generate(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
+    response = self.client.create(**payload)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
+    return self._post(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:08:26,779 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:26] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
+2025-04-29 19:15:33,654 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:15:33,654 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:15:36,748 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:15:36,768 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:15:36,773 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:15:37,501 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-29 19:15:37,501 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-29 19:15:37,502 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 19:15:48,266 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:15:48,267 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:15:51,475 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:15:51,495 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:15:51,505 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:15:52,229 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 19:15:52,233 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 19:15:52,720 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:15:52,721 - openai._base_client - INFO - Retrying request to /chat/completions in 0.412268 seconds
+2025-04-29 19:15:53,303 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:15:53,304 - openai._base_client - INFO - Retrying request to /chat/completions in 0.824737 seconds
+2025-04-29 19:15:54,371 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:15:54,372 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:15:54,380 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET / HTTP/1.1" 200 -
+2025-04-29 19:15:54,481 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 19:15:54,483 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-29 19:16:00,609 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:16:00,610 - openai._base_client - INFO - Retrying request to /chat/completions in 0.438502 seconds
+2025-04-29 19:16:01,222 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:16:01,223 - openai._base_client - INFO - Retrying request to /chat/completions in 0.874304 seconds
+2025-04-29 19:16:02,508 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:16:02,509 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+Traceback (most recent call last):
+  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
+    response = chat.invoke(formatted_messages)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
+    self.generate_prompt(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
+    self._generate_with_cache(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
+    result = self._generate(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
+    response = self.client.create(**payload)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
+    return self._post(
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:16:02,514 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:16:02] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
+2025-04-29 19:21:41,302 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:21:41,302 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:21:44,484 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:21:44,506 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:21:44,511 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:21:45,188 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-29 19:21:45,189 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-29 19:21:45,190 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 19:21:55,739 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 19:21:55,740 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 19:21:58,880 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 19:21:58,901 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 19:21:58,908 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 19:21:59,607 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 19:21:59,610 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 19:22:00,517 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:22:00,518 - openai._base_client - INFO - Retrying request to /chat/completions in 0.430497 seconds
+2025-04-29 19:22:01,143 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:22:01,144 - openai._base_client - INFO - Retrying request to /chat/completions in 0.922254 seconds
+2025-04-29 19:22:02,265 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-04-29 19:22:02,266 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-04-29 19:22:02,273 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "GET / HTTP/1.1" 200 -
+2025-04-29 19:22:02,354 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 19:22:02,355 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:07:14,274 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:07:14,274 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:07:18,779 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:07:19,024 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:07:19,032 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:07:19,035 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:07:19,058 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-29 20:07:19,059 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-29 20:07:19,062 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:07:31,458 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:07:31,458 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:07:35,077 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:07:35,246 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:07:35,246 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:07:35,257 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:07:35,274 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:07:35,277 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:07:35,297 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET / HTTP/1.1" 200 -
+2025-04-29 20:07:35,393 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-29 20:07:35,394 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:07:35,469 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-29 20:08:52,340 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:08:52] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:09:15,129 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:09:16,165 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:09:27,672 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:09:27,672 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:09:30,849 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:09:31,007 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:09:31,016 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:09:31,018 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:09:31,035 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:09:31,038 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:09:40,128 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:09:41,034 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:09:51,593 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:09:51,593 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:10:04,997 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:10:05,197 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:10:05,197 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:10:05,211 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:10:05,227 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:10:05,231 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:10:05,247 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "GET / HTTP/1.1" 200 -
+2025-04-29 20:10:05,347 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-29 20:10:05,350 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:10:05,424 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-29 20:10:55,407 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:55] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:11:34,019 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:11:34,931 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:11:45,201 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:11:45,201 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:11:49,177 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:11:49,343 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:11:49,348 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:11:49,350 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:11:49,364 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:11:49,366 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:12:06,482 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:12:07,746 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:12:18,895 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:12:18,895 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:12:23,633 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:12:23,802 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:12:23,809 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:12:23,811 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:12:23,825 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:12:23,828 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:12:23,833 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:12:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-29 20:13:38,449 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:13:39,582 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:13:51,503 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:13:51,503 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:13:54,758 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:13:54,941 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:13:54,949 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:13:54,952 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:13:54,955 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:13:54,967 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:14:03,033 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-29 20:14:03,972 - werkzeug - INFO -  * Restarting with stat
+2025-04-29 20:14:14,567 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-29 20:14:14,568 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-29 20:14:18,623 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-29 20:14:18,790 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-29 20:14:18,797 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-29 20:14:18,800 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
+2025-04-29 20:14:18,819 - werkzeug - WARNING -  * Debugger is active!
+2025-04-29 20:14:18,822 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-29 20:14:19,299 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "GET / HTTP/1.1" 200 -
+2025-04-29 20:14:19,383 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:14:19,383 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:14:23,323 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "GET / HTTP/1.1" 200 -
+2025-04-29 20:14:23,344 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:14:23,346 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:14:31,128 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "GET / HTTP/1.1" 200 -
+2025-04-29 20:14:31,146 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:14:31,147 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:18:06,729 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "GET / HTTP/1.1" 200 -
+2025-04-29 20:18:06,749 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:18:06,750 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:18:13,978 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:13] "GET / HTTP/1.1" 200 -
+2025-04-29 20:18:13,998 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:18:14,000 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:18:22,273 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "GET / HTTP/1.1" 200 -
+2025-04-29 20:18:22,296 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:18:22,297 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:19:26,213 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:19:26] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:25:44,523 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "GET / HTTP/1.1" 200 -
+2025-04-29 20:25:44,555 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:25:44,557 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:25:44,683 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-29 20:30:06,620 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:30:06] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:32:24,129 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:32:24] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:33:07,044 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "GET / HTTP/1.1" 200 -
+2025-04-29 20:33:07,064 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:33:07,064 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:35:07,510 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:35:07] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:36:33,812 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:36:33] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:38:38,665 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:38:38] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:39:03,796 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:03] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:39:11,252 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "GET / HTTP/1.1" 200 -
+2025-04-29 20:39:11,279 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:39:11,280 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:40:25,537 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:40:25] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:40:38,428 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:40:38] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:41:47,755 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:47] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:41:54,452 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "GET / HTTP/1.1" 200 -
+2025-04-29 20:41:54,472 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:41:54,481 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:42:11,934 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "GET / HTTP/1.1" 200 -
+2025-04-29 20:42:11,952 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:42:11,958 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:42:53,998 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:53] "POST /api/chat HTTP/1.1" 200 -
+2025-04-29 20:49:10,467 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "GET / HTTP/1.1" 200 -
+2025-04-29 20:49:10,486 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:49:10,488 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:51:31,080 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "GET / HTTP/1.1" 200 -
+2025-04-29 20:51:31,107 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:51:31,109 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:51:48,959 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "GET / HTTP/1.1" 200 -
+2025-04-29 20:51:48,986 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:51:48,989 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-29 20:51:59,422 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "GET / HTTP/1.1" 200 -
+2025-04-29 20:51:59,448 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:51:59,452 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:52:03,670 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "GET / HTTP/1.1" 200 -
+2025-04-29 20:52:03,690 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-29 20:52:03,693 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-29 20:52:22,789 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:22] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 10:47:08,544 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 10:47:08,545 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 10:47:12,811 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 10:47:12,900 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 10:47:12,908 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 10:47:12,911 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 10:47:12,925 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 10:47:12,925 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 10:47:12,927 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 10:47:23,023 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 10:47:23,024 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 10:47:26,557 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 10:47:26,586 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 10:47:26,592 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 10:47:26,594 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 10:47:26,601 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 10:47:26,606 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 10:47:27,469 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET / HTTP/1.1" 200 -
+2025-04-30 10:47:27,500 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-30 10:47:27,503 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-30 10:47:27,620 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 10:47:43,159 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:43] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 10:48:12,309 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "GET / HTTP/1.1" 200 -
+2025-04-30 10:48:12,332 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-30 10:48:12,334 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-30 10:53:48,855 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-30 10:53:51,816 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 10:54:02,814 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 10:54:02,815 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 10:54:06,334 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 10:54:06,363 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 10:54:06,370 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 10:54:06,372 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 10:54:06,380 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 10:54:06,383 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 10:54:17,552 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "GET / HTTP/1.1" 200 -
+2025-04-30 10:54:17,573 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-30 10:54:17,576 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-30 10:54:27,586 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:27] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 10:54:38,572 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:38] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 10:56:13,927 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "GET / HTTP/1.1" 200 -
+2025-04-30 10:56:13,963 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-30 10:56:13,964 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-30 10:56:15,805 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "GET / HTTP/1.1" 200 -
+2025-04-30 10:56:15,824 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-30 10:56:15,825 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-30 10:56:53,765 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "GET / HTTP/1.1" 200 -
+2025-04-30 10:56:53,787 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-30 10:56:53,788 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-30 10:57:14,224 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET / HTTP/1.1" 200 -
+2025-04-30 10:57:14,241 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-30 10:57:14,243 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-30 10:57:27,142 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:27] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 10:59:43,374 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
+2025-04-30 10:59:46,303 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 10:59:57,435 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 10:59:57,436 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 11:00:00,801 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 11:00:00,828 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 11:00:00,836 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 11:00:00,839 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 11:00:00,847 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 11:00:00,851 - werkzeug - INFO -  * Debugger PIN: 112-013-558

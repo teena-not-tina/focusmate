@@ -1,0 +1,229 @@
+2025-04-30 17:14:33,611 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:14:33,612 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:14:37,578 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:14:37,606 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:14:37,615 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:14:37,617 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:14:37,629 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 17:14:37,630 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 17:14:37,632 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:14:49,562 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:14:49,562 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:14:54,018 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:14:54,046 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:14:54,055 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:14:54,057 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:14:54,064 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:14:54,068 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:14:54,113 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:14:54] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-30 17:14:54,145 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:14:54] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 17:14:54,146 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:14:54] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 17:14:54,239 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:14:54] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=snoj17Y7nVAF1PLbA2Xd HTTP/1.1" 200 -
+2025-04-30 17:14:54,279 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:14:54] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 17:16:24,761 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:16:24,761 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:16:28,950 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:16:28,981 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:16:28,992 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:16:28,994 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:16:29,008 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 17:16:29,009 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 17:16:29,010 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:16:40,704 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:16:40,704 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:16:45,401 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:16:45,428 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:16:45,438 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:16:45,440 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:16:45,448 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:16:45,453 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:16:45,493 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:16:45] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-30 17:16:45,526 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:16:45] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 17:16:45,527 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:16:45] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 17:16:45,611 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:16:45] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=LnnpmUcNCpouEnFVrAna HTTP/1.1" 200 -
+2025-04-30 17:22:04,061 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:22:04,061 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:22:08,316 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:22:08,380 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:22:08,411 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:22:08,423 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:22:08,454 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-30 17:22:08,455 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 17:22:08,458 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:22:20,143 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:22:20,143 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:22:23,429 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:22:23,461 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:22:23,470 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:22:23,472 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:22:23,481 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:22:23,485 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:22:23,504 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:22:23] "GET / HTTP/1.1" 200 -
+2025-04-30 17:22:23,545 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:22:23] "[33mGET /test.css HTTP/1.1[0m" 404 -
+2025-04-30 17:22:23,547 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:22:23] "[33mGET /test.js HTTP/1.1[0m" 404 -
+2025-04-30 17:22:23,652 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:22:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 17:23:19,829 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-04-30 17:23:20,741 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:23:31,841 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:23:31,842 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:23:35,516 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:23:35,545 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:23:35,550 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:23:35,552 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:23:35,560 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:23:35,563 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:24:15,849 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-04-30 17:24:16,912 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:24:28,796 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:24:28,796 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:24:32,515 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:24:32,550 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:24:32,557 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:24:32,560 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:24:32,569 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:24:32,572 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:24:42,649 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-04-30 17:24:43,649 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:24:56,711 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:24:56,711 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:25:00,614 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:25:00,647 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:25:00,655 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:25:00,658 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:25:00,668 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:25:00,673 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:28:53,296 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:28:53] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-30 17:28:53,317 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:28:53] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 17:28:53,318 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:28:53] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 17:28:53,333 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:28:53] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=3ETNP4h0QrL6JLDmowwy HTTP/1.1" 200 -
+2025-04-30 17:28:53,391 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:28:53] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-04-30 17:29:52,362 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-04-30 17:29:53,267 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 17:30:04,432 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-04-30 17:30:04,433 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-04-30 17:30:08,162 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-04-30 17:30:08,192 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-04-30 17:30:08,200 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-04-30 17:30:08,203 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-04-30 17:30:08,212 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 17:30:08,216 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-04-30 17:30:08,233 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:08] "GET / HTTP/1.1" 200 -
+2025-04-30 17:30:08,268 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:08] "GET /static/test.css HTTP/1.1" 200 -
+2025-04-30 17:30:08,271 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:08] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:30:08,404 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 17:30:30,828 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:30] "GET / HTTP/1.1" 200 -
+2025-04-30 17:30:30,847 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:30] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:30:30,852 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:30:30] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:32:19,689 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:32:19] "GET / HTTP/1.1" 200 -
+2025-04-30 17:32:19,709 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:32:19] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:32:19,710 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:32:19] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:32:26,720 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:32:26] "POST /api/chat HTTP/1.1" 200 -
+2025-04-30 17:37:04,753 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:04] "GET / HTTP/1.1" 200 -
+2025-04-30 17:37:04,776 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:04] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:37:04,777 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:04] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:37:07,136 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:07] "GET / HTTP/1.1" 200 -
+2025-04-30 17:37:07,157 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:07] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:37:07,159 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:07] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:37:08,225 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:08] "GET / HTTP/1.1" 200 -
+2025-04-30 17:37:08,245 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:08] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:37:08,247 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:37:08] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:39:27,283 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:39:27] "GET / HTTP/1.1" 200 -
+2025-04-30 17:39:27,300 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:39:27] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:39:27,302 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:39:27] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:40:59,146 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:40:59] "GET / HTTP/1.1" 200 -
+2025-04-30 17:40:59,167 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:40:59] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:40:59,167 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:40:59] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:41:00,457 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:41:00] "GET / HTTP/1.1" 200 -
+2025-04-30 17:41:00,477 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:41:00] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:41:00,479 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:41:00] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:43:34,090 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "GET / HTTP/1.1" 200 -
+2025-04-30 17:43:34,110 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:43:34,112 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:43:34,239 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "GET / HTTP/1.1" 200 -
+2025-04-30 17:43:34,262 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:43:34,263 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:43:34,393 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "GET / HTTP/1.1" 200 -
+2025-04-30 17:43:34,413 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:43:34,416 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:43:34] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:46:25,986 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:46:25] "GET / HTTP/1.1" 200 -
+2025-04-30 17:46:26,009 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:46:26] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:46:26,009 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:46:26] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:49:18,147 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:18] "GET / HTTP/1.1" 200 -
+2025-04-30 17:49:18,170 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:18] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:49:18,173 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:18] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:49:33,058 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:33] "GET / HTTP/1.1" 200 -
+2025-04-30 17:49:33,075 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:33] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:49:33,077 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:49:33] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:52:08,371 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:52:08] "GET / HTTP/1.1" 200 -
+2025-04-30 17:52:08,390 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:52:08] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:52:08,393 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:52:08] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:53:53,626 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "GET / HTTP/1.1" 200 -
+2025-04-30 17:53:53,645 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:53:53,651 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:53:53,819 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "GET / HTTP/1.1" 200 -
+2025-04-30 17:53:53,838 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:53:53,841 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:53:53] "[36mGET /static/test.js HTTP/1.1[0m" 304 -
+2025-04-30 17:55:28,795 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:55:28] "GET / HTTP/1.1" 200 -
+2025-04-30 17:55:28,814 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:55:28] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:55:28,816 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:55:28] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 17:59:40,683 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:59:40] "GET / HTTP/1.1" 200 -
+2025-04-30 17:59:40,704 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:59:40] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 17:59:40,706 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 17:59:40] "GET /static/test.js HTTP/1.1" 200 -
+2025-04-30 18:00:20,268 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 18:00:20] "GET / HTTP/1.1" 200 -
+2025-04-30 18:00:20,289 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 18:00:20] "[36mGET /static/test.css HTTP/1.1[0m" 304 -
+2025-04-30 18:00:20,290 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 18:00:20] "GET /static/test.js HTTP/1.1" 200 -
+2025-05-02 09:51:52,258 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-02 09:51:52,259 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-02 09:51:56,752 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-02 09:51:56,843 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-02 09:51:56,855 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-02 09:51:56,859 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-02 09:51:56,877 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-02 09:51:56,878 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-02 09:51:56,880 - werkzeug - INFO -  * Restarting with stat
+2025-05-02 09:52:07,281 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-02 09:52:07,282 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-02 09:52:10,673 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-02 09:52:10,705 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-02 09:52:10,713 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-02 09:52:10,715 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-02 09:52:10,722 - werkzeug - WARNING -  * Debugger is active!
+2025-05-02 09:52:10,727 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-05-02 09:54:36,032 - werkzeug - INFO - 127.0.0.1 - - [02/May/2025 09:54:36] "GET / HTTP/1.1" 200 -
+2025-05-02 09:54:36,075 - werkzeug - INFO - 127.0.0.1 - - [02/May/2025 09:54:36] "GET /static/test.css HTTP/1.1" 200 -
+2025-05-02 09:54:36,076 - werkzeug - INFO - 127.0.0.1 - - [02/May/2025 09:54:36] "GET /static/test.js HTTP/1.1" 200 -
+2025-05-02 09:54:36,476 - werkzeug - INFO - 127.0.0.1 - - [02/May/2025 09:54:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-02 09:54:55,696 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-05-02 09:54:56,646 - werkzeug - INFO -  * Restarting with stat
+2025-05-02 09:55:06,716 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-02 09:55:06,716 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-02 09:55:09,928 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-02 09:55:09,959 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-02 09:55:09,968 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-02 09:55:09,970 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-02 09:55:09,979 - werkzeug - WARNING -  * Debugger is active!
+2025-05-02 09:55:09,983 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-05-02 09:55:17,041 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-05-02 09:55:17,942 - werkzeug - INFO -  * Restarting with stat
+2025-05-02 09:55:28,488 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-02 09:55:28,489 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-02 09:55:31,734 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-02 09:55:31,764 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-02 09:55:31,772 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-02 09:55:31,775 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-02 09:55:31,784 - werkzeug - WARNING -  * Debugger is active!
+2025-05-02 09:55:31,787 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-05-02 09:55:37,836 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\test\\test.py', reloading
+2025-05-02 09:55:38,720 - werkzeug - INFO -  * Restarting with stat
+2025-05-02 09:55:48,913 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-05-02 09:55:48,913 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-02 09:55:52,116 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-02 09:55:52,144 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-02 09:55:52,150 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-02 09:55:52,152 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-02 09:55:52,160 - werkzeug - WARNING -  * Debugger is active!
+2025-05-02 09:55:52,164 - werkzeug - INFO -  * Debugger PIN: 112-013-558
