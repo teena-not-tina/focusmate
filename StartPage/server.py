@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import requests
 import webbrowser
 import threading
+import platform
 
 # Add the parent directory to the Python path
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -64,8 +65,15 @@ signal.signal(signal.SIGINT, signal_handler)
 def initialize_system():
     global camera, facial_state_tracker
     try:
-        # Initialize camera
-        camera = cv2.VideoCapture(config.CAMERA_ID, cv2.CAP_AVFOUNDATION)  # CAP_DSHOW for windows CAP_AVFOUNDATION for macOS
+        # Select camera backend based on OS
+        if platform.system() == "Darwin":  # macOS
+            camera_backend = cv2.CAP_AVFOUNDATION
+        elif platform.system() == "Windows":
+            camera_backend = cv2.CAP_DSHOW
+        else:
+            camera_backend = 0  # Default backend for Linux/others
+
+        camera = cv2.VideoCapture(config.CAMERA_ID, camera_backend)
         time.sleep(1)  # Give the camera a moment to initialize
 
         if not camera.isOpened():
