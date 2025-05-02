@@ -14,6 +14,8 @@ import config
 from flask import send_file
 from dotenv import load_dotenv
 import requests
+import webbrowser
+import threading
 
 # Add the parent directory to the Python path
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -453,5 +455,13 @@ if __name__ == '__main__':
     os.makedirs(config.SAVE_DIR, exist_ok=True)
     
     print(f"Starting server on {config.HOST}:{config.PORT}")
+
+    # Open the web browser after a short delay to ensure the server is ready
+    def open_browser():
+        time.sleep(1)
+        webbrowser.open("http://127.0.0.1:8080/")
+
+    threading.Thread(target=open_browser).start()
+
     # Start Flask server without initializing camera
     app.run(host=config.HOST, port=config.PORT, threaded=True)
