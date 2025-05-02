@@ -12,6 +12,8 @@ from queue import Queue
 from threading import Lock
 import config
 from flask import send_file
+from dotenv import load_dotenv
+import requests
 
 # Add the parent directory to the Python path
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,28 +22,6 @@ sys.path.append(parent_dir)
 # Now you can import modules from the parent directory
 from frame_processor import FacialStateTracker
 import config  # This assumes config.py is also in the StartPage directory
-
-# Try to import config, but define defaults if it fails
-try:
-    import config
-except (ImportError, AttributeError):
-    # Define a simple config class with default values
-    class ConfigDefaults:
-        TEMP_DIR = "temp_frames"
-        SAVE_DIR = "saved_faces"
-        # Add other missing settings here
-    
-    # Check if config exists but is missing attributes
-    if 'config' in sys.modules:
-        # Add the missing attributes
-        if not hasattr(config, 'TEMP_DIR'):
-            config.TEMP_DIR = "temp_frames"
-        if not hasattr(config, 'SAVE_DIR'):
-            config.SAVE_DIR = "saved_faces"
-        # Add other missing settings here
-    else:
-        # No config imported at all, use our defaults
-        config = ConfigDefaults()
 
 
 # Flask server initialization
@@ -83,7 +63,7 @@ def initialize_system():
     global camera, facial_state_tracker
     try:
         # Initialize camera
-        camera = cv2.VideoCapture(config.CAMERA_ID, cv2.CAP_DSHOW)  # For windows
+        camera = cv2.VideoCapture(config.CAMERA_ID, cv2.CAP_AVFOUNDATION)  # CAP_DSHOW for windows CAP_AVFOUNDATION for macOS
         time.sleep(1)  # Give the camera a moment to initialize
 
         if not camera.isOpened():
@@ -359,10 +339,6 @@ def get_status():
 
 # Server startup
 
-from dotenv import load_dotenv
-import os
-import requests
-
 load_dotenv()
 FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
 
@@ -428,52 +404,3 @@ if __name__ == '__main__':
     else:
         print("[❌ Failed to initialize system. Exiting.]")
         sys.exit(1)
-
-
-# from dotenv import load_dotenv
-# import os
-# import requests
-
-# load_dotenv()
-# FIREBASE_API_KEY = os.getenv("FIREBASE_API_KEY")
-
-
-# # FIREBASE_API_KEY = "YOUR_FIREBASE_WEB_API_KEY"
-
-# @app.route('/login', methods=['POST'])
-# def login():
-#     data = request.json
-#     payload = {
-#         'email': data['email'],
-#         'password': data['password'],
-#         'returnSecureToken': True
-#     }
-#     try:
-#         res = requests.post(
-#             f'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={FIREBASE_API_KEY}',
-#             json=payload
-#         )
-#         res.raise_for_status()
-#         return jsonify({'status': 'success'})
-#     except requests.exceptions.HTTPError as e:
-#         error = res.json().get('error', {}).get('message', '로그인 실패')
-#         return jsonify({'status': 'error', 'message': error})
-
-# @app.route('/signup', methods=['POST'])
-# def signup():
-#     data = request.json
-#     payload = {
-#         'email': data['email'],
-#         'password': data['password'],
-#         'returnSecureToken': True
-#     }
-#     try:
-#         res = requests.post(
-#             f'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={FIREBASE_API_KEY}',
-#             json=payload
-#         )
-#         res.raise_for_status()
-#         return jsonify({'status': 'success'})
-#     except requests.exceptions.HTTPError as e:
-#         error = res.json().get('error', {}).get('message', '회원가입 실패')
-#         return jsonify({'status': 'error', 'message': error})
