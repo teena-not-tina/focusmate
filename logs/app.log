@@ -1,472 +1,579 @@
-2025-04-29 18:50:41,489 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 18:50:41,491 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 18:50:49,312 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 18:50:49,332 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 18:50:49,337 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 18:52:52,077 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 18:52:52,078 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 18:52:55,103 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 18:52:55,129 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 18:52:55,134 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 18:54:30,095 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 18:54:30,096 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 18:54:33,327 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 18:54:33,352 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 18:54:33,357 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 18:56:33,437 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 18:56:33,437 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 18:56:36,538 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 18:56:36,559 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 18:56:36,565 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 18:59:23,274 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 18:59:23,275 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 18:59:26,403 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 18:59:26,426 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 18:59:26,431 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 18:59:26,437 - __main__ - ERROR - Chatbot º≥¡§ ø¿∑˘: Client.__init__() got an unexpected keyword argument 'proxies'
-2025-04-29 19:01:45,970 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:01:45,971 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:01:50,879 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:01:50,897 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:01:50,903 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:01:51,557 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-05-03 06:15:11,714 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 06:15:11,956 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 06:15:11,956 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 06:15:14,866 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 06:15:14,866 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 06:15:14,867 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 06:15:14,885 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 06:15:14,890 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 06:15:14,892 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 06:15:14,904 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
-2025-04-29 19:01:51,557 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-04-29 19:01:51,559 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 19:02:02,121 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:02:02,121 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:02:14,537 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:02:14,558 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:02:14,566 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:02:15,257 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 19:02:15,260 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 19:02:16,422 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:16,423 - openai._base_client - INFO - Retrying request to /chat/completions in 0.458205 seconds
-2025-04-29 19:02:17,061 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:17,062 - openai._base_client - INFO - Retrying request to /chat/completions in 0.993994 seconds
-2025-04-29 19:02:18,231 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:18,232 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:18,234 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:18,240 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:18] "GET / HTTP/1.1" 200 -
-2025-04-29 19:02:19,034 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:19,035 - openai._base_client - INFO - Retrying request to /chat/completions in 0.429509 seconds
-2025-04-29 19:02:19,041 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:19,042 - openai._base_client - INFO - Retrying request to /chat/completions in 0.397255 seconds
-2025-04-29 19:02:19,610 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:19,611 - openai._base_client - INFO - Retrying request to /chat/completions in 0.810256 seconds
-2025-04-29 19:02:19,643 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:19,644 - openai._base_client - INFO - Retrying request to /chat/completions in 0.878611 seconds
-2025-04-29 19:02:20,604 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:20,605 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:20,606 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:20,654 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:20] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 19:02:20,692 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:20,693 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:20,694 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:20,695 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 19:02:21,478 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:21,479 - openai._base_client - INFO - Retrying request to /chat/completions in 0.413686 seconds
-2025-04-29 19:02:22,077 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:22,078 - openai._base_client - INFO - Retrying request to /chat/completions in 0.943975 seconds
-2025-04-29 19:02:23,198 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:02:23,199 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:23,199 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:02:23,201 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:02:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-29 19:04:24,038 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 19:04:25,039 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 19:04:35,660 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:04:35,661 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:04:39,734 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:04:39,760 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:04:39,791 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:04:40,556 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 19:04:40,559 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 19:08:02,328 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:02,329 - openai._base_client - INFO - Retrying request to /chat/completions in 0.399185 seconds
-2025-04-29 19:08:02,907 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:02,908 - openai._base_client - INFO - Retrying request to /chat/completions in 0.884629 seconds
-2025-04-29 19:08:03,979 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:03,981 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:03,981 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:03,992 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:03] "GET / HTTP/1.1" 200 -
-2025-04-29 19:08:04,790 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:04,794 - openai._base_client - INFO - Retrying request to /chat/completions in 0.463702 seconds
-2025-04-29 19:08:04,795 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:04,796 - openai._base_client - INFO - Retrying request to /chat/completions in 0.408316 seconds
-2025-04-29 19:08:05,434 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:05,434 - openai._base_client - INFO - Retrying request to /chat/completions in 0.849071 seconds
-2025-04-29 19:08:05,697 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:05,698 - openai._base_client - INFO - Retrying request to /chat/completions in 0.920062 seconds
-2025-04-29 19:08:06,473 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:06,474 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:06,475 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:06,523 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 19:08:06,787 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:06,789 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:06,789 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:06,790 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:06] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 19:08:12,674 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:12,675 - openai._base_client - INFO - Retrying request to /chat/completions in 0.384602 seconds
-2025-04-29 19:08:13,228 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:13,253 - openai._base_client - INFO - Retrying request to /chat/completions in 0.765655 seconds
-2025-04-29 19:08:14,187 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:14,189 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:14,189 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:14,880 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:14,882 - openai._base_client - INFO - Retrying request to /chat/completions in 0.431603 seconds
-2025-04-29 19:08:15,481 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:15,482 - openai._base_client - INFO - Retrying request to /chat/completions in 0.970819 seconds
-2025-04-29 19:08:16,625 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:16,626 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-Traceback (most recent call last):
-  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
-    response = chat.invoke(formatted_messages)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
-    self.generate_prompt(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
-    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
-    self._generate_with_cache(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
-    result = self._generate(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
-    response = self.client.create(**payload)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
-    return func(*args, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
-    return self._post(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
-    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:16,631 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:16] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
-2025-04-29 19:08:22,065 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:22,066 - openai._base_client - INFO - Retrying request to /chat/completions in 0.497488 seconds
-2025-04-29 19:08:22,741 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:22,742 - openai._base_client - INFO - Retrying request to /chat/completions in 0.976576 seconds
-2025-04-29 19:08:24,356 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:24,357 - __main__ - CRITICAL - API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:24,358 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:25,073 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:25,074 - openai._base_client - INFO - Retrying request to /chat/completions in 0.469655 seconds
-2025-04-29 19:08:25,709 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:25,710 - openai._base_client - INFO - Retrying request to /chat/completions in 0.895775 seconds
-2025-04-29 19:08:26,774 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:08:26,776 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-Traceback (most recent call last):
-  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
-    response = chat.invoke(formatted_messages)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
-    self.generate_prompt(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
-    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
-    self._generate_with_cache(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
-    result = self._generate(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
-    response = self.client.create(**payload)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
-    return func(*args, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
-    return self._post(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
-    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:08:26,779 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:08:26] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
-2025-04-29 19:15:33,654 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:15:33,654 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:15:36,748 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:15:36,768 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:15:36,773 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:15:37,501 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2025-04-29 19:15:37,501 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-04-29 19:15:37,502 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 19:15:48,266 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:15:48,267 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:15:51,475 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:15:51,495 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:15:51,505 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:15:52,229 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 19:15:52,233 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 19:15:52,720 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:15:52,721 - openai._base_client - INFO - Retrying request to /chat/completions in 0.412268 seconds
-2025-04-29 19:15:53,303 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:15:53,304 - openai._base_client - INFO - Retrying request to /chat/completions in 0.824737 seconds
-2025-04-29 19:15:54,371 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:15:54,372 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:15:54,380 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET / HTTP/1.1" 200 -
-2025-04-29 19:15:54,481 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 19:15:54,483 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:15:54] "GET /static/css/style.css HTTP/1.1" 200 -
-2025-04-29 19:16:00,609 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:16:00,610 - openai._base_client - INFO - Retrying request to /chat/completions in 0.438502 seconds
-2025-04-29 19:16:01,222 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:16:01,223 - openai._base_client - INFO - Retrying request to /chat/completions in 0.874304 seconds
-2025-04-29 19:16:02,508 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:16:02,509 - __main__ - ERROR - ChatGPT API ø¿∑˘: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-Traceback (most recent call last):
-  File "C:\Users\702-04\focusmate\focusMate\app.py", line 386, in chat_api
-    response = chat.invoke(formatted_messages)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 369, in invoke
-    self.generate_prompt(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 946, in generate_prompt
-    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 765, in generate
-    self._generate_with_cache(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_core\language_models\chat_models.py", line 1011, in _generate_with_cache
-    result = self._generate(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\langchain_openai\chat_models\base.py", line 991, in _generate
-    response = self.client.create(**payload)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_utils\_utils.py", line 287, in wrapper
-    return func(*args, **kwargs)
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\resources\chat\completions\completions.py", line 925, in create
-    return self._post(
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1239, in post
-    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
-  File "C:\Users\702-04\AppData\Local\anaconda3\envs\focusmate\lib\site-packages\openai\_base_client.py", line 1034, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:16:02,514 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:16:02] "[35m[1mPOST /api/chat HTTP/1.1[0m" 500 -
-2025-04-29 19:21:41,302 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:21:41,302 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:21:44,484 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:21:44,506 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:21:44,511 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:21:45,188 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2025-04-29 19:21:45,189 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-04-29 19:21:45,190 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 19:21:55,739 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 19:21:55,740 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 19:21:58,880 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 19:21:58,901 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 19:21:58,908 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 19:21:59,607 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 19:21:59,610 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 19:22:00,517 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:22:00,518 - openai._base_client - INFO - Retrying request to /chat/completions in 0.430497 seconds
-2025-04-29 19:22:01,143 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:22:01,144 - openai._base_client - INFO - Retrying request to /chat/completions in 0.922254 seconds
-2025-04-29 19:22:02,265 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-2025-04-29 19:22:02,266 - __main__ - ERROR - OpenAI API ≈∞ ∞À¡ı Ω«∆–: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
-2025-04-29 19:22:02,273 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "GET / HTTP/1.1" 200 -
-2025-04-29 19:22:02,354 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 19:22:02,355 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 19:22:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:07:14,274 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:07:14,274 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:07:18,779 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:07:19,024 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:07:19,032 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:07:19,035 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:07:19,058 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2025-04-29 20:07:19,059 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-04-29 20:07:19,062 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:07:31,458 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:07:31,458 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:07:35,077 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:07:35,246 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:07:35,246 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:07:35,257 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:07:35,274 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:07:35,277 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:07:35,297 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET / HTTP/1.1" 200 -
-2025-04-29 20:07:35,393 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET /static/css/style.css HTTP/1.1" 200 -
-2025-04-29 20:07:35,394 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:07:35,469 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:07:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-29 20:08:52,340 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:08:52] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:09:15,129 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:09:16,165 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:09:27,672 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:09:27,672 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:09:30,849 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:09:31,007 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:09:31,016 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:09:31,018 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:09:31,035 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:09:31,038 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:09:40,128 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:09:41,034 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:09:51,593 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:09:51,593 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:10:04,997 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:10:05,197 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:10:05,197 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:10:05,211 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:10:05,227 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:10:05,231 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:10:05,247 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "GET / HTTP/1.1" 200 -
-2025-04-29 20:10:05,347 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "GET /static/css/style.css HTTP/1.1" 200 -
-2025-04-29 20:10:05,350 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:10:05,424 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-29 20:10:55,407 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:10:55] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:11:34,019 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:11:34,931 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:11:45,201 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:11:45,201 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:11:49,177 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:11:49,343 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:11:49,348 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:11:49,350 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:11:49,364 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:11:49,366 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:12:06,482 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:12:07,746 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:12:18,895 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:12:18,895 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:12:23,633 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:12:23,802 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:12:23,809 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:12:23,811 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:12:23,825 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:12:23,828 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:12:23,833 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:12:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-29 20:13:38,449 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:13:39,582 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:13:51,503 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:13:51,503 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:13:54,758 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:13:54,941 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:13:54,949 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:13:54,952 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:13:54,955 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:13:54,967 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:14:03,033 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-29 20:14:03,972 - werkzeug - INFO -  * Restarting with stat
-2025-04-29 20:14:14,567 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-29 20:14:14,568 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-29 20:14:18,623 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-29 20:14:18,790 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-29 20:14:18,797 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-29 20:14:18,800 - __main__ - INFO - Ollama ∏µ®¿ª ªÁøÎ«œø© √™∫ø √ ±‚»≠ ¡ﬂ...
-2025-04-29 20:14:18,819 - werkzeug - WARNING -  * Debugger is active!
-2025-04-29 20:14:18,822 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-29 20:14:19,299 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "GET / HTTP/1.1" 200 -
-2025-04-29 20:14:19,383 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:14:19,383 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:19] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:14:23,323 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "GET / HTTP/1.1" 200 -
-2025-04-29 20:14:23,344 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:14:23,346 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:14:31,128 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "GET / HTTP/1.1" 200 -
-2025-04-29 20:14:31,146 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:14:31,147 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:14:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:18:06,729 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "GET / HTTP/1.1" 200 -
-2025-04-29 20:18:06,749 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:18:06,750 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:06] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:18:13,978 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:13] "GET / HTTP/1.1" 200 -
-2025-04-29 20:18:13,998 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:18:14,000 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:18:22,273 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "GET / HTTP/1.1" 200 -
-2025-04-29 20:18:22,296 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:18:22,297 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:18:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:19:26,213 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:19:26] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:25:44,523 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "GET / HTTP/1.1" 200 -
-2025-04-29 20:25:44,555 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:25:44,557 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:25:44,683 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:25:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-29 20:30:06,620 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:30:06] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:32:24,129 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:32:24] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:33:07,044 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "GET / HTTP/1.1" 200 -
-2025-04-29 20:33:07,064 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:33:07,064 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:33:07] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:35:07,510 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:35:07] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:36:33,812 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:36:33] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:38:38,665 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:38:38] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:39:03,796 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:03] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:39:11,252 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "GET / HTTP/1.1" 200 -
-2025-04-29 20:39:11,279 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:39:11,280 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:39:11] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:40:25,537 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:40:25] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:40:38,428 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:40:38] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:41:47,755 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:47] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:41:54,452 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "GET / HTTP/1.1" 200 -
-2025-04-29 20:41:54,472 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:41:54,481 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:41:54] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:42:11,934 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "GET / HTTP/1.1" 200 -
-2025-04-29 20:42:11,952 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:42:11,958 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:11] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:42:53,998 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:42:53] "POST /api/chat HTTP/1.1" 200 -
-2025-04-29 20:49:10,467 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "GET / HTTP/1.1" 200 -
-2025-04-29 20:49:10,486 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:49:10,488 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:49:10] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:51:31,080 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "GET / HTTP/1.1" 200 -
-2025-04-29 20:51:31,107 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:51:31,109 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:31] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:51:48,959 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "GET / HTTP/1.1" 200 -
-2025-04-29 20:51:48,986 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:51:48,989 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:48] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-29 20:51:59,422 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "GET / HTTP/1.1" 200 -
-2025-04-29 20:51:59,448 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:51:59,452 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:51:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:52:03,670 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "GET / HTTP/1.1" 200 -
-2025-04-29 20:52:03,690 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-29 20:52:03,693 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-29 20:52:22,789 - werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 20:52:22] "POST /api/chat HTTP/1.1" 200 -
-2025-04-30 10:47:08,544 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-30 10:47:08,545 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-30 10:47:12,811 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-30 10:47:12,900 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-30 10:47:12,908 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-30 10:47:12,911 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
-2025-04-30 10:47:12,925 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2025-04-30 10:47:12,925 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
-2025-04-30 10:47:12,927 - werkzeug - INFO -  * Restarting with stat
-2025-04-30 10:47:23,023 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-30 10:47:23,024 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-30 10:47:26,557 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-30 10:47:26,586 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-30 10:47:26,592 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-30 10:47:26,594 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
-2025-04-30 10:47:26,601 - werkzeug - WARNING -  * Debugger is active!
-2025-04-30 10:47:26,606 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-30 10:47:27,469 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET / HTTP/1.1" 200 -
-2025-04-30 10:47:27,500 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET /static/css/style.css HTTP/1.1" 200 -
-2025-04-30 10:47:27,503 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-30 10:47:27,620 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2025-04-30 10:47:43,159 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:47:43] "POST /api/chat HTTP/1.1" 200 -
-2025-04-30 10:48:12,309 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "GET / HTTP/1.1" 200 -
-2025-04-30 10:48:12,332 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-30 10:48:12,334 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:48:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-30 10:53:48,855 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-30 10:53:51,816 - werkzeug - INFO -  * Restarting with stat
-2025-04-30 10:54:02,814 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-30 10:54:02,815 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-30 10:54:06,334 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-30 10:54:06,363 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-30 10:54:06,370 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-30 10:54:06,372 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
-2025-04-30 10:54:06,380 - werkzeug - WARNING -  * Debugger is active!
-2025-04-30 10:54:06,383 - werkzeug - INFO -  * Debugger PIN: 112-013-558
-2025-04-30 10:54:17,552 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "GET / HTTP/1.1" 200 -
-2025-04-30 10:54:17,573 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-30 10:54:17,576 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:17] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-30 10:54:27,586 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:27] "POST /api/chat HTTP/1.1" 200 -
-2025-04-30 10:54:38,572 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:54:38] "POST /api/chat HTTP/1.1" 200 -
-2025-04-30 10:56:13,927 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "GET / HTTP/1.1" 200 -
-2025-04-30 10:56:13,963 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-30 10:56:13,964 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:13] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-30 10:56:15,805 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "GET / HTTP/1.1" 200 -
-2025-04-30 10:56:15,824 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-30 10:56:15,825 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:15] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-30 10:56:53,765 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "GET / HTTP/1.1" 200 -
-2025-04-30 10:56:53,787 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
-2025-04-30 10:56:53,788 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:56:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
-2025-04-30 10:57:14,224 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET / HTTP/1.1" 200 -
-2025-04-30 10:57:14,241 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET /static/css/style.css HTTP/1.1" 200 -
-2025-04-30 10:57:14,243 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:14] "GET /static/js/main.js HTTP/1.1" 200 -
-2025-04-30 10:57:27,142 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 10:57:27] "POST /api/chat HTTP/1.1" 200 -
-2025-04-30 10:59:43,374 - werkzeug - INFO -  * Detected change in 'C:\\Users\\702-04\\focusmate\\focusMate\\app.py', reloading
-2025-04-30 10:59:46,303 - werkzeug - INFO -  * Restarting with stat
-2025-04-30 10:59:57,435 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
-2025-04-30 10:59:57,436 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
-2025-04-30 11:00:00,801 - faiss.loader - INFO - Loading faiss with AVX2 support.
-2025-04-30 11:00:00,828 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
-2025-04-30 11:00:00,836 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
-2025-04-30 11:00:00,839 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
-2025-04-30 11:00:00,847 - werkzeug - WARNING -  * Debugger is active!
-2025-04-30 11:00:00,851 - werkzeug - INFO -  * Debugger PIN: 112-013-558
+2025-05-03 06:15:14,904 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-03 06:15:14,905 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 06:15:25,669 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 06:15:25,992 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 06:15:25,993 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 06:15:28,919 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 06:15:28,920 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 06:15:28,920 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 06:15:28,937 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 06:15:28,941 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 06:15:28,944 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 06:15:28,950 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 06:15:28,954 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 06:15:34,707 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "GET / HTTP/1.1" 200 -
+2025-05-03 06:15:34,771 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:15:34,772 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:15:34,784 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:15:34,785 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:15:34,810 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "GET / HTTP/1.1" 200 -
+2025-05-03 06:15:34,830 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:15:34,832 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:15:34,835 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:15:34,836 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:15:34] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:17:41,637 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:41] "GET / HTTP/1.1" 200 -
+2025-05-03 06:17:41,646 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:41] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:17:41,646 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:17:41,652 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:41] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:17:41,653 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:41] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:17:43,279 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:43] "GET / HTTP/1.1" 200 -
+2025-05-03 06:17:43,290 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:17:43,342 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:43] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:17:43,345 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:43] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:17:43,346 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:43] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:17:46,063 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:46] "[33mGET /sign_in HTTP/1.1[0m" 404 -
+2025-05-03 06:17:48,289 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:48] "[33mGET /sign_up HTTP/1.1[0m" 404 -
+2025-05-03 06:17:49,983 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:49] "[33mGET /theme HTTP/1.1[0m" 404 -
+2025-05-03 06:17:51,887 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:51] "[33mGET /setting HTTP/1.1[0m" 404 -
+2025-05-03 06:17:55,943 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:17:55] "[33mGET /setting HTTP/1.1[0m" 404 -
+2025-05-03 06:22:47,882 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:22:47] "GET / HTTP/1.1" 200 -
+2025-05-03 06:22:47,892 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:22:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:22:47,893 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:22:47] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:22:47,903 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:22:47] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:22:47,904 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:22:47] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:24:02,362 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:02] "GET / HTTP/1.1" 200 -
+2025-05-03 06:24:02,372 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:02] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:24:02,378 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:02] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:24:02,380 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:02] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:24:02,388 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:02] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:24:53,459 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "GET / HTTP/1.1" 200 -
+2025-05-03 06:24:53,467 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:24:53,475 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:24:53,475 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:24:53,481 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:24:53,812 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "GET / HTTP/1.1" 200 -
+2025-05-03 06:24:53,825 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:24:53,826 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:24:53,855 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:24:53,855 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:24:53] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:56,372 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:56,384 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:56,390 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:56,390 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:56,393 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:30:56,924 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:56,935 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:30:56,936 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:56,944 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:56,945 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:56] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,175 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:57,185 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,187 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,190 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,191 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,440 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:57,451 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,452 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,455 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,456 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,779 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:57,790 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,791 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:57,795 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:57,796 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:57] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:30:59,003 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:59] "GET / HTTP/1.1" 200 -
+2025-05-03 06:30:59,014 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:30:59,014 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:59] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:30:59,018 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:59] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:30:59,019 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:30:59] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:31:07,135 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:31:07] "GET / HTTP/1.1" 200 -
+2025-05-03 06:31:07,146 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:31:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:31:07,150 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:31:07] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 06:31:07,161 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:31:07] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:31:07,162 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:31:07] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 06:36:55,914 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:36:55] "GET / HTTP/1.1" 200 -
+2025-05-03 06:36:55,922 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:36:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:36:55,940 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:36:55] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:37:16,428 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:37:16] "[33mGET /sign_in HTTP/1.1[0m" 404 -
+2025-05-03 06:38:04,378 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:38:04] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 06:46:20,708 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:46:20] "GET / HTTP/1.1" 200 -
+2025-05-03 06:46:20,735 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:46:20] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:46:20,742 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:46:20] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:52:51,646 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:51] "GET / HTTP/1.1" 200 -
+2025-05-03 06:52:51,667 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:51] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:52:51,669 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:51] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 06:52:52,304 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:52] "GET / HTTP/1.1" 200 -
+2025-05-03 06:52:52,315 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:52:52,321 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:52] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:52:53,087 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:53] "GET / HTTP/1.1" 200 -
+2025-05-03 06:52:53,098 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:52:53,104 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:52:53] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:53:01,746 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:53:01] "GET / HTTP/1.1" 200 -
+2025-05-03 06:53:01,757 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:53:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 06:53:01,762 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:53:01] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 06:53:49,040 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:53:49] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 06:58:48,136 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:58:48] "GET / HTTP/1.1" 200 -
+2025-05-03 06:58:48,154 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:58:48] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 06:58:48,163 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 06:58:48] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:03:38,230 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "GET / HTTP/1.1" 200 -
+2025-05-03 07:03:38,250 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:03:38,253 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:03:38,413 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "GET / HTTP/1.1" 200 -
+2025-05-03 07:03:38,423 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:03:38,428 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:38] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:03:41,299 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:41] "GET / HTTP/1.1" 200 -
+2025-05-03 07:03:41,309 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:03:41,312 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:41] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:03:50,223 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:50] "GET / HTTP/1.1" 200 -
+2025-05-03 07:03:50,239 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:50] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:03:50,240 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:03:50] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:04:06,187 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:06] "GET / HTTP/1.1" 200 -
+2025-05-03 07:04:06,197 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:04:06,199 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:06] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:04:06,203 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:06] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:04:06,203 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:06] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:04:13,114 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:13] "GET / HTTP/1.1" 200 -
+2025-05-03 07:04:13,122 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:04:13,123 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:13] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:04:13,130 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:13] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:04:13,141 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:13] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:04:31,045 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:04:31,046 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:31] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:04:31,070 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:04:31] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:06:03,334 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "GET / HTTP/1.1" 200 -
+2025-05-03 07:06:03,345 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:06:03,349 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:06:03,355 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:06:03,357 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:06:03,358 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:03] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:06:16,030 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "GET / HTTP/1.1" 200 -
+2025-05-03 07:06:16,041 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:06:16,045 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:06:16,048 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:06:16,049 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:06:16,052 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:16] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:06:52,227 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "GET / HTTP/1.1" 200 -
+2025-05-03 07:06:52,238 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:06:52,241 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:06:52,248 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:06:52,249 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:06:52,249 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:52] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:06:54,938 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "GET / HTTP/1.1" 200 -
+2025-05-03 07:06:54,947 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:06:54,951 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:06:54,952 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:06:54,956 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:06:54,956 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:06:54] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:07:22,396 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:22] "GET / HTTP/1.1" 200 -
+2025-05-03 07:07:22,407 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:22] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:07:22,412 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:22] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:07:22,414 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:22] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:07:22,414 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:22] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:07:28,792 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:07:28,793 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:28] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:07:28,818 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:07:28] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:08:19,732 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "GET / HTTP/1.1" 200 -
+2025-05-03 07:08:19,740 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:08:19,747 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:08:19,752 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:08:19,753 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:08:19,753 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:19] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:08:38,073 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "GET / HTTP/1.1" 200 -
+2025-05-03 07:08:38,083 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-05-03 07:08:38,086 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:08:38,092 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 07:08:38,113 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:08:38,114 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:08:38] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:11,765 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:11] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:11,775 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:11,776 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:11] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:11,780 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:11] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:11,787 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:11] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:12:13,517 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:13] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:13,525 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:13,528 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:13] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:13,531 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:13] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:12:13,532 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:13] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:27,058 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:27] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:27,067 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:27,069 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:27] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:27,076 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:27] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:27,083 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:27] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:12:35,352 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:35] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:35,362 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:35,364 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:35] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:35,368 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:35] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:35,376 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:35] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:12:36,194 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:36] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:36,203 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:36,206 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:36] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:36,209 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:36] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:12:36,210 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:36] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:48,482 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:48] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:48,491 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:48,493 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:48] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:48,497 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:48] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:12:48,506 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:48] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:12:56,827 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:56] "GET / HTTP/1.1" 200 -
+2025-05-03 07:12:56,837 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:12:56,838 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:56] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:12:56,846 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:56] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:12:56,847 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:12:56] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:16:26,132 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:26] "GET / HTTP/1.1" 200 -
+2025-05-03 07:16:26,142 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:16:26,143 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:26] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:16:26,147 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:26] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:16:26,155 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:26] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:16:27,828 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:27] "GET / HTTP/1.1" 200 -
+2025-05-03 07:16:27,836 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:16:27,837 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:27] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:16:27,842 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:27] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:16:27,843 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:27] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:16:34,346 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:34] "GET / HTTP/1.1" 200 -
+2025-05-03 07:16:34,357 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:34] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:16:34,357 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:16:34,363 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:34] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:16:34,364 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:34] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:16:36,413 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:36] "GET / HTTP/1.1" 200 -
+2025-05-03 07:16:36,422 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:16:36,423 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:36] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:16:36,428 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:36] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:16:36,429 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:36] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:16:44,369 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:44] "GET / HTTP/1.1" 200 -
+2025-05-03 07:16:44,380 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:16:44,381 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:44] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:16:44,384 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:44] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:16:44,385 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:16:44] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:17:01,911 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:01] "GET / HTTP/1.1" 200 -
+2025-05-03 07:17:01,924 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:01] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:17:01,924 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:17:01,928 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:01] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:17:01,937 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:01] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:17:02,641 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:02] "GET / HTTP/1.1" 200 -
+2025-05-03 07:17:02,651 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:17:02,652 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:02] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:17:02,656 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:02] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:17:02,656 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:17:02] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:20:40,494 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:40] "GET / HTTP/1.1" 200 -
+2025-05-03 07:20:40,505 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:40] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:20:40,506 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:40] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:20:40,512 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:40] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:20:40,520 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:40] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:20:41,161 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:41] "GET / HTTP/1.1" 200 -
+2025-05-03 07:20:41,171 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:20:41,172 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:41] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:20:41,177 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:41] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:20:41,178 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:20:41] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:25:28,600 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:28] "GET / HTTP/1.1" 200 -
+2025-05-03 07:25:28,609 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:25:28,610 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:28] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:25:28,613 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:28] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:25:28,621 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:28] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:25:40,653 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:25:40] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:31:37,047 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:37] "GET / HTTP/1.1" 200 -
+2025-05-03 07:31:37,056 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:31:37,058 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:37] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:31:37,066 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:37] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:31:37,074 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:37] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:31:45,530 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:31:45] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:37:01,819 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "GET / HTTP/1.1" 200 -
+2025-05-03 07:37:01,828 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:37:01,831 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:37:01,840 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:37:01,847 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:37:01,967 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "GET / HTTP/1.1" 200 -
+2025-05-03 07:37:01,984 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:37:01,985 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:37:01,987 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:37:01,988 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:01] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:37:10,644 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:37:10] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:47:22,335 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 07:47:25,625 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 07:47:36,410 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 07:47:36,715 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 07:47:36,715 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 07:47:39,657 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 07:47:39,657 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 07:47:39,658 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 07:47:39,674 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 07:47:39,679 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 07:47:39,682 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 07:47:39,689 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 07:47:39,691 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 07:50:44,439 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:44] "GET / HTTP/1.1" 200 -
+2025-05-03 07:50:44,452 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:50:44,453 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:44] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:50:44,464 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:44] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 07:50:44,472 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:44] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 07:50:48,791 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:48] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:50:57,967 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:50:57] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:51:58,512 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:51:58] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:52:36,438 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:52:36] "POST /api/chat HTTP/1.1" 200 -
+2025-05-03 07:52:53,358 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:52:53] "[33mGET /setting HTTP/1.1[0m" 404 -
+2025-05-03 07:54:43,474 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 07:54:46,786 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 07:54:57,092 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 07:54:57,380 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 07:54:57,380 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 07:55:00,962 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 07:55:00,962 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 07:55:00,964 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 07:55:00,980 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 07:55:00,986 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 07:55:00,988 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 07:55:00,994 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 07:55:00,998 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 07:55:04,053 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 07:55:05,340 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 07:55:15,815 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 07:55:16,122 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 07:55:16,122 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 07:55:18,946 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 07:55:18,946 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 07:55:18,946 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 07:55:18,963 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 07:55:18,967 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 07:55:18,969 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 07:55:18,976 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 07:55:18,979 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 07:56:01,450 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:56:01] "[33mGET /sign_in HTTP/1.1[0m" 404 -
+2025-05-03 07:59:10,417 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 07:59:11,856 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 07:59:22,545 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 07:59:22,841 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 07:59:22,842 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 07:59:26,533 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 07:59:26,533 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 07:59:26,534 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 07:59:26,552 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 07:59:26,557 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 07:59:26,559 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 07:59:26,566 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 07:59:26,570 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 07:59:26,587 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:59:26] "GET / HTTP/1.1" 200 -
+2025-05-03 07:59:26,602 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:59:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 07:59:26,604 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:59:26] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 07:59:26,607 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:59:26] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 07:59:26,608 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 07:59:26] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:00:47,683 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 08:00:49,068 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 08:00:59,313 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 08:00:59,596 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 08:00:59,598 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 08:01:02,508 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 08:01:02,508 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 08:01:02,508 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 08:01:02,528 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 08:01:02,532 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 08:01:02,536 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 08:01:02,541 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 08:01:02,545 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 08:05:48,686 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:48] "GET / HTTP/1.1" 200 -
+2025-05-03 08:05:48,697 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:48] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:05:48,699 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:48] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:05:48,704 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:48] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 08:05:48,706 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:48] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 08:05:50,208 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:50] "GET / HTTP/1.1" 200 -
+2025-05-03 08:05:50,219 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:05:50,220 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:50] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:05:50,223 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:50] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:05:50,224 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:50] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:05:54,679 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:54] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:05:54,692 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:05:54,696 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:54] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:05:56,588 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:05:56] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 08:06:44,403 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-03 08:06:44,407 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "GET / HTTP/1.1" 200 -
+2025-05-03 08:06:44,427 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:06:44,428 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:06:44,431 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:06:44,432 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:06:44] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:07:32,787 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-05-03 08:07:32,791 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "GET / HTTP/1.1" 200 -
+2025-05-03 08:07:32,806 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:07:32,807 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:07:32,812 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:07:32,812 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:32] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:07:35,714 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:35] "[33mGET /theme HTTP/1.1[0m" 404 -
+2025-05-03 08:07:38,536 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:38] "[33mGET /setting HTTP/1.1[0m" 404 -
+2025-05-03 08:07:40,222 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:40] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 08:07:42,000 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:42] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:07:42,016 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:07:42,019 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:07:42] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:11:57,086 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 08:11:58,546 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 08:12:09,039 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 08:12:09,324 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 08:12:09,324 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 08:12:12,190 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 08:12:12,190 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 08:12:12,190 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 08:12:12,207 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 08:12:12,211 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 08:12:12,213 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 08:12:12,219 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 08:12:12,223 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 08:12:16,268 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 08:12:17,581 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 08:12:28,283 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 08:12:28,587 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 08:12:28,587 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 08:12:31,730 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 08:12:31,730 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 08:12:31,730 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 08:12:31,747 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 08:12:31,753 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 08:12:31,756 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 08:12:31,762 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 08:12:31,766 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 08:12:32,216 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:32] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:12:32,234 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:32] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 08:12:32,235 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:32] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:38,569 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:38] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:12:38,580 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:38] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:38,587 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:38] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:42,414 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:42] "GET / HTTP/1.1" 200 -
+2025-05-03 08:12:42,424 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:42,482 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:42] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:12:42,484 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:42] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:42,487 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:42] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:12:43,605 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:43] "GET / HTTP/1.1" 200 -
+2025-05-03 08:12:43,616 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:43,619 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:43] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:12:43,621 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:43] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:43,622 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:43] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:12:46,236 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:46] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:12:46,251 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:46,256 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:46] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:52,524 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-03 08:12:52,528 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "GET / HTTP/1.1" 200 -
+2025-05-03 08:12:52,544 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:52,545 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:12:52,550 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:52,550 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:52] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:12:56,380 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:56] "[33mGET /theme HTTP/1.1[0m" 404 -
+2025-05-03 08:12:58,515 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-05-03 08:12:58,519 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "GET / HTTP/1.1" 200 -
+2025-05-03 08:12:58,531 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:12:58,532 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:12:58,537 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:12:58,538 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:12:58] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:17:14,387 - werkzeug - INFO -  * Detected change in 'c:\\Users\\admin\\test\\test\\test.py', reloading
+2025-05-03 08:17:15,843 - werkzeug - INFO -  * Restarting with stat
+2025-05-03 08:17:26,031 - tensorflow - WARNING - From C:\Users\admin\anaconda3\envs\p310_test\lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-05-03 08:17:26,303 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+2025-05-03 08:17:26,306 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: jhgan/ko-sroberta-multitask
+2025-05-03 08:17:29,143 - faiss.loader - INFO - Loading faiss with AVX512 support.
+2025-05-03 08:17:29,143 - faiss.loader - INFO - Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-05-03 08:17:29,143 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-05-03 08:17:29,159 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-05-03 08:17:29,164 - faiss - INFO - Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+2025-05-03 08:17:29,165 - __main__ - INFO - Gemini ∏µ® √ ±‚»≠ ¡ﬂ...
+2025-05-03 08:17:29,172 - werkzeug - WARNING -  * Debugger is active!
+2025-05-03 08:17:29,177 - werkzeug - INFO -  * Debugger PIN: 109-132-582
+2025-05-03 08:20:42,942 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:42] "GET / HTTP/1.1" 200 -
+2025-05-03 08:20:42,954 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:42] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:20:42,956 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:20:42,963 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:42] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:20:42,964 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:42] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:20:43,886 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:43] "GET / HTTP/1.1" 200 -
+2025-05-03 08:20:43,897 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:20:43,898 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:43] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:20:43,902 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:43] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:20:43,903 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:43] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:20:52,411 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:52] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 08:20:55,000 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:20:55,004 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "GET / HTTP/1.1" 200 -
+2025-05-03 08:20:55,021 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:20:55,022 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:20:55,024 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:20:55,026 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:55] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:20:57,616 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:20:57,620 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "GET / HTTP/1.1" 200 -
+2025-05-03 08:20:57,633 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:20:57,635 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:20:57,639 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:20:57,641 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:57] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:20:59,183 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:20:59] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 08:21:00,878 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:21:00] "GET /login HTTP/1.1" 200 -
+2025-05-03 08:21:00,894 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:21:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:21:00,898 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:21:00] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:21:03,739 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:21:03] "[33mGET /sign HTTP/1.1[0m" 404 -
+2025-05-03 08:23:53,942 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:23:53] "GET / HTTP/1.1" 200 -
+2025-05-03 08:23:53,952 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:23:53] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:23:53,959 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:23:53] "GET /static/style.css HTTP/1.1" 200 -
+2025-05-03 08:23:53,960 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:23:53] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:23:53,968 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:23:53] "GET /static/main.js HTTP/1.1" 200 -
+2025-05-03 08:24:00,711 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:00,715 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:00,727 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:00,729 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:00,732 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:00,733 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:00] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:05,484 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:05,488 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:05,499 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:05,500 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:05,504 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:05,505 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:05] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:08,686 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:08,690 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:08,701 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:08,701 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:08,705 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:08,706 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:08] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:11,734 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:11,738 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:11,752 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:11,753 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:11,756 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:11,757 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:11] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:12,998 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:12] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:13,001 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:13,014 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:13,015 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:13,018 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:13,019 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:13,909 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:13,913 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:13,928 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:13,929 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:13,933 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -
+2025-05-03 08:24:13,933 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:13] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:14,741 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "[32mGET /theme HTTP/1.1[0m" 302 -
+2025-05-03 08:24:14,744 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "GET / HTTP/1.1" 200 -
+2025-05-03 08:24:14,759 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-03 08:24:14,760 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "[33mGET /static/fixes.css HTTP/1.1[0m" 404 -
+2025-05-03 08:24:14,763 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "[36mGET /static/main.js HTTP/1.1[0m" 304 -
+2025-05-03 08:24:14,763 - werkzeug - INFO - 127.0.0.1 - - [03/May/2025 08:24:14] "[33mGET /static/fixes.js HTTP/1.1[0m" 404 -

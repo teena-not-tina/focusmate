@@ -1,28 +1,28 @@
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+import mysql.connector
+import os
+import bcrypt
+import secrets
+from datetime import datetime, timedelta
+# test.py에서 가져온 임포트
 from langchain_community.vectorstores import FAISS
-from langchain_community.llms import Ollama
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains import RetrievalQA
+from langchain.agents import Tool, AgentExecutor
 from flask_cors import CORS
-from flask import Flask, request, jsonify, render_template
 import cv2
 import numpy as np
 from insightface.app import FaceAnalysis
-import os
 import logging
 from logging.handlers import RotatingFileHandler
 import tempfile
 from dotenv import load_dotenv
-
-# Google Generative AI 임포트 수정 - 문제되는 임포트 제거
 import google.generativeai as genai
-
 
 # .env 파일 로드
 load_dotenv()
-
-# 서드파티 라이브러리 imports
 
 # 환경 변수 설정
 os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
@@ -41,11 +41,84 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Flask 앱 초기화 (기존 코드 수정)
-app = Flask(__name__, 
-            static_folder='static',      # static 폴더 명시적 지정
-            static_url_path='/static')   # URL 경로 설정
+# Flask 앱 초기화
+app = Flask(__name__,
+            static_folder='static',      
+            static_url_path='/static')
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))
 CORS(app)  # 모든 라우트에 CORS 허용
+
+# MySQL 연결 설정
+def get_db_connection():
+    return mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='your_mysql_password',  # 실제 MySQL 비밀번호로 변경
+        database='focusmate'
+    )
+
+# 데이터베이스 초기화
+def init_db():
+    try:
+        conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='your_mysql_password'  # 실제 MySQL 비밀번호로 변경
+        )
+        cursor = conn.cursor()
+        
+        # 데이터베이스 생성
+        cursor.execute("CREATE DATABASE IF NOT EXISTS focusmate")
+        cursor.execute("USE focusmate")
+        
+        # 사용자 테이블 생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            email VARCHAR(100) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            user_type ENUM('student', 'teacher') NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            last_login TIMESTAMP NULL
+        )
+        """)
+        
+        # 학습 세션 테이블 생성
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS study_sessions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            end_time TIMESTAMP NULL,
+            duration INT DEFAULT 0,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )
+        """)
+        
+        # 감정 분석 결과 테이블
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS emotion_analyses (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            session_id INT NOT NULL,
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            emotion VARCHAR(20) NOT NULL,
+            confidence FLOAT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+            FOREIGN KEY (session_id) REFERENCES study_sessions(id)
+        )
+        """)
+        
+        conn.commit()
+        print("데이터베이스 초기화 완료")
+    except mysql.connector.Error as err:
+        print(f"데이터베이스 초기화 오류: {err}")
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
 
 # InsightFace 모델 초기화
 face_analyzer = FaceAnalysis(providers=["CPUExecutionProvider"])
@@ -109,7 +182,7 @@ emotion_info = {
     """,
 }
 
-
+# RAG 시스템 설정
 def setup_rag_system():
     docs = []
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -127,10 +200,7 @@ def setup_rag_system():
             HuggingFaceEmbeddings(model_name="jhgan/ko-sroberta-multitask"),
         )
 
-
 vectorstore = setup_rag_system()
-
-# setup_rag_system 함수 유지
 
 # Gemini 설정
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -139,7 +209,6 @@ if not GEMINI_API_KEY:
 
 # Gemini API 설정
 genai.configure(api_key=GEMINI_API_KEY)
-
 
 # Gemini 모델 초기화 함수
 def setup_gemini_model():
@@ -154,7 +223,7 @@ def setup_gemini_model():
             "max_output_tokens": 8192,
         }
 
-        # 안전 설정 (최신 API 방식으로 변경)
+        # 안전 설정
         safety_settings = [
             {
                 "category": "HARM_CATEGORY_HARASSMENT",
@@ -176,7 +245,7 @@ def setup_gemini_model():
 
         # Gemini Pro 모델 사용
         model = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",  # gemini-pro는 안정적으로 사용 가능한 모델
+            model_name="gemini-2.0-flash",
             generation_config=generation_config,
             safety_settings=safety_settings
         )
@@ -186,10 +255,8 @@ def setup_gemini_model():
         logger.error(f"Gemini 모델 초기화 오류: {str(e)}")
         return None
 
-
 # Gemini 모델 초기화
 gemini_model = setup_gemini_model()
-
 
 # 관련 컨텍스트 검색 함수
 def retrieve_relevant_context(query):
@@ -201,7 +268,6 @@ def retrieve_relevant_context(query):
     except Exception as e:
         logger.error(f"컨텍스트 검색 오류: {str(e)}")
         return ""
-
 
 # Gemini 응답 생성 함수
 def generate_gemini_response(query, context):
@@ -223,7 +289,7 @@ def generate_gemini_response(query, context):
         예를 들어, 수학 문제의 경우 단순히 "답은 X입니다"가 아니라 
         "이 문제의 답은 X입니다. 이렇게 계산할 수 있어요..." 와 같이 친절하게 설명하세요.
         
-        응답 끝에는 항상 학습자를 격려하는 한 마디나 추가 질문이 있는지 물어보세요.
+        친구처럼 대화하듯이 답변해주세요.
         """
 
         # generate_content를 사용하여 응답 생성
@@ -239,7 +305,7 @@ def generate_gemini_response(query, context):
         logger.error(f"Gemini 응답 생성 오류: {str(e)}")
         return f"응답 생성 중 오류가 발생했습니다: {str(e)}"
 
-
+# 이미지에서 감정 감지
 def detect_emotion_from_image(image_data):
     try:
         # 이미지 로드 및 기본 검증
@@ -332,7 +398,7 @@ def detect_emotion_from_image(image_data):
         logger.error(f"감정 감지 오류: {str(e)}")
         return {"error": str(e)}
 
-
+# 비디오에서 감정 감지
 def detect_emotion_from_video(video_data):
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
@@ -388,7 +454,7 @@ def detect_emotion_from_video(video_data):
         logger.error(f"비디오 처리 오류: {str(e)}")
         return {"error": str(e)}
 
-
+# 응답 생성 함수
 def generate_response(emotion_data, query=None):
     try:
         if "error" in emotion_data:
@@ -413,7 +479,7 @@ def generate_response(emotion_data, query=None):
                 }
 
             except Exception as chat_error:
-                logger.error(f"Gemini 응답 생성 오류: {str(chat_error)}")
+                logger.error(f"Gemini 응답 생성 오류: {chat_error}")
                 return {"response": base_response}
 
         return {"response": base_response}
@@ -422,12 +488,231 @@ def generate_response(emotion_data, query=None):
         logger.error(f"응답 생성 오류: {str(e)}")
         return {"response": f"응답 생성 중 오류가 발생했습니다: {str(e)}"}
 
+# 대화 기록 관리를 위한 간단한 인메모리 스토리지
+conversation_store = {}
 
-@app.route("/")
+# 서버 시작 시 DB 초기화
+init_db()
+
+#####################################################
+# 라우트 정의
+#####################################################
+
+# 메인 페이지
+@app.route('/')
 def index():
-    return render_template("test.html")
+    # 세션에서 사용자 정보 확인
+    username = session.get('username')
+    is_logged_in = 'user_id' in session
+    theme = session.get('theme', 'light')  # 기본값은 라이트 모드
+    
+    return render_template('index.html', 
+                          is_logged_in=is_logged_in, 
+                          username=username,
+                          theme=theme)
 
+# 인증 관련 라우트 - 로그인, 회원가입 등을 /auth 접두사로 통일
+@app.route('/auth/login')
+def login_page():
+    if 'user_id' in session:
+        return redirect(url_for('index'))  # 이미 로그인된 사용자는 메인으로
+    theme = session.get('theme', 'light')
+    return render_template('auth/login.html', theme=theme)
 
+@app.route('/auth/signup')
+def signup_page():
+    if 'user_id' in session:
+        return redirect(url_for('index'))  # 이미 로그인된 사용자는 메인으로
+    theme = session.get('theme', 'light')
+    return render_template('auth/signup.html', theme=theme)
+
+@app.route('/auth/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+@app.route('/auth/forgot-password')
+def forgot_password_page():
+    theme = session.get('theme', 'light')
+    return render_template('auth/forgot-password.html', theme=theme)
+
+# 테마 변경 라우트
+@app.route("/auth/theme")
+def toggle_theme():
+    # 현재 테마 확인
+    current_theme = session.get('theme', 'light')
+    
+    # 테마 전환
+    session['theme'] = 'dark' if current_theme == 'light' else 'light'
+    
+    # 리디렉션 (이전 페이지로 돌아가기)
+    referrer = request.referrer
+    if referrer and referrer.startswith(request.host_url):
+        return redirect(referrer)
+    return redirect(url_for('index'))
+
+# API 엔드포인트 - /api 접두사로 통일
+@app.route('/api/login', methods=['POST'])
+def login_api():
+    data = request.json
+    
+    username = data.get('username', '').strip()
+    password = data.get('password', '')
+    remember = data.get('remember', False)
+    
+    if not username or not password:
+        return jsonify({'success': False, 'message': '아이디와 비밀번호를 모두 입력해주세요.'})
+    
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        
+        # 사용자 조회
+        cursor.execute("SELECT id, username, password, user_type FROM users WHERE username = %s", (username,))
+        user = cursor.fetchone()
+        
+        if not user:
+            return jsonify({'success': False, 'message': '아이디 또는 비밀번호가 일치하지 않습니다.'})
+        
+        # 비밀번호 검증
+        if bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+            # 세션 설정
+            session['user_id'] = user['id']
+            session['username'] = user['username']
+            session['user_type'] = user['user_type']
+            
+            # 로그인 상태 유지 (remember me)
+            if remember:
+                session.permanent = True
+                app.permanent_session_lifetime = timedelta(days=30)
+            
+            # 마지막 로그인 시간 업데이트
+            cursor.execute("UPDATE users SET last_login = NOW() WHERE id = %s", (user['id'],))
+            conn.commit()
+            
+            return jsonify({'success': True, 'redirect': '/'})
+        else:
+            return jsonify({'success': False, 'message': '아이디 또는 비밀번호가 일치하지 않습니다.'})
+    
+    except mysql.connector.Error as err:
+        logger.error(f"데이터베이스 오류: {err}")
+        return jsonify({'success': False, 'message': '서버 오류가 발생했습니다.'})
+    
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
+
+@app.route('/api/signup', methods=['POST'])
+def signup_api():
+    data = request.json
+    
+    # 필수 필드 검사
+    required_fields = ['username', 'email', 'password', 'user_type']
+    for field in required_fields:
+        if field not in data or not data[field].strip():
+            return jsonify({'success': False, 'message': f'{field} 필드는 필수입니다.', 'field': field})
+    
+    username = data['username'].strip()
+    email = data['email'].strip()
+    password = data['password']
+    user_type = data['user_type']
+    
+    # 유효성 검사
+    if len(username) < 4:
+        return jsonify({'success': False, 'message': '아이디는 4자 이상이어야 합니다.', 'field': 'username'})
+    
+    if len(password) < 8:
+        return jsonify({'success': False, 'message': '비밀번호는 8자 이상이어야 합니다.', 'field': 'password'})
+    
+    # 비밀번호 해싱
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # 사용자 이름 중복 검사
+        cursor.execute("SELECT id FROM users WHERE username = %s", (username,))
+        if cursor.fetchone():
+            return jsonify({'success': False, 'message': '이미 사용 중인 아이디입니다.', 'field': 'username'})
+        
+        # 이메일 중복 검사
+        cursor.execute("SELECT id FROM users WHERE email = %s", (email,))
+        if cursor.fetchone():
+            return jsonify({'success': False, 'message': '이미 사용 중인 이메일입니다.', 'field': 'email'})
+        
+        # 사용자 등록
+        cursor.execute(
+            "INSERT INTO users (username, email, password, user_type) VALUES (%s, %s, %s, %s)",
+            (username, email, hashed_password, user_type)
+        )
+        conn.commit()
+        
+        return jsonify({'success': True, 'message': '회원가입이 완료되었습니다.'})
+    
+    except mysql.connector.Error as err:
+        logger.error(f"데이터베이스 오류: {err}")
+        return jsonify({'success': False, 'message': '서버 오류가 발생했습니다.'})
+    
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
+
+@app.route('/api/check_username')
+def check_username_api():
+    username = request.args.get('username', '').strip()
+    
+    if not username or len(username) < 4:
+        return jsonify({'available': False})
+    
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM users WHERE username = %s", (username,))
+        result = cursor.fetchone()
+        
+        return jsonify({'available': result is None})
+    
+    except mysql.connector.Error as err:
+        logger.error(f"데이터베이스 오류: {err}")
+        return jsonify({'available': False})
+    
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
+
+@app.route('/api/check_email')
+def check_email_api():
+    email = request.args.get('email', '').strip()
+    
+    if not email:
+        return jsonify({'available': False})
+    
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM users WHERE email = %s", (email,))
+        result = cursor.fetchone()
+        
+        return jsonify({'available': result is None})
+    
+    except mysql.connector.Error as err:
+        logger.error(f"데이터베이스 오류: {err}")
+        return jsonify({'available': False})
+    
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
+
+# 감정 감지 API
 @app.route("/detect_emotion", methods=["POST"])
 def detect_emotion():
     if "file" not in request.files:
@@ -456,11 +741,7 @@ def detect_emotion():
         logger.error(f"API 오류: {str(e)}")
         return jsonify({"error": str(e)})
 
-
-# 대화 기록 관리를 위한 간단한 인메모리 스토리지
-conversation_store = {}
-
-
+# 채팅 API
 @app.route("/api/chat", methods=["POST"])
 def chat_api():
     try:
@@ -470,97 +751,110 @@ def chat_api():
 
         messages = data.get("messages", [])
         session_id = data.get("session_id", "default_session")
+        temperature = data.get("temperature", 0.3)
+        max_tokens = data.get("max_tokens", 1000)
 
         if session_id not in conversation_store:
             conversation_store[session_id] = []
-
-        # 시스템 메시지 설정
-        system_message = """당신은 학습자를 돕는 AI 학습 조교입니다.
-            학습 관련 질문에 도움을 주고, 학습 전략과 팁을 제공하세요.
-            감정 데이터를 기반으로 맞춤형 학습 조언을 제공하세요.
-            
-            중요한 지침:
-            1. 단순히 답만 제시하지 말고, 항상 친절하고 자세한 설명을 추가하세요.
-            2. 수학 문제의 경우 단순히 "답은 X입니다"가 아니라 "이 문제의 답은 X입니다. 이렇게 계산할 수 있어요..." 식으로 설명하세요.
-            3. 응답 끝에는 항상 학습자를 격려하거나 추가 질문이 있는지 물어보세요.
-            4. 학습자의 감정 상태를 고려하여 대화하세요.
-            """
 
         try:
             # Gemini API 호출
             if not gemini_model:
                 return jsonify({"error": "Gemini 모델이 초기화되지 않았습니다"}), 500
 
-            # 메시지 형식 변환 및 Gemini 요청 구성
-            history = []
-
-            # 이전 대화 기록 추가
-            for msg in conversation_store[session_id]:
-                content = [{"text": msg["content"]}]
-                history.append(
-                    {
-                        "role": "user" if msg["role"] == "user" else "model",
-                        "parts": content,
-                    }
-                )
-
-            # 새 메시지 추가
+            # 메시지 구성 - 시스템 메시지와 사용자 대화 분리
+            system_message = None
+            chat_messages = []
             user_message = None
+
             for msg in messages:
-                if msg["role"] != "system":  # 시스템 메시지는 별도 처리
-                    if msg["role"] == "user":
-                        user_message = msg["content"]
+                if msg["role"] == "system":
+                    system_message = msg["content"]
+                elif msg["role"] == "user":
+                    user_message = msg["content"]
+                    chat_messages.append({"role": "user", "content": msg["content"]})
+                elif msg["role"] == "assistant":
+                    chat_messages.append({"role": "assistant", "content": msg["content"]})
 
             if not user_message:
                 return jsonify({"error": "사용자 메시지가 없습니다"}), 400
 
-            # 시스템 메시지와 사용자 메시지 결합
-            prompt = f"{system_message}\n\n{user_message}"
+            # 모델에 적용할 커스텀 생성 구성 설정
+            generation_config = {
+                "temperature": temperature,
+                "top_p": 0.95,
+                "top_k": 64,
+                "max_output_tokens": max_tokens,
+            }
 
-            # 대화가 없으면 단일 프롬프트로 요청
+            # 모델 설정 업데이트
+            gemini_model.generation_config = generation_config
+
+            # 최종 프롬프트 구성 - 시스템 메시지를 최우선으로 적용
+            prompt = f"{system_message}\n\n{user_message}" if system_message else user_message
+
+            # 이전 대화 컨텍스트 구성 (시스템 메시지 제외)
+            history = []
+            for msg in conversation_store[session_id]:
+                if msg["role"] != "system":
+                    content = [{"text": msg["content"]}]
+                    history.append({
+                        "role": "user" if msg["role"] == "user" else "model",
+                        "parts": content
+                    })
+
+            # 응답 생성
             if not history:
+                # 대화 기록이 없으면 단일 프롬프트로 요청
                 response = gemini_model.generate_content(prompt)
             else:
-                # 채팅 세션 생성 및 메시지 전송
+                # 대화 기록이 있으면 채팅 세션 사용
                 chat = gemini_model.start_chat(history=history)
                 response = chat.send_message(prompt)
 
-            if not response.text:
+            if not hasattr(response, 'text') or not response.text:
                 logger.error("Gemini API 응답이 비어 있습니다")
                 return jsonify({"error": "AI 응답을 생성할 수 없습니다"}), 500
 
             assistant_message = response.text.strip()
 
             # 대화 기록 업데이트
-            conversation_store[session_id].extend(
-                [{"role": "user", "content": user_message}]
-            )
-            conversation_store[session_id].append(
-                {"role": "assistant", "content": assistant_message}
-            )
+            conversation_store[session_id].append({"role": "user", "content": user_message})
+            conversation_store[session_id].append({"role": "assistant", "content": assistant_message})
 
-            # 대화 기록 제한
-            if len(conversation_store[session_id]) > 10:
-                conversation_store[session_id] = conversation_store[session_id][-10:]
+            # 대화 기록 제한 (최대 20개)
+            if len(conversation_store[session_id]) > 20:
+                conversation_store[session_id] = conversation_store[session_id][-20:]
 
             return jsonify({"message": assistant_message})
 
         except Exception as chat_error:
             logger.error(f"Gemini API 오류: {str(chat_error)}", exc_info=True)
-            return (
-                jsonify(
-                    {
-                        "error": "AI 응답 생성 중 오류가 발생했습니다",
-                        "details": str(chat_error),
-                    }
-                ),
-                500,
-            )
+            return jsonify({
+                "error": "AI 응답 생성 중 오류가 발생했습니다",
+                "details": str(chat_error)
+            }), 500
 
     except Exception as e:
         logger.error(f"채팅 API 오류: {str(e)}", exc_info=True)
         return jsonify({"error": "서버 오류가 발생했습니다", "details": str(e)}), 500
 
+# URL 패턴 리디렉션 (이전 URL과의 호환성 유지)
+@app.route('/login')
+def login_redirect():
+    return redirect(url_for('login_page'))
+
+@app.route('/signup')
+def signup_redirect():
+    return redirect(url_for('signup_page'))
+
+@app.route('/logout')
+def logout_redirect():
+    return redirect(url_for('logout'))
+
+@app.route('/theme')
+def theme_redirect():
+    return redirect(url_for('toggle_theme'))
 
 if __name__ == "__main__":
     app.run(debug=True)
