@@ -186,7 +186,7 @@ def generate_gemini_response(query, context, emotion=None):
 
 
 # Generate a response based on emotion data and query
-def generate_response(emotion_data, query=None):
+def generate_response(emotion_data, query=None, context=""):
     """Generate a response based on detected emotion and optional query"""
     try:
         # Check for errors
@@ -230,6 +230,7 @@ def generate_response(emotion_data, query=None):
 
 # In-memory conversation store
 conversation_store = {}
+
 
 # Ensure these variables and functions are available for import
 __all__ = [

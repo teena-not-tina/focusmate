@@ -1,4 +1,4 @@
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, jsonify, request, session
 from flask_cors import CORS
 import cv2
 import threading
@@ -18,6 +18,7 @@ import webbrowser
 import threading
 import platform
 from flask_cors import cross_origin  # Add this line
+import sqlite3
 
 
 # Add the parent directory to the Python path
@@ -339,6 +340,16 @@ def get_statistics():
     else:
         return jsonify({'status': 'error', 'message': 'Facial state tracker not initialized'})
 
+def save_message_to_db(user_id, user_message, bot_response, emotion, timestamp):
+    conn = sqlite3.connect('chat_history.db')
+    c = conn.cursor()
+    c.execute(
+        "INSERT INTO chat_history (user_id, user_message, bot_response, emotion, timestamp) VALUES (?, ?, ?, ?, ?)",
+        (user_id, user_message, bot_response, emotion, timestamp)
+    )
+    conn.commit()
+    conn.close()
+
 # Add this new route to handle chat messages
 @app.route('/chat', methods=['POST'])
 @cross_origin()
@@ -383,29 +394,48 @@ def chat():
             "dominant_emotion": current_emotion,
             "debug_info": stats
         }
-        
-        # Generate response using the chatbot
+
+        # Get user ID (for now using "anonymous", you can modify this to use actual user IDs)
+        user_id = session.get('user_email', 'anonymous')  # Use Firebase email/UID if available
+
+        # Prepare conversation history as context
+        history = conversation_store.get(user_id, [])[-7:]  # last 7 exchanges
+        context = ""
+        for turn in history:
+            context += f"사용자: {turn['user']}\n"
+            context += f"챗봇: {turn['bot']}\n"
+
+        # Generate response using the chatbot, passing context
         print("[DEBUG] Generating response...")
-        response_data = generate_response(emotion_data, message)
+        response_data = generate_response(emotion_data, message, context=context)
         print(f"[DEBUG] Generated response: {response_data}")
         
         # Get user ID (for now using "anonymous", you can modify this to use actual user IDs)
-        user_id = "anonymous"
+        user_id = session.get('user_email', 'anonymous')  # Use Firebase email/UID if available
+
         
         # Store conversation history
         if user_id not in conversation_store:
             conversation_store[user_id] = []
-            
         conversation_store[user_id].append({
             "user": message,
-            "bot": response_data.get("response", "Sorry, I couldn't generate a response."),
+            "bot": response_data.get("response", ""),
             "emotion": current_emotion,
             "timestamp": datetime.now().isoformat()
         })
+
+        save_message_to_db(
+            user_id,
+            message,
+            response_data.get("response", ""),
+            current_emotion,
+            datetime.now().isoformat()
+        )
+
         
-        # Limit conversation history to last 20 messages
-        if len(conversation_store[user_id]) > 20:
-            conversation_store[user_id] = conversation_store[user_id][-20:]
+        # Limit conversation history to last 7 messages
+        if len(conversation_store[user_id]) > 7:
+            conversation_store[user_id] = conversation_store[user_id][-7:]
             
         print(f"[DEBUG] Returning response to client")
         return jsonify(response_data)
@@ -416,12 +446,6 @@ def chat():
         traceback.print_exc()
         return jsonify({'error': str(e), 'response': '죄송합니다. 오류가 발생했습니다.'}), 500
 
-# @app.post("/ask")
-# async def ask_question(request: requests):
-#     data = await request.json()
-#     prompt = data.get("question")
-#     response = generate_response(prompt)
-#     return {"response": response}
 
 # API: Start saving frames
 @app.route('/start_saving', methods=['GET', 'POST'])
