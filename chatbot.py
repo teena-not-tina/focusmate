@@ -1,32 +1,9 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, session
-import mysql.connector
 import os
-import bcrypt
-import secrets
-from datetime import datetime, timedelta
-from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.chains import RetrievalQA
-from langchain.agents import Tool, AgentExecutor
-from flask_cors import CORS
-import cv2
-import numpy as np
 import logging
 from logging.handlers import RotatingFileHandler
-import tempfile
 from dotenv import load_dotenv
 import google.generativeai as genai
 import re
-
-# Load environment variables - Fix the path
-# Get the directory where chatbot.py is located
-current_dir = os.path.dirname(os.path.abspath(__file__))
-# Construct path to .env file in StartPage folder
-env_path = os.path.join(current_dir, 'StartPage', '.env')
-load_dotenv(env_path)
-
 
 
 # Configure logging
@@ -37,84 +14,13 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-# MySQL connection configuration
-def get_db_connection():
-    """Create and return a database connection using environment variables"""
-    try:
-        db_config = {
-            'host': os.getenv('DB_HOST', 'localhost'),
-            'user': os.getenv('DB_USER', 'root'),
-            'password': os.getenv('DB_PASSWORD', ''),  # Get from environment variable
-            'database': os.getenv('DB_NAME', 'focusmate')
-        }
-        return mysql.connector.connect(**db_config)
-    except mysql.connector.Error as err:
-        logger.error(f"Database connection error: {err}")
-        return None
+# Load environment variables - Fix the path
+# Get the directory where chatbot.py is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Construct path to .env file in StartPage folder
+env_path = os.path.join(current_dir, 'StartPage', '.env')
+load_dotenv(env_path)
 
-# Database initialization function
-def init_db():
-    """Initialize the database with required tables if they don't exist"""
-    try:
-        conn = mysql.connector.connect(
-            host=os.getenv('DB_HOST', 'localhost'),
-            user=os.getenv('DB_USER', 'root'),
-            password=os.getenv('DB_PASSWORD', '')
-        )
-        cursor = conn.cursor()
-        
-        # Create database if not exists
-        cursor.execute("CREATE DATABASE IF NOT EXISTS focusmate")
-        cursor.execute("USE focusmate")
-        
-        # Create users table
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(50) NOT NULL UNIQUE,
-            email VARCHAR(100) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL,
-            user_type ENUM('student', 'teacher') NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            last_login TIMESTAMP NULL
-        )
-        """)
-        
-        # Create study sessions table
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS study_sessions (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            end_time TIMESTAMP NULL,
-            duration INT DEFAULT 0,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )
-        """)
-        
-        # Create emotion analyses table
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS emotion_analyses (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            session_id INT NOT NULL,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            emotion VARCHAR(20) NOT NULL,
-            confidence FLOAT NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES users(id),
-            FOREIGN KEY (session_id) REFERENCES study_sessions(id)
-        )
-        """)
-        
-        conn.commit()
-        logger.info("Database initialization completed successfully")
-    except mysql.connector.Error as err:
-        logger.error(f"Database initialization error: {err}")
-    finally:
-        if 'cursor' in locals():
-            cursor.close()
-        if 'conn' in locals():
-            conn.close()
 
 # Emotion mapping dictionary
 EMOTION_MAPPING = {
@@ -158,31 +64,6 @@ EMOTION_MAPPING = {
 #     """,
 # }
 
-# RAG (Retrieval Augmented Generation) system setup
-def setup_rag_system():
-    """Create a FAISS vector store from emotion information"""
-    try:
-        docs = []
-        with tempfile.TemporaryDirectory() as temp_dir:
-            for emotion, info in emotion_info.items():
-                # Create temporary files and load data
-                temp_file = os.path.join(temp_dir, f"{emotion}.txt")
-                with open(temp_file, "w", encoding="utf-8") as f:
-                    f.write(info)
-                docs.extend(TextLoader(temp_file, encoding="utf-8").load())
-
-            # Split documents and create embeddings
-            splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-            return FAISS.from_documents(
-                splitter.split_documents(docs),
-                HuggingFaceEmbeddings(model_name="jhgan/ko-sroberta-multitask"),
-            )
-    except Exception as e:
-        logger.error(f"RAG system setup error: {e}")
-        return None
-
-# Initialize the vector store
-vectorstore = setup_rag_system()
 
 # Initialize Gemini API
 def setup_gemini_model():
@@ -242,20 +123,20 @@ def setup_gemini_model():
 gemini_model = setup_gemini_model()
 
 # Retrieve relevant context for a query
-def retrieve_relevant_context(query):
-    """Search the vector store for context relevant to the query"""
-    try:
-        if not vectorstore:
-            logger.error("Vector store not initialized")
-            return ""
+# def retrieve_relevant_context(query):
+#     """Search the vector store for context relevant to the query"""
+#     try:
+#         if not vectorstore:
+#             logger.error("Vector store not initialized")
+#             return ""
             
-        # Search for similar documents
-        documents = vectorstore.similarity_search(query, k=3)
-        context = "\n".join([doc.page_content for doc in documents])
-        return context
-    except Exception as e:
-        logger.error(f"Context retrieval error: {e}")
-        return ""
+#         # Search for similar documents
+#         documents = vectorstore.similarity_search(query, k=3)
+#         context = "\n".join([doc.page_content for doc in documents])
+#         return context
+#     except Exception as e:
+#         logger.error(f"Context retrieval error: {e}")
+#         return ""
 
 # Generate a response using Gemini
 def generate_gemini_response(query, context, emotion=None):
@@ -299,96 +180,6 @@ def generate_gemini_response(query, context, emotion=None):
         logger.error(f"Gemini response generation error: {e}")
         return f"응답 생성 중 오류가 발생했습니다: {str(e)}"
 
-# Detect emotion from image
-def detect_emotion_from_image(image_data, face_analyzer):
-    """Detect emotion from an image using facial features"""
-    try:
-        # Decode image
-        img = cv2.imdecode(np.frombuffer(image_data, np.uint8), cv2.IMREAD_COLOR)
-        if img is None or img.shape[0] < 64 or img.shape[1] < 64:
-            return {"error": "이미지를 처리할 수 없습니다"}
-
-        # Detect faces
-        faces = face_analyzer.get(img)
-        if not faces:
-            return {"error": "얼굴이 감지되지 않았습니다"}
-
-        face = faces[0]
-        landmarks = None
-
-        # Try to extract landmarks
-        landmark_attributes = [
-            ("kps", "KPS"),
-            ("landmark_2d", "2D"),
-            ("landmark_3d", "3D"),
-        ]
-        
-        for attr, desc in landmark_attributes:
-            if hasattr(face, attr) and getattr(face, attr) is not None:
-                curr_landmarks = getattr(face, attr)
-                if len(curr_landmarks) >= 68:
-                    landmarks = (
-                        curr_landmarks[:, :2]
-                        if attr == "landmark_3d"
-                        else curr_landmarks
-                    )
-                    logger.info(f"{desc} landmarks being used")
-                    break
-
-        if landmarks is None:
-            return {"error": "얼굴 특징점을 추출할 수 없습니다"}
-
-        # Process landmarks
-        landmarks = landmarks.astype(np.float32)
-        landmarks /= np.array([img.shape[1], img.shape[0]])
-
-        # Calculate distances
-        eye_distance = np.linalg.norm(
-            np.mean(landmarks[36:42], axis=0) - np.mean(landmarks[42:48], axis=0)
-        )
-        mouth_height = np.linalg.norm(
-            np.mean(landmarks[51:54], axis=0) - np.mean(landmarks[57:60], axis=0)
-        )
-
-        if np.isnan(eye_distance) or np.isnan(mouth_height):
-            return {"error": "특징점 거리 계산에 실패했습니다"}
-
-        # Classify emotion based on facial features
-        if mouth_height > 0.15:
-            emotion_idx = 2  # interested
-        elif eye_distance > 0.12:
-            emotion_idx = 1  # focused
-        elif mouth_height < 0.06:
-            emotion_idx = 4  # tired
-        else:
-            emotion_idx = 0  # neutral
-
-        # Get emotion label and create confidence scores
-        dominant_emotion = EMOTION_MAPPING[emotion_idx]
-        
-        # Generate result with confidence scores and debug info
-        result = {
-            "dominant_emotion": dominant_emotion,
-            "all_emotions": {
-                emotion: 0.1
-                for emotion in EMOTION_MAPPING.values()
-                if emotion != dominant_emotion
-            } | {dominant_emotion: 0.6},
-            "debug_info": {
-                "eye_distance": float(eye_distance),
-                "mouth_height": float(mouth_height),
-                "image_size": img.shape,
-                "landmarks_count": len(landmarks),
-                "landmark_type": next(
-                    attr
-                    for attr in ["kps", "landmark_2d", "landmark_3d"]
-                    if hasattr(face, attr) and getattr(face, attr) is not None
-                ),
-            },
-        }
-        
-        return result
-
     except Exception as e:
         logger.error(f"Emotion detection error: {str(e)}")
         return {"error": str(e)}
@@ -415,7 +206,6 @@ def generate_response(emotion_data, query=None):
             try:
                 # Build context
                 context = f"현재 감지된 감정 상태: {dominant_emotion}\n"
-                context += retrieve_relevant_context(query)
 
                 # Generate custom response
                 custom_response = generate_gemini_response(query, context, dominant_emotion)
@@ -441,17 +231,9 @@ def generate_response(emotion_data, query=None):
 # In-memory conversation store
 conversation_store = {}
 
-# Initialize DB on startup
-if __name__ == "__main__":
-    init_db()
-
 # Ensure these variables and functions are available for import
 __all__ = [
-    'generate_response',
-    'retrieve_relevant_context', 
+    'generate_response', 
     'conversation_store',
-    'gemini_model',
-    'emotion_info',
-    'setup_gemini_model',
-    'detect_emotion_from_image'
+    'gemini_model'
 ]
