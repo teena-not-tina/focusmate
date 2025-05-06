@@ -68,6 +68,85 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+        .chat-container {
+            margin-top: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-container h3 {
+            margin: 0;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-break: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: #3498db;
+            color: white;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.system {
+            align-self: center;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            font-style: italic;
+            color: #666;
+        }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input-area button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         #alertOverlay button:hover {
             background-color: #2980b9;
         }
@@ -152,12 +231,25 @@
 <span class="stat-label">알림:</span>
 <span id="alertsStat">0 졸음 횟수, 0 하품 횟수</span>
 </div>
+<div class="chat-container">
+    <h3>학습 도우미</h3>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message system">
+            안녕하세요! 저는 FocusMate 학습 도우미입니다. 공부하는 동안 도움이 필요하시면 언제든 물어보세요.
+        </div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="질문을 입력하세요..." />
+        <button id="sendBtn">전송</button>
+    </div>
+</div>
 </div>
 </div>
 <audio id="audioPlayer">
 <source id="audioSource" src="" type="audio/mpeg"/>
 </audio>
 <script>
+    const API_BASE_URL = 'http://localhost:8080';
     let monitoringActive = false;
     let studyStartTime = null;
     let studyTimerInterval = null;
@@ -387,6 +479,160 @@
             audioPlayer.load();
             audioPlayer.play().catch(e => console.log('Audio playback error:', e));
         }
+    });
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Function to add a message to the chat
+    function addMessage(message, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', type);
+        
+        // For longer bot messages, format with line breaks
+        if (type === 'bot') {
+            // Allow HTML (for <b>...</b> from backend)
+            messageDiv.innerHTML = message.replace(/\n/g, '<br>');
+        } else {
+            messageDiv.textContent = message;
+        }
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Send message when button is clicked
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
+    }
+
+    // Send message when Enter is pressed in chat input
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
+
+    // Function to send a message to the server
+    async function sendMessage() {
+        console.log('[DEBUG] sendMessage called');
+        const message = chatInput.value.trim();
+        if (!message) {
+            console.log('[DEBUG] No message to send');
+            return;
+        }
+        
+        // Add user message to chat
+        addMessage(message, 'user');
+        
+        // Clear input
+        chatInput.value = '';
+        
+        // Add loading message
+        const loadingId = 'loading-' + Date.now();
+        const loadingDiv = document.createElement('div');
+        loadingDiv.classList.add('message', 'bot', 'loading');
+        loadingDiv.id = loadingId;
+        loadingDiv.textContent = '응답을 생성 중입니다...';
+        chatMessages.appendChild(loadingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        try {
+            console.log('[DEBUG] Getting statistics...');
+            // Get current emotion state for context
+            const statsResponse = await fetch(`${API_BASE_URL}/get_statistics`);
+            
+            if (!statsResponse.ok) {
+                console.log('[DEBUG] Statistics fetch failed:', statsResponse.status);
+            }
+            
+            const statsData = await statsResponse.json();
+            console.log('[DEBUG] Statistics data:', statsData);
+            
+            // Prepare request data
+            const requestData = {
+                message: message,
+                statistics: statsData.statistics || {}
+            };
+            console.log('[DEBUG] Sending chat request:', requestData);
+            
+            // Send message to server
+            const response = await fetch(`${API_BASE_URL}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+            
+            console.log('[DEBUG] Chat response status:', response.status);
+            
+            if (!response.ok) {
+                console.log('[DEBUG] Chat response not OK, text:', await response.text());
+                throw new Error(`Server error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('[DEBUG] Chat response data:', data);
+            
+            // Remove loading message
+            const loadingMessage = document.getElementById(loadingId);
+            if (loadingMessage) {
+                chatMessages.removeChild(loadingMessage);
+            }
+            
+            // Add bot response to chat
+            if (data.response) {
+                addMessage(data.response, 'bot');
+            } else {
+                addMessage('죄송합니다, 응답을 처리할 수 없습니다.', 'bot');
+            }
+        } catch (error) {
+            console.error('[ERROR] Error sending message:', error);
+            
+            // Remove loading message
+            const loadingMessage = document.getElementById(loadingId);
+            if (loadingMessage) {
+                chatMessages.removeChild(loadingMessage);
+            }
+            
+            addMessage('서버 연결 오류가 발생했습니다.', 'system');
+        }
+    }
+
+    // Add this test function to check API connectivity
+    function testChatEndpoint() {
+        console.log('[DEBUG] Testing chat endpoint...');
+        fetch(`${API_BASE_URL}/chat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'test',
+                statistics: {}
+            })
+        })
+        .then(res => {
+            console.log('[DEBUG] Test response status:', res.status);
+            return res.json();
+        })
+        .then(data => {
+            console.log('[DEBUG] Test response data:', data);
+        })
+        .catch(err => {
+            console.error('[ERROR] Test error:', err);
+        });
+    }
+
+    // Call the test function when the page loads (you can remove this later)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add other initialization code...
+        
+        // Test the chat endpoint
+        setTimeout(testChatEndpoint, 2000); // Test 2 seconds after page load
     });
 </script>
 

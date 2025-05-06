@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><title>Server Test</title></head>
+<body>
+    <button onclick="testChat()">Test Chat</button>
+    <button onclick="testSimple()">Test Simple</button>
+    <div id="result"></div>
+    <script>
+        const API_BASE_URL = 'http://localhost:8080';
+        
+        function testChat() {
+            fetch(`${API_BASE_URL}/chat`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: 'test', statistics: {}})
+            })
+            .then(res => res.json())
+            .then(data => document.getElementById('result').innerHTML = 'Chat: ' + JSON.stringify(data))
+            .catch(err => document.getElementById('result').innerHTML = 'Chat Error: ' + err);
+        }
+        
+        function testSimple() {
+            fetch(`${API_BASE_URL}/test-simple`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({})
+            })
+            .then(res => res.json())
+            .then(data => document.getElementById('result').innerHTML = 'Simple: ' + JSON.stringify(data))
+            .catch(err => document.getElementById('result').innerHTML = 'Simple Error: ' + err);
+        }
+    </script>
+</body>
+</html>

@@ -17,6 +17,8 @@ import requests
 import webbrowser
 import threading
 import platform
+from flask_cors import cross_origin  # Add this line
+
 
 # Add the parent directory to the Python path
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,8 +26,10 @@ sys.path.append(parent_dir)
 
 # Now you can import modules from the parent directory
 from frame_processor import FacialStateTracker
+from chatbot import generate_response, conversation_store, generate_gemini_response
 import config  # This assumes config.py is also in the StartPage directory
-
+import sys
+from insightface.app import FaceAnalysis
 
 # Flask server initialization
 app = Flask(__name__)
@@ -335,6 +339,90 @@ def get_statistics():
     else:
         return jsonify({'status': 'error', 'message': 'Facial state tracker not initialized'})
 
+# Add this new route to handle chat messages
+@app.route('/chat', methods=['POST'])
+@cross_origin()
+def chat():
+    """Handle chat messages from the user"""
+    print("[DEBUG] Chat endpoint hit")  # Add this
+    try:
+        print(f"[DEBUG] Request headers: {request.headers}")
+        print(f"[DEBUG] Request data: {request.data}")
+        print(f"[DEBUG] Chat endpoint called at {datetime.now()}")
+        
+        # Get message from request
+        data = request.json
+        print(f"[DEBUG] Received data: {data}")
+        
+        if not data or 'message' not in data:
+            print("[DEBUG] No message provided")
+            return jsonify({'error': 'No message provided'}), 400
+            
+        message = data['message']
+        stats = data.get('statistics', {})
+        print(f"[DEBUG] User message: {message}")
+        print(f"[DEBUG] Stats: {stats}")
+        
+        # Get current emotional state based on statistics
+        current_emotion = "focused"  # default state
+        
+        # Determine current emotion from statistics
+        if stats.get('current_eyes_closed_duration', 0) > 3:
+            current_emotion = "sleepy"
+        elif stats.get('current_yawning_duration', 0) > 2:
+            current_emotion = "tired"
+        elif stats.get('eye_closed_percentage', 0) > 20:
+            current_emotion = "tired"
+        elif stats.get('yawning_percentage', 0) > 15:
+            current_emotion = "tired"
+        
+        print(f"[DEBUG] Detected emotion: {current_emotion}")
+        
+        # Create emotion data structure for the chatbot
+        emotion_data = {
+            "dominant_emotion": current_emotion,
+            "debug_info": stats
+        }
+        
+        # Generate response using the chatbot
+        print("[DEBUG] Generating response...")
+        response_data = generate_response(emotion_data, message)
+        print(f"[DEBUG] Generated response: {response_data}")
+        
+        # Get user ID (for now using "anonymous", you can modify this to use actual user IDs)
+        user_id = "anonymous"
+        
+        # Store conversation history
+        if user_id not in conversation_store:
+            conversation_store[user_id] = []
+            
+        conversation_store[user_id].append({
+            "user": message,
+            "bot": response_data.get("response", "Sorry, I couldn't generate a response."),
+            "emotion": current_emotion,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        # Limit conversation history to last 20 messages
+        if len(conversation_store[user_id]) > 20:
+            conversation_store[user_id] = conversation_store[user_id][-20:]
+            
+        print(f"[DEBUG] Returning response to client")
+        return jsonify(response_data)
+        
+    except Exception as e:
+        print(f"[ERROR] Chat error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e), 'response': '죄송합니다. 오류가 발생했습니다.'}), 500
+
+# @app.post("/ask")
+# async def ask_question(request: requests):
+#     data = await request.json()
+#     prompt = data.get("question")
+#     response = generate_response(prompt)
+#     return {"response": response}
+
 # API: Start saving frames
 @app.route('/start_saving', methods=['GET', 'POST'])
 def start_saving():
@@ -401,6 +489,10 @@ def get_status():
         }
     }
     return jsonify(status)
+
+@app.route('/test-simple', methods=['POST'])
+def test_simple():
+    return jsonify({'message': 'Simple test works!'})
 
 # Server startup
 
