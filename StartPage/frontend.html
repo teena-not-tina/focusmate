@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>FocusMate: 나만의 개인 스터디 친구</title>
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>FocusMate: 나만의 개인 스터디 친구</title>
+    <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -68,6 +67,76 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+        .chat-container {
+            margin-top: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-container h3 {
+            margin: 0;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-break: break-word;
+        }
+        .message.user {
+            align-self: flex-end;
+            background-color: #3498db;
+            color: white;
+        }
+        .message.bot {
+            align-self: flex-start;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+        .message.system {
+            align-self: center;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            font-style: italic;
+            color: #666;
+        }
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+        }
+        .chat-input-area input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .chat-input-area button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         #alertOverlay button:hover {
             background-color: #2980b9;
         }
@@ -97,323 +166,520 @@
         .hidden {
             display: none;
         }
-        @media (max-width: 768px) {
-            .controls {
+        .main-flex {
+            display: flex;
+            gap: 32px;
+        }
+        .left-panel {
+            flex: 2;
+            min-width: 350px;
+        }
+        .right-panel {
+            flex: 1;
+            min-width: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        @media (max-width: 900px) {
+            .main-flex {
                 flex-direction: column;
+                gap: 16px;
+            }
+            .left-panel,
+            .right-panel {
+                min-width: 0;
+                width: 100%;
+            }
+            .chat-container {
+                height: 350px;
             }
         }
         #audioPlayer {
             display: none;
         }
     </style>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/><style>
-#loginOverlay button:hover {
-    background-color: #2c8ed6;
-    transform: scale(1.02);
-}
-#loginOverlay input:focus {
-    border: 2px solid #3498db;
-    outline: none;
-}
-</style></head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        #loginOverlay button:hover {
+            background-color: #2c8ed6;
+            transform: scale(1.02);
+        }
+        #loginOverlay input:focus {
+            border: 2px solid #3498db;
+            outline: none;
+        }
+    </style>
+</head>
 <body>
-<div class="container">
-<h1>FocusMate: 나만의 개인 스터디 친구</h1>
-<div class="controls">
-<button id="startBtn">공부 시작</button>
-<button disabled="" id="stopBtn">종료</button>
-<button id="resetBtn">Reset Alerts</button>
-</div>
-<div class="video-container">
-<img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/> </div>
-<div class="stats-container">
-<h3>결과</h3>
-
-<div class="stat-row">
-    <span class="stat-label">공부한 시간:</span>
-    <span id="timeStudiedStat">0:00:00</span>
-</div>
-<span class="stat-label">눈 감은 비율:</span>
-<span id="eyesClosedStat">0%</span>
-</div>
-<div class="stat-row">
-<span class="stat-label">눈 감은 시간:</span>
-<span id="currentEyeClosureStat">0 초</span>
-</div>
-<div class="stat-row">
-<span class="stat-label">하품 비율:</span>
-<span id="yawningStat">0%</span>
-</div>
-<div class="stat-row">
-<span class="stat-label">하품 시간:</span>
-<span id="currentYawningStat">0 초</span>
-</div>
-<div class="stat-row">
-<span class="stat-label">알림:</span>
-<span id="alertsStat">0 졸음 횟수, 0 하품 횟수</span>
-</div>
-</div>
-</div>
-<audio id="audioPlayer">
-<source id="audioSource" src="" type="audio/mpeg"/>
-</audio>
-<script>
-    let monitoringActive = false;
-    let studyStartTime = null;
-    let studyTimerInterval = null;
-    
-    document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('alertOverlay').style.display = 'none';
-        // Get references to existing login elements (already defined in the previous script)
-        const loginOverlay = document.getElementById('loginOverlay');
-        const loginBtn = document.getElementById('loginBtn');
-        const signupBtn = document.getElementById('signupBtn');
-        const emailInput = document.getElementById('emailInput');
-        const passwordInput = document.getElementById('passwordInput');
-        const authMessage = document.getElementById('authMessage');
-
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const videoStream = document.getElementById('videoStream');
+    <div class="container">
+        <h1>FocusMate: 나만의 개인 스터디 친구</h1>
+        <div class="controls">
+            <button id="startBtn">공부 시작</button>
+            <button disabled="" id="stopBtn">종료</button>
+            <button id="resetBtn">Reset Alerts</button>
+        </div>
+        <div class="main-flex">
+            <div class="left-panel">
+                <div class="video-container">
+                    <img alt="Video Stream" id="videoStream" src="http://localhost:8080/camera_stream" style="max-width: 100%; border: 2px solid #333;"/>
+                </div>
+                <div class="stats-container">
+                    <h3>결과</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">공부한 시간:</span>
+                        <span id="timeStudiedStat">0:00:00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">눈 감은 비율:</span>
+                        <span id="eyesClosedStat">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">눈 감은 시간:</span>
+                        <span id="currentEyeClosureStat">0 초</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">하품 비율:</span>
+                        <span id="yawningStat">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">하품 시간:</span>
+                        <span id="currentYawningStat">0 초</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">알림:</span>
+                        <span id="alertsStat">0 졸음 횟수, 0 하품 횟수</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="chat-container">
+                    <h3>학습 도우미</h3>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message system">
+                            안녕하세요! 저는 FocusMate 학습 도우미입니다. 공부하는 동안 도움이 필요하시면 언제든 물어보세요.
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="질문을 입력하세요..."/>
+                        <button id="sendBtn">전송</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="audioPlayer">
+        <source id="audioSource" src="" type="audio/mpeg"/>
+    </audio>
+    <script>
         const API_BASE_URL = 'http://localhost:8080';
-
-        document.getElementById('alertContinueBtn').addEventListener('click', function() {
-            document.getElementById('alertOverlay').style.display = 'none';
-            // Do NOT reset alerts here!
-        });
-        document.getElementById('alertStopBtn').addEventListener('click', async function() {
-            document.getElementById('alertOverlay').style.display = 'none';
-            // Stop monitoring
-            await fetch(`${API_BASE_URL}/stop_camera`, { method: 'POST' });
-            videoStream.src = "";
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-            stopPolling();
-            if (studyTimerInterval) {
-                clearInterval(studyTimerInterval);
-                studyTimerInterval = null;
-            }
-        });
+        let monitoringActive = false;
+        let studyStartTime = null;
+        let studyTimerInterval = null;
         
-        // Start monitoring button handler
-        startBtn.addEventListener('click', async function() {
-            studyStartTime = new Date();
-            updateStudyTimer();
-            studyTimerInterval = setInterval(updateStudyTimer, 1000);
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('alertOverlay').style.display = 'none';
+            // Get references to existing login elements (already defined in the previous script)
+            const loginOverlay = document.getElementById('loginOverlay');
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const emailInput = document.getElementById('emailInput');
+            const passwordInput = document.getElementById('passwordInput');
+            const authMessage = document.getElementById('authMessage');
 
-            try {
-                // Initialize the camera on the server
-                const initResponse = await fetch(`${API_BASE_URL}/initialize_camera`, {
-                    method: 'POST'
-                });
-                
-                if (initResponse.ok) {
-                    // Start the stream
-                    videoStream.src = `${API_BASE_URL}/camera_stream?t=${new Date().getTime()}`;
-                    startBtn.disabled = true;
-                    stopBtn.disabled = false;
-                    // Start polling for alerts and statistics
-                    startPolling();
-                    monitoringActive = true;
-                } else {
-                    alert('Failed to initialize camera. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error starting monitoring:', error);
-                alert('Error starting monitoring. Please try again.');
-            }
-        });
-        
-        loginBtn.addEventListener('click', async function() {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        authMessage.textContent = '';
-        try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const videoStream = document.getElementById('videoStream');
+            const API_BASE_URL = 'http://localhost:8080';
+
+            document.getElementById('alertContinueBtn').addEventListener('click', function() {
+                document.getElementById('alertOverlay').style.display = 'none';
+                // Do NOT reset alerts here!
             });
-            const data = await response.json();
-            if (data.status === 'success') {
-                loginOverlay.style.display = 'none';
-                document.getElementById('alertOverlay').style.display = 'none'; // Hide alert overlay just in case
+            document.getElementById('alertStopBtn').addEventListener('click', async function() {
+                document.getElementById('alertOverlay').style.display = 'none';
+                // Stop monitoring
+                await fetch(`${API_BASE_URL}/stop_camera`, { method: 'POST' });
+                videoStream.src = "";
                 startBtn.disabled = false;
                 stopBtn.disabled = true;
-            } else {
-                authMessage.textContent = data.message || '로그인 실패';
-            }
-        } catch (error) {
-            authMessage.textContent = '서버 오류. 다시 시도하세요.';
-        }
-    });
-
-        // Stop monitoring button handler
-        stopBtn.addEventListener('click', async function() {
-            try {
-                // Stop the camera on the server
-                const stopResponse = await fetch(`${API_BASE_URL}/stop_camera`, {
-                    method: 'POST'
-                });
-                
-                if (stopResponse.ok) {
-                    // Update UI
-                    videoStream.src = "";
-                    startBtn.disabled = false;
-                    stopBtn.disabled = true;
-                    
-                    // Stop polling
-                    stopPolling();
-                    monitoringActive = false;
-                    if (studyTimerInterval) {
-                        clearInterval(studyTimerInterval);
-                        studyTimerInterval = null;
-                    }
-
+                stopPolling();
+                if (studyTimerInterval) {
+                    clearInterval(studyTimerInterval);
+                    studyTimerInterval = null;
                 }
-            } catch (error) {
-                console.error('Error stopping monitoring:', error);
-            }
-        });
-        
-        // Reset alerts button handler
-        resetBtn.addEventListener('click', async function() {
-            try {
-                await fetch(`${API_BASE_URL}/reset_alerts`, {
-                    method: 'POST'
-                });
-                // Reset the UI alerts
-                eyesClosedAlert.style.display = 'none';
-                yawningAlert.style.display = 'none';
-            } catch (error) {
-                console.error('Error resetting alerts:', error);
-            }
-        });
-        
-        // Poll for alerts and statistics when monitoring is active
-        let alertsInterval;
+            });
+            
+            // Start monitoring button handler
+            startBtn.addEventListener('click', async function() {
+                studyStartTime = new Date();
+                updateStudyTimer();
+                studyTimerInterval = setInterval(updateStudyTimer, 1000);
 
-        function updateStudyTimer() {
-            if (!studyStartTime) {
-                document.getElementById('timeStudiedStat').textContent = "0:00:00";
-                return;
-            }
-            const now = new Date();
-            let diff = Math.floor((now - studyStartTime) / 1000);
-            const hours = Math.floor(diff / 3600);
-            diff = diff % 3600;
-            const minutes = Math.floor(diff / 60);
-            const seconds = diff % 60;
-            document.getElementById('timeStudiedStat').textContent =
-                `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-        
-        function startPolling() {
-            // Poll for alerts and stats
-            alertsInterval = setInterval(async function() {
                 try {
-                    // Get alerts
-                    const alertsResponse = await fetch(`${API_BASE_URL}/get_alerts`);
-                    const alertsData = await alertsResponse.json();
+                    // Initialize the camera on the server
+                    const initResponse = await fetch(`${API_BASE_URL}/initialize_camera`, {
+                        method: 'POST'
+                    });
                     
-                    // Process alerts
-                    if (alertsData.alerts && Object.keys(alertsData.alerts).length > 0) {
-                        processAlerts(alertsData.alerts);
-                    }
-                    
-                    // Get statistics
-                    const statsResponse = await fetch(`${API_BASE_URL}/get_statistics`);
-                    const statsData = await statsResponse.json();
-                    
-                    if (statsData.status === 'success') {
-                        updateStatistics(statsData.statistics);
+                    if (initResponse.ok) {
+                        // Start the stream
+                        videoStream.src = `${API_BASE_URL}/camera_stream?t=${new Date().getTime()}`;
+                        startBtn.disabled = true;
+                        stopBtn.disabled = false;
+                        // Start polling for alerts and statistics
+                        startPolling();
+                        monitoringActive = true;
+                    } else {
+                        alert('Failed to initialize camera. Please try again.');
                     }
                 } catch (error) {
-                    console.error('Error polling for alerts/stats:', error);
+                    console.error('Error starting monitoring:', error);
+                    alert('Error starting monitoring. Please try again.');
                 }
-            }, 1000); // Poll every second
-        }
-        
-        function stopPolling() {
-            if (alertsInterval) {
-                clearInterval(alertsInterval);
+            });
+            
+            loginBtn.addEventListener('click', async function() {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                authMessage.textContent = '';
+                try {
+                    const response = await fetch(`${API_BASE_URL}/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await response.json();
+                    if (data.status === 'success') {
+                        loginOverlay.style.display = 'none';
+                        document.getElementById('alertOverlay').style.display = 'none'; // Hide alert overlay just in case
+                        startBtn.disabled = false;
+                        stopBtn.disabled = true;
+                    } else {
+                        authMessage.textContent = data.message || '로그인 실패';
+                    }
+                } catch (error) {
+                    authMessage.textContent = '서버 오류. 다시 시도하세요.';
+                }
+            });
+
+            // Stop monitoring button handler
+            stopBtn.addEventListener('click', async function() {
+                try {
+                    // Stop the camera on the server
+                    const stopResponse = await fetch(`${API_BASE_URL}/stop_camera`, {
+                        method: 'POST'
+                    });
+                    
+                    if (stopResponse.ok) {
+                        // Update UI
+                        videoStream.src = "";
+                        startBtn.disabled = false;
+                        stopBtn.disabled = true;
+                        
+                        // Stop polling
+                        stopPolling();
+                        monitoringActive = false;
+                        if (studyTimerInterval) {
+                            clearInterval(studyTimerInterval);
+                            studyTimerInterval = null;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error stopping monitoring:', error);
+                }
+            });
+            
+            // Reset alerts button handler
+            resetBtn.addEventListener('click', async function() {
+                try {
+                    await fetch(`${API_BASE_URL}/reset_alerts`, {
+                        method: 'POST'
+                    });
+                    // Reset the UI alerts
+                    eyesClosedAlert.style.display = 'none';
+                    yawningAlert.style.display = 'none';
+                } catch (error) {
+                    console.error('Error resetting alerts:', error);
+                }
+            });
+            
+            // Poll for alerts and statistics when monitoring is active
+            let alertsInterval;
+
+            function updateStudyTimer() {
+                if (!studyStartTime) {
+                    document.getElementById('timeStudiedStat').textContent = "0:00:00";
+                    return;
+                }
+                const now = new Date();
+                let diff = Math.floor((now - studyStartTime) / 1000);
+                const hours = Math.floor(diff / 3600);
+                diff = diff % 3600;
+                const minutes = Math.floor(diff / 60);
+                const seconds = diff % 60;
+                document.getElementById('timeStudiedStat').textContent =
+                    `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
+            
+            function startPolling() {
+                // Poll for alerts and stats
+                alertsInterval = setInterval(async function() {
+                    try {
+                        // Get alerts
+                        const alertsResponse = await fetch(`${API_BASE_URL}/get_alerts`);
+                        const alertsData = await alertsResponse.json();
+                        
+                        // Process alerts
+                        if (alertsData.alerts && Object.keys(alertsData.alerts).length > 0) {
+                            processAlerts(alertsData.alerts);
+                        }
+                        
+                        // Get statistics
+                        const statsResponse = await fetch(`${API_BASE_URL}/get_statistics`);
+                        const statsData = await statsResponse.json();
+                        
+                        if (statsData.status === 'success') {
+                            updateStatistics(statsData.statistics);
+                        }
+                    } catch (error) {
+                        console.error('Error polling for alerts/stats:', error);
+                    }
+                }, 1000); // Poll every second
+            }
+            
+            function stopPolling() {
+                if (alertsInterval) {
+                    clearInterval(alertsInterval);
+                }
+            }
+            
+            // Process alerts received from the server
+            function processAlerts(alerts) {
+                // Only show alerts if login overlay is hidden and monitoring is active
+                if (loginOverlay.style.display !== 'none' || !monitoringActive) {
+                    return;
+                }
+                if (alerts.eyes_closed) {
+                    showAlertOverlay("일어나세요!!", "너무 피곤하면 낮잠자고 다시 시작하는건 어때요?", "계속 공부하기", "종료");
+                } else if (alerts.yawning) {
+                    showAlertOverlay("피곤하시죠...", "조금 쉬었다가 집중 다시해볼까요?", "계속 공부하기", "종료");
+                }
+            }
+
+            function showAlertOverlay(title, message, continueText, stopText) {
+                const alertOverlay = document.getElementById('alertOverlay');
+                document.getElementById('alertOverlayTitle').textContent = title;
+                document.getElementById('alertOverlayMessage').textContent = message;
+                document.getElementById('alertContinueBtn').textContent = continueText === "continue" ? "Continue to Study" : continueText;
+                document.getElementById('alertStopBtn').textContent = stopText === "stop" ? "Stop" : stopText;
+                alertOverlay.style.display = 'flex';
+            }
+
+            // Update statistics displayed on the dashboard
+            function updateStatistics(stats) {
+                document.getElementById('eyesClosedStat').textContent = stats.eye_closed_percentage.toFixed(1) + '%';
+                document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' 초';
+                document.getElementById('yawningStat').textContent = stats.yawning_percentage.toFixed(1) + '%';
+                document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' 초';
+                document.getElementById('alertsStat').textContent = 
+                    `${stats.eye_alerts_sent} 졸음 알림, ${stats.yawn_alerts_sent} 하품 알림`;
+            }
+            
+            // Play alert sounds
+            function playAlertSound(alertType) {
+                const audioPlayer = document.getElementById('audioPlayer');
+                const audioSource = document.getElementById('audioSource');
+                
+                if (alertType === 'eyesClosed') {
+                    audioSource.src = 'alert_eyes.mp3';
+                } else if (alertType === 'yawning') {
+                    audioSource.src = 'alert_yawn.mp3';
+                }
+                
+                audioPlayer.load();
+                audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+            }
+        });
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Function to add a message to the chat
+        function addMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            
+            // For longer bot messages, format with line breaks
+            if (type === 'bot') {
+                // Allow HTML (for <b>...</b> from backend)
+                messageDiv.innerHTML = message.replace(/\n/g, '<br>');
+            } else {
+                messageDiv.textContent = message;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-        
-        // Process alerts received from the server
-        function processAlerts(alerts) {
-            // Only show alerts if login overlay is hidden and monitoring is active
-            if (loginOverlay.style.display !== 'none' || !monitoringActive) {
+
+        // Send message when button is clicked
+        if (sendBtn) {
+            sendBtn.addEventListener('click', sendMessage);
+        }
+
+        // Send message when Enter is pressed in chat input
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        // Function to send a message to the server
+        async function sendMessage() {
+            console.log('[DEBUG] sendMessage called');
+            const message = chatInput.value.trim();
+            if (!message) {
+                console.log('[DEBUG] No message to send');
                 return;
             }
-            if (alerts.eyes_closed) {
-                showAlertOverlay("일어나세요!!", "너무 피곤하면 낮잠자고 다시 시작하는건 어때요?", "계속 공부하기", "종료");
-            } else if (alerts.yawning) {
-                showAlertOverlay("피곤하시죠...", "조금 쉬었다가 집중 다시해볼까요?", "계속 공부하기", "종료");
-            }
-}
-
-        function showAlertOverlay(title, message, continueText, stopText) {
-            const alertOverlay = document.getElementById('alertOverlay');
-            document.getElementById('alertOverlayTitle').textContent = title;
-            document.getElementById('alertOverlayMessage').textContent = message;
-            document.getElementById('alertContinueBtn').textContent = continueText === "continue" ? "Continue to Study" : continueText;
-            document.getElementById('alertStopBtn').textContent = stopText === "stop" ? "Stop" : stopText;
-            alertOverlay.style.display = 'flex';
-        }
-
-        // Update statistics displayed on the dashboard
-        function updateStatistics(stats) {
-            document.getElementById('eyesClosedStat').textContent = stats.eye_closed_percentage.toFixed(1) + '%';
-            document.getElementById('currentEyeClosureStat').textContent = stats.current_eyes_closed_duration.toFixed(1) + ' 초';
-            document.getElementById('yawningStat').textContent = stats.yawning_percentage.toFixed(1) + '%';
-            document.getElementById('currentYawningStat').textContent = stats.current_yawning_duration.toFixed(1) + ' 초';
-            document.getElementById('alertsStat').textContent = 
-                `${stats.eye_alerts_sent} 졸음 알림, ${stats.yawn_alerts_sent} 하품 알림`;
-        }
-        
-        // Play alert sounds
-        function playAlertSound(alertType) {
-            const audioPlayer = document.getElementById('audioPlayer');
-            const audioSource = document.getElementById('audioSource');
             
-            if (alertType === 'eyesClosed') {
-                audioSource.src = 'alert_eyes.mp3';
-            } else if (alertType === 'yawning') {
-                audioSource.src = 'alert_yawn.mp3';
-            }
+            // Add user message to chat
+            addMessage(message, 'user');
             
-            audioPlayer.load();
-            audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+            // Clear input
+            chatInput.value = '';
+            
+            // Add loading message
+            const loadingId = 'loading-' + Date.now();
+            const loadingDiv = document.createElement('div');
+            loadingDiv.classList.add('message', 'bot', 'loading');
+            loadingDiv.id = loadingId;
+            loadingDiv.textContent = '응답을 생성 중입니다...';
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            try {
+                console.log('[DEBUG] Getting statistics...');
+                // Get current emotion state for context
+                const statsResponse = await fetch(`${API_BASE_URL}/get_statistics`);
+                
+                if (!statsResponse.ok) {
+                    console.log('[DEBUG] Statistics fetch failed:', statsResponse.status);
+                }
+                
+                const statsData = await statsResponse.json();
+                console.log('[DEBUG] Statistics data:', statsData);
+                
+                // Prepare request data
+                const requestData = {
+                    message: message,
+                    statistics: statsData.statistics || {}
+                };
+                console.log('[DEBUG] Sending chat request:', requestData);
+                
+                // Send message to server
+                const response = await fetch(`${API_BASE_URL}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                console.log('[DEBUG] Chat response status:', response.status);
+                
+                if (!response.ok) {
+                    console.log('[DEBUG] Chat response not OK, text:', await response.text());
+                    throw new Error(`Server error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('[DEBUG] Chat response data:', data);
+                
+                // Remove loading message
+                const loadingMessage = document.getElementById(loadingId);
+                if (loadingMessage) {
+                    chatMessages.removeChild(loadingMessage);
+                }
+                
+                // Add bot response to chat
+                if (data.response) {
+                    addMessage(data.response, 'bot');
+                } else {
+                    addMessage('죄송합니다, 응답을 처리할 수 없습니다.', 'bot');
+                }
+            } catch (error) {
+                console.error('[ERROR] Error sending message:', error);
+                
+                // Remove loading message
+                const loadingMessage = document.getElementById(loadingId);
+                if (loadingMessage) {
+                    chatMessages.removeChild(loadingMessage);
+                }
+                
+                addMessage('서버 연결 오류가 발생했습니다.', 'system');
+            }
         }
-    });
-</script>
 
-<div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
-    align-items: center; justify-content: center; z-index: 1000;">
-<div style="background: white; padding: 30px; border-radius: 16px; width: 280px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; transition: transform 0.3s ease;">
-<h3 style="text-align:center;">로그인</h3>
-<input id="emailInput" placeholder="이메일" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="email"/>
-<input id="passwordInput" placeholder="비밀번호" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="password"/>
-<button id="loginBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">로그인</button>
-<button id="signupBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">회원가입</button>
-<p id="authMessage" style="color: red; font-size: 0.9em; text-align:center;"></p>
-</div>
-</div>
+        // Add this test function to check API connectivity
+        function testChatEndpoint() {
+            console.log('[DEBUG] Testing chat endpoint...');
+            fetch(`${API_BASE_URL}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'test',
+                    statistics: {}
+                })
+            })
+            .then(res => {
+                console.log('[DEBUG] Test response status:', res.status);
+                return res.json();
+            })
+            .then(data => {
+                console.log('[DEBUG] Test response data:', data);
+            })
+            .catch(err => {
+                console.error('[ERROR] Test error:', err);
+            });
+        }
 
+        // Call the test function when the page loads (you can remove this later)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add other initialization code...
+            
+            // Test the chat endpoint
+            setTimeout(testChatEndpoint, 2000); // Test 2 seconds after page load
+        });
+    </script>
 
-<div id="alertOverlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
-    align-items: center; justify-content: center; z-index: 2000;">
-  <div style="background: white; padding: 30px; border-radius: 16px; width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; text-align: center;">
-    <h3 id="alertOverlayTitle"></h3>
-    <p id="alertOverlayMessage"></p>
-    <button id="alertContinueBtn" style="width: 100%; padding: 10px; margin: 10px 0;">계속 공부하기</button>
-    <button id="alertStopBtn" style="width: 100%; padding: 10px; background: #dc3545;">종료</button>
-  </div>
-</div>
+    <div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
+        align-items: center; justify-content: center; z-index: 1000;">
+        <div style="background: white; padding: 30px; border-radius: 16px; width: 280px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; transition: transform 0.3s ease;">
+            <h3 style="text-align:center;">로그인</h3>
+            <input id="emailInput" placeholder="이메일" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="email"/>
+            <input id="passwordInput" placeholder="비밀번호" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;" type="password"/>
+            <button id="loginBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">로그인</button>
+            <button id="signupBtn" style="display: block; width: 100%; max-width: 240px; padding: 10px; margin: 5px auto;">회원가입</button>
+            <p id="authMessage" style="color: red; font-size: 0.9em; text-align:center;"></p>
+        </div>
+    </div>
 
+    <div id="alertOverlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); display: flex;
+        align-items: center; justify-content: center; z-index: 2000;">
+        <div style="background: white; padding: 30px; border-radius: 16px; width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); font-family: 'Roboto', sans-serif; text-align: center;">
+            <h3 id="alertOverlayTitle"></h3>
+            <p id="alertOverlayMessage"></p>
+            <button id="alertContinueBtn" style="width: 100%; padding: 10px; margin: 10px 0;">계속 공부하기</button>
+            <button id="alertStopBtn" style="width: 100%; padding: 10px; background: #dc3545;">종료</button>
+        </div>
+    </div>
 </body>
 </html>
