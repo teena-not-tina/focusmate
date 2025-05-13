@@ -1,15 +1,23 @@
 # 시작 전
 
 models 폴더를 구축을 먼저 하셔야 합니다.
+
 insightface ai 모델이 용량이 커서 따로 아래 링크로 다운로드 받은 후, models 폴더 안에 넣어주시기 바랍니다.
-https://huggingface.co/Devia/G/resolve/main/inswapper_128.onnx
-또한 hand_landmarker.task 도 models 폴더 안에 넣어주시기 바랍니다. 다운로드는 아래 링크로 하시면 됩니다.
+
+https://huggingface.co/Devia/G/resolve/main/inswapper_128.onnx 
+
+또한 hand_landmarker.task 도 models 폴더 안에 넣어주시기 바랍니다. 다운로드는 아래 링크로 하시면 됩니다. 
+
 https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task
 
 따라서 아래와 같이 기본 세팅이 되어있으면 됩니다. 
+
 focusmate
+
 ---models
+
 ------inswapper_128.onnx
+
 ------hand_landmarker.task
 
 
